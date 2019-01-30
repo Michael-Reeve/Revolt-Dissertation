@@ -17,23 +17,12 @@ public class Inventory : MonoBehaviour
 		{
 			items.Add(new InventorySlot());
 		}
+		GUI.UpdateList();
 	}
 
-	public void ToggleActive()
+	public void UpdateUI()
 	{
-		if(GUI.inUse == false)
-		{
-			GUI.gameObject.SetActive(!GUI.gameObject.activeInHierarchy);
-			GUI.Active = !GUI.Active;
-			if(GUI.Active && Input_Manager.cursorLocked == true)
-			{
-				Input_Manager.LockCursor(false);
-			}
-			else if(GUI.Active == false)
-			{
-				Input_Manager.LockCursor(true);
-			}
-		}
+		GUI.UpdateList();
 	}
 
 	public void AddItem(Item newItem)
@@ -52,6 +41,7 @@ public class Inventory : MonoBehaviour
 				break;
 			}
 		}
+		UpdateUI();
 	}
 
 	public void RemoveItem(InventorySlot item)
@@ -73,12 +63,13 @@ public class Inventory : MonoBehaviour
 		{
 			item.ContainedItem = null;
 		}
+		UpdateUI();
 	}
 
 	public void SwapItems(int itemIndex, int swapIndex)
 	{
 		items = Utility.Swap<InventorySlot>(items.ToArray(), itemIndex, swapIndex).ToList();
-		GUI.UpdateList();
+		UpdateUI();
 	}
 
 	public void UseItem(int itemIndex)
@@ -93,5 +84,6 @@ public class Inventory : MonoBehaviour
 			Equippable useItem = (Equippable)items[itemIndex].ContainedItem;
 			useItem.Equip(controller);
 		}
+		UpdateUI();
 	}
 }

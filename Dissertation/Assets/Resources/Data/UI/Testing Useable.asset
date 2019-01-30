@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5143d262924c048a73444fcb41af67, type: 3}
+  m_Name: Testing Useable
+  m_EditorClassIdentifier: 
+  itemName: Test Useable Item
+  itemDescription: This is a test description.
+  image: {fileID: 21300000, guid: f178146a44de340829e1c25c4ee4c072, type: 3}
+  itemObject: {fileID: 1041532332958102, guid: 00405de633fb36749b5b5a528570e92d, type: 2}
+  stackable: 1
+  eventTrigger: 
+  behaviour: {fileID: 11400000, guid: 80b218efe2c681d409979d99a0819656, type: 2}

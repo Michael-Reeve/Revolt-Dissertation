@@ -9,11 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c5143d262924c048a73444fcb41af67, type: 3}
-  m_Name: Testing Useable
+  m_Name: TelsaAnchor
   m_EditorClassIdentifier: 
-  itemName: Test Useable Item
-  itemDescription: This is a test description.
-  image: {fileID: 21300000, guid: f178146a44de340829e1c25c4ee4c072, type: 3}
-  itemObject: {fileID: 1041532332958102, guid: 00405de633fb36749b5b5a528570e92d, type: 2}
+  itemName: Tesla Anchor
+  itemDescription: When used, will place a Tesla Anchor at your location.
+  image: {fileID: 21300000, guid: 54a1d28b302b6484d8633cc09baf1238, type: 3}
+  itemObject: {fileID: 100002, guid: 9a1fd5158dd5d294abf8ca08b3af54fd, type: 3}
   stackable: 1
-  behaviour: {fileID: 11400000, guid: 80b218efe2c681d409979d99a0819656, type: 2}
+  eventTrigger: 
+  behaviour: {fileID: 0}

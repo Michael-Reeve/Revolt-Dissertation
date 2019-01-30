@@ -71,6 +71,10 @@ public class PlayerController : Controller
 		{
 			targettedInteractible = null;
 		}
+		if(Input.GetAxis("Mouse ScrollWheel") != 0)
+		{
+			inventory.GUI.HighlightItem(Input.GetAxis("Mouse ScrollWheel"));
+		}
 	}
 
 	void KeyPress()
@@ -85,11 +89,6 @@ public class PlayerController : Controller
 				}
 				Debug.DrawRay(activeCamera.transform.position, activeCamera.transform.forward, Color.red, 5f);
 			}
-		}
-		if(Input.GetKeyDown("tab") == true && mainMenu.gameObject.activeInHierarchy == false)
-		{
-			EventManager.TriggerEvent("DisableInput");
-			inventory.ToggleActive();
 		}
 		if(Input.GetKeyDown("escape") == true)
 		{

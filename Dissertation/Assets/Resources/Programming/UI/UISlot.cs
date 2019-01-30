@@ -10,8 +10,9 @@ public class UISlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerEnte
 	public bool hovered;
 	public int index;
 	public Text itemName, itemDescription, itemQuantity;
-	public Image itemImage, itemFrame;
+	public Image itemImage, itemFrame, selected;
 	public Vector2 position;
+
 
 	public void OnDrag(PointerEventData eventData)
 	{ 

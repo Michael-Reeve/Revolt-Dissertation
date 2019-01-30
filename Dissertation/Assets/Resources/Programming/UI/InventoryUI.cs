@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour 
@@ -11,8 +12,8 @@ public class InventoryUI : MonoBehaviour
 	public GameObject slotUI;
 	public List<GameObject> slots = new List<GameObject>();
 	public GUIDatabase database;
-
 	public int maxHorizontalSize = 4;
+	public int highlightedItem;
 
 	public bool Active
 	{
@@ -35,6 +36,27 @@ public class InventoryUI : MonoBehaviour
 			}
 		}
 	}
+	
+	public void HighlightItem(float input)
+	{
+		slots[highlightedItem].GetComponent<UISlot>().selected.enabled = false;
+		if(input > 0)
+			highlightedItem += 1;
+		else if(input < 0)
+			highlightedItem -= 1;
+		if(highlightedItem > slots.Count - 1)
+			highlightedItem = 0;
+		else if (highlightedItem < 0)
+			highlightedItem = slots.Count - 1;
+		Debug.Log(highlightedItem);
+		EventSystem.current.SetSelectedGameObject(slots[highlightedItem]);
+		slots[highlightedItem].GetComponent<UISlot>().selected.enabled = true;
+	}
+
+	public void UseHighlighted()
+	{
+		inventoryReference.UseItem(highlightedItem);
+	}
 
 	public void UpdateList()
 	{
@@ -43,8 +65,7 @@ public class InventoryUI : MonoBehaviour
 		{
 			CreateSlot(slot);
 		}
-		PositionSlots(10f);
-		//ScaleSlots();
+		HighlightItem(0);
 	}
 
 	protected void ClearList()
@@ -54,40 +75,6 @@ public class InventoryUI : MonoBehaviour
 			slot.GetComponent<UISlot>().Destroy();
 		}
 		slots.Clear();
-	}
-
-	// Position Slots!
-	// Padding is used for both X and Y.
-	// 
-	protected void PositionSlots(float padding = 1f)
-	{
-		Vector2 screenXY = new Vector2(Screen.width, Screen.height);
-		//Debug.Log(screenXY);
-		for(int i = 0; i < slots.Count; i++)
-		{
-			Vector2 slotPosition = new Vector2(screenXY.x / 3, screenXY.y / 1.5f);
-			if(i >= maxHorizontalSize)
-			{
-				slotPosition.y -= (100f * (i / maxHorizontalSize) + (padding * (i / maxHorizontalSize)));
-			}
-			if(i != 0)
-			{
-				slotPosition.x += 100 * (i - (maxHorizontalSize * (i / maxHorizontalSize))) + (padding * (i - (maxHorizontalSize * (i / maxHorizontalSize))));
-			}
-			slots[i].transform.position = slotPosition;
-			slots[i].GetComponent<UISlot>().position = slotPosition;
-		}
-	}
-
-	protected void ScaleSlots()
-	{
-		Vector2 screenXY = new Vector2(Screen.width, Screen.height);
-		Vector2 slotScale = new Vector2(screenXY.x / 1920 , screenXY.y / 1080);
-		Debug.Log(slotScale);
-		for(int i = 0; i < slots.Count; i++)
-		{
-			slots[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(slots[i].transform.localScale.x * slotScale.x, slots[i].transform.localScale.y * slotScale.y);
-		}
 	}
 
 	protected void CreateSlot(InventorySlot slot)
