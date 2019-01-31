@@ -11,37 +11,55 @@ public class Options : MonoBehaviour
 	public Slider musicVolumeSlider;
 	public Slider sfxVolumeSlider;
 	public Slider dialogueVolumeSlider;
-	void Awake()
+	protected float mainVolume, musicVolume, sfxVolume, dialogueVolume;
+
+	public void LoadVolume()
 	{
-		mainVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume", 0.8f);
-		musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.8f);
-		sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.8f);
-		dialogueVolumeSlider.value = PlayerPrefs.GetFloat("DialogueVolume", 0.8f);
+		mainVolume = PlayerPrefs.GetFloat("MainVolume", 0.8f);
+		SetMainVolume();
+		musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.8f);
+		SetMusicVolume();
+		sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.8f);
+		SetSFXVolume();
+		dialogueVolume = PlayerPrefs.GetFloat("DialogueVolume", 0.8f);
+		SetDialogueVolume();
+		SetSliders();
+	}
+
+	private void SetSliders()
+	{
+		mainVolumeSlider.value = mainVolume;
+		musicVolumeSlider.value = musicVolume;
+		sfxVolumeSlider.value = sfxVolume;
+		dialogueVolumeSlider.value = dialogueVolume;
 	}
 
 	public void SetMainVolume()
 	{
-		masterMixer.SetFloat("mainVolume", Mathf.Log10(mainVolumeSlider.value) * 20);
+		mainVolume = Mathf.Log10(mainVolumeSlider.value) * 20;
+		masterMixer.SetFloat("mainVolume", mainVolume);
 	}
 
 	public void SetMusicVolume()
 	{
-		masterMixer.SetFloat("musicVolume", Mathf.Log10(musicVolumeSlider.value) * 20);
+		musicVolume = Mathf.Log10(musicVolumeSlider.value) * 20;
+		masterMixer.SetFloat("musicVolume", musicVolume);
 	}
 
 	public void SetSFXVolume()
 	{
-		masterMixer.SetFloat("sfxVolume", Mathf.Log10(sfxVolumeSlider.value) * 20);
+		sfxVolume = Mathf.Log10(sfxVolumeSlider.value) * 20;
+		masterMixer.SetFloat("sfxVolume", sfxVolume);
 	}
 
 	public void SetDialogueVolume()
 	{
-		masterMixer.SetFloat("dialogueVolume", Mathf.Log10(dialogueVolumeSlider.value) * 20);
+		dialogueVolume = Mathf.Log10(dialogueVolumeSlider.value) * 20;
+		masterMixer.SetFloat("dialogueVolume", dialogueVolume);
 	}
 	
 	void OnApplicationQuit()
 	{
-		Debug.Log("Test");
 		PlayerPrefs.SetFloat("MainVolume", mainVolumeSlider.value);
 		PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
 		PlayerPrefs.SetFloat("SFXVolume", sfxVolumeSlider.value);

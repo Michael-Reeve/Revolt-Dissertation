@@ -7,6 +7,14 @@ public class MainMenu : MonoBehaviour
 {
 
 	public LoadScreen loadScreen;
+	public Options options;
+	public AudioSource audioSource;
+
+	void Awake()
+	{
+		if(options)
+			options.LoadVolume();
+	}
 
 	public void ToggleActive()
 	{
@@ -27,5 +35,14 @@ public class MainMenu : MonoBehaviour
 		AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
 		if(loadScreen)
 			loadScreen.LoadIcon(async);
+	}
+
+	public void PlaySound(AudioClip clip)
+	{
+		if(audioSource != null)
+		{
+		audioSource.clip = clip;
+		audioSource.Play();
+		}
 	}
 }
