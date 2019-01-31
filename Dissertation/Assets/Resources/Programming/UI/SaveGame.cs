@@ -11,8 +11,21 @@ public static class SaveGame
 		PlayerPrefs.SetFloat("PlayerZ", playerPosition.z);
 	}
 
-	public static Vector3 LoadPlayerPosition(Vector3 playerPosition)
+	public static Vector3 LoadPlayerPosition()
 	{
 		return new Vector3(PlayerPrefs.GetFloat("PlayerX"), PlayerPrefs.GetFloat("PlayerY"), PlayerPrefs.GetFloat("PlayerZ"));
+	}
+
+	public static void SavePlayerRotation(Quaternion playerRotation)
+	{
+		PlayerPrefs.SetFloat("PlayerQW", playerRotation.w);
+		PlayerPrefs.SetFloat("PlayerQX", playerRotation.x);
+		PlayerPrefs.SetFloat("PlayerQY", playerRotation.y);
+		PlayerPrefs.SetFloat("PlayerQZ", playerRotation.z);
+	}
+
+	public static Quaternion LoadPlayerRotation()
+	{
+		return new Quaternion(PlayerPrefs.GetFloat("PlayerX"), PlayerPrefs.GetFloat("PlayerY"), PlayerPrefs.GetFloat("PlayerZ"), PlayerPrefs.GetFloat("PlayerW"));
 	}
 }

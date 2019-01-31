@@ -15,6 +15,7 @@ public class PlayerController : Controller
 	public Interactible targettedInteractible;
 	public float mouseSensitivity = 1f;
 	public MainMenu mainMenu;
+	private Vector3 position;
 
 	void OnEnable()
 	{
@@ -43,7 +44,7 @@ public class PlayerController : Controller
 		Input_Manager.LockCursor(true);
 		if(inventory == true)
 			inventory.controller = this;
-		
+		Load();
 	}
 
 	void Active(bool value)
@@ -109,6 +110,33 @@ public class PlayerController : Controller
 	public void ToggleMainMenu()
 	{
 		mainMenu.ToggleActive();
+	}
+	
+	void OnApplicationQuit()
+	{
+		Save();
+	}
+	
+	void OnDestroy()
+	{
+		Save();
+	}
+
+	public void Save()
+	{
+		Debug.Log(gameObject.name + "Saved game!");
+		SaveGame.SavePlayerPosition(transform.GetChild(0).transform.position);
+		SaveGame.SavePlayerRotation(transform.GetChild(0).rotation);
+		PlayerPrefs.Save();
+	}
+
+	public void Load()
+	{
+		Debug.Log(gameObject.name + "Loaded game!");
+		transform.position = SaveGame.LoadPlayerPosition();
+		transform.rotation = SaveGame.LoadPlayerRotation();
+		activeCamera.transform.rotation = SaveGame.LoadPlayerRotation();
+		Debug.Log(SaveGame.LoadPlayerPosition());
 	}
 	
 }

@@ -67,7 +67,18 @@ public class Options : MonoBehaviour
 	
 	void OnApplicationQuit()
 	{
-		Debug.Log("hafsafas");
+		SaveVolumes();
+	}
+
+
+	void OnDestroy()
+	{
+		SaveVolumes();
+	}
+
+	public void SaveVolumes()
+	{
+		Debug.Log(gameObject.name + "Saved game!");
 		PlayerPrefs.SetFloat("MainVolume", mainVolumeSlider.value);
 		PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
 		PlayerPrefs.SetFloat("SFXVolume", sfxVolumeSlider.value);
