@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 	public Options options;
 	public AudioSource audioSource;
 
-	void Awake()
+	void Start()
 	{
 		if(options)
 			options.LoadVolume();
@@ -44,5 +44,15 @@ public class MainMenu : MonoBehaviour
 		audioSource.clip = clip;
 		audioSource.Play();
 		}
+	}
+
+	public void DeleteAllSaves()
+	{
+		PlayerPrefs.DeleteAll();
+	}
+
+	public void DeleteSave(string saveKey)
+	{
+		PlayerPrefs.DeleteKey(saveKey);
 	}
 }
