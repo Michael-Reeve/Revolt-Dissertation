@@ -19,7 +19,11 @@ public class GUICursor : MonoBehaviour
 		{
 			SetCursor("default");
 		}
-		else
+		else if (player.targettedInteractible is Computer)
+		{
+			SetCursor("cursor");
+		}
+		else if (player.targettedInteractible is Interactible)
 		{
 			SetCursor("interactible");
 		}
