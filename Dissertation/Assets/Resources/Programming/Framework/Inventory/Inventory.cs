@@ -46,24 +46,31 @@ public class Inventory : MonoBehaviour
 
 	public void RemoveItem(InventorySlot item)
 	{
-		if(controller && item.ContainedItem.itemObject != null)
+		if(items.Contains(item) && item.ContainedItem != null)
 		{
-			Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
-		}
-		if(item.ContainedItem.eventTrigger != "")
-		{
-			Debug.Log("Event Triggered: " + item.ContainedItem.eventTrigger);
-			EventManager.TriggerEvent(item.ContainedItem.eventTrigger);
-		}
-		if(item.Quantity > 1)
-		{
-			item.Quantity -= 1;
+			if(controller && item.ContainedItem.itemObject != null)
+			{
+				Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
+			}
+			if(item.ContainedItem.eventTrigger != "")
+			{
+				Debug.Log("Event Triggered: " + item.ContainedItem.eventTrigger);
+				EventManager.TriggerEvent(item.ContainedItem.eventTrigger);
+			}
+			if(item.Quantity > 1)
+			{
+				item.Quantity -= 1;
+			}
+			else
+			{
+				item.ContainedItem = null;
+			}
+			UpdateUI();
 		}
 		else
 		{
-			item.ContainedItem = null;
+			Debug.Log("Inventory does not contain the item specified!");
 		}
-		UpdateUI();
 	}
 
 	public void SwapItems(int itemIndex, int swapIndex)

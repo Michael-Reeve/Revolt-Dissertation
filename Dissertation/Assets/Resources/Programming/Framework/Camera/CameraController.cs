@@ -37,8 +37,7 @@ public abstract class CameraController : MonoBehaviour
 		return true;
 	}
 
-
-	void Start () 
+	public virtual void Awake()
 	{
 		thisCamera = GetComponent<Camera>();
 		smoothing = smoothingAmount;

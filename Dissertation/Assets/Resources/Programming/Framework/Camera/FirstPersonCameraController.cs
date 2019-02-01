@@ -17,8 +17,9 @@ public class FirstPersonCameraController : CameraController
 		EventManager.StopListening("DisableInput", toggleInput);
 	}
 
-	void Awake()
+	public override void Awake()
 	{
+		base.Awake();
 		toggleInput = new UnityAction (ToggleControls);
 		initialRotation = transform.eulerAngles;
 		currentRot = initialRotation;

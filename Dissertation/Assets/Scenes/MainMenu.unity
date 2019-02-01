@@ -7498,7 +7498,7 @@ GameObject:
   - component: {fileID: 1517533833}
   - component: {fileID: 1517533832}
   m_Layer: 5
-  m_Name: StartGame (1)
+  m_Name: WipeSaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8311,7 +8311,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start Game
+  m_Text: Wipe Saves
 --- !u!222 &1690528804
 CanvasRenderer:
   m_ObjectHideFlags: 0

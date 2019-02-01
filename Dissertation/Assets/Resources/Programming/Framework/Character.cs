@@ -5,7 +5,7 @@ using UnityEngine;
 public class Character : Actor 
 {	
 	public Controller characterController;
-	private Rigidbody rigidBody;
+	public Rigidbody rigidBody;
 	public string characterName;
 	public Attributes characterAttributes;
 	public Vector3 velocity;

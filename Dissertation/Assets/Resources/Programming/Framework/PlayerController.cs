@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerController : Controller 
 {
-
 	private UnityAction KeyPressListener;
 	private UnityAction KeyDownListener;
 	private UnityAction impact;
@@ -44,6 +43,10 @@ public class PlayerController : Controller
 		Input_Manager.LockCursor(true);
 		if(inventory == true)
 			inventory.controller = this;
+	}
+
+	void Start()
+	{
 		Load();
 	}
 
@@ -90,6 +93,10 @@ public class PlayerController : Controller
 				}
 				Debug.DrawRay(activeCamera.transform.position, activeCamera.transform.forward, Color.red, 5f);
 			}
+			if(Input.GetKeyDown("e") == true)
+			{
+				inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
+			}
 		}
 		if(Input.GetKeyDown("escape") == true)
 		{
@@ -124,19 +131,21 @@ public class PlayerController : Controller
 
 	public void Save()
 	{
-		Debug.Log(gameObject.name + "Saved game!");
-		SaveGame.SavePlayerPosition(transform.GetChild(0).transform.position);
-		SaveGame.SavePlayerRotation(transform.GetChild(0).rotation);
+		Debug.Log(gameObject.name + " Saved game!");
+		Debug.Log(possessed.rigidBody.transform.eulerAngles);
+		SaveGame.SavePlayerPosition(possessed.rigidBody.transform.position);
+		SaveGame.SavePlayerRotation(possessed.rigidBody.transform.eulerAngles);
 		PlayerPrefs.Save();
 	}
 
 	public void Load()
 	{
-		Debug.Log(gameObject.name + "Loaded game!");
-		transform.position = SaveGame.LoadPlayerPosition();
-		transform.rotation = SaveGame.LoadPlayerRotation();
-		activeCamera.transform.rotation = SaveGame.LoadPlayerRotation();
-		Debug.Log(SaveGame.LoadPlayerPosition());
+		Debug.Log(gameObject.name + " Loaded game!");
+		possessed.rigidBody.transform.position = SaveGame.LoadPlayerPosition();
+		possessed.rigidBody.transform.rotation = Quaternion.Euler(SaveGame.LoadPlayerRotation());
+		Debug.Log(activeCamera.name);
+		activeCamera.transform.rotation = Quaternion.Euler(SaveGame.LoadPlayerRotation());
+		Debug.Log(SaveGame.LoadPlayerRotation());
+		Debug.Log(activeCamera.transform.eulerAngles);
 	}
-	
 }

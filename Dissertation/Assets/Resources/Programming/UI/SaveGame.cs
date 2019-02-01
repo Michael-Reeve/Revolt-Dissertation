@@ -6,26 +6,25 @@ public static class SaveGame
 {
 	public static void SavePlayerPosition(Vector3 playerPosition)
 	{
-		PlayerPrefs.SetFloat("PlayerX", playerPosition.x);
-		PlayerPrefs.SetFloat("PlayerY", playerPosition.y);
-		PlayerPrefs.SetFloat("PlayerZ", playerPosition.z);
+		PlayerPrefs.SetFloat("PlayerPX", playerPosition.x);
+		PlayerPrefs.SetFloat("PlayerPY", playerPosition.y);
+		PlayerPrefs.SetFloat("PlayerPZ", playerPosition.z);
 	}
 
 	public static Vector3 LoadPlayerPosition()
 	{
-		return new Vector3(PlayerPrefs.GetFloat("PlayerX"), PlayerPrefs.GetFloat("PlayerY"), PlayerPrefs.GetFloat("PlayerZ"));
+		return new Vector3(PlayerPrefs.GetFloat("PlayerPX"), PlayerPrefs.GetFloat("PlayerPY"), PlayerPrefs.GetFloat("PlayerPZ"));
 	}
 
-	public static void SavePlayerRotation(Quaternion playerRotation)
+	public static void SavePlayerRotation(Vector3 playerRotation)
 	{
-		PlayerPrefs.SetFloat("PlayerQW", playerRotation.w);
-		PlayerPrefs.SetFloat("PlayerQX", playerRotation.x);
-		PlayerPrefs.SetFloat("PlayerQY", playerRotation.y);
-		PlayerPrefs.SetFloat("PlayerQZ", playerRotation.z);
+		PlayerPrefs.SetFloat("PlayerRX", playerRotation.x);
+		PlayerPrefs.SetFloat("PlayerRY", playerRotation.y);
+		PlayerPrefs.SetFloat("PlayerRZ", playerRotation.z);
 	}
 
-	public static Quaternion LoadPlayerRotation()
+	public static Vector3 LoadPlayerRotation()
 	{
-		return new Quaternion(PlayerPrefs.GetFloat("PlayerX"), PlayerPrefs.GetFloat("PlayerY"), PlayerPrefs.GetFloat("PlayerZ"), PlayerPrefs.GetFloat("PlayerW"));
+		return new Vector3(PlayerPrefs.GetFloat("PlayerRX"), PlayerPrefs.GetFloat("PlayerRY"), PlayerPrefs.GetFloat("PlayerRZ"));
 	}
 }
