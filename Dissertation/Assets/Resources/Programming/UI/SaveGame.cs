@@ -9,9 +9,12 @@ public static class SaveGame
 	{
 		List<GameObject> rootObjects = new List<GameObject>();
 		Scene scene = SceneManager.GetActiveScene();
-		scene.GetRootGameObjects( rootObjects );
-		
-		List<ISave> saves = Utility.GetInterface<ISave>(parent.GetComponentsInChildren(typeof(ISave), true));
+		scene.GetRootGameObjects(rootObjects);
+		List<ISave> saves = new List<ISave>();
+		foreach (GameObject gameObject in rootObjects)
+		{
+			saves.AddRange(Utility.GetInterface<ISave>(gameObject.GetComponentsInChildren(typeof(ISave), true)));
+		}
 		for(int i = 0; i < saves.Count; i++)
 		{
 			saves[i].Save();
@@ -21,7 +24,14 @@ public static class SaveGame
 
 	public static void Load(Transform parent)
 	{
-		List<ISave> saves = Utility.GetInterface<ISave>(parent.GetComponentsInChildren(typeof(ISave), true));
+		List<GameObject> rootObjects = new List<GameObject>();
+		Scene scene = SceneManager.GetActiveScene();
+		scene.GetRootGameObjects(rootObjects);
+		List<ISave> saves = new List<ISave>();
+		foreach (GameObject gameObject in rootObjects)
+		{
+			saves.AddRange(Utility.GetInterface<ISave>(gameObject.GetComponentsInChildren(typeof(ISave), true)));
+		}
 		for(int i = 0; i < saves.Count; i++)
 		{
 			saves[i].Load();
@@ -29,28 +39,28 @@ public static class SaveGame
 		}
 	}
 	
-	public static void SavePlayerPosition(Vector3 playerPosition)
+	public static void SaveVector3(Vector3 position, string key)
 	{
-		PlayerPrefs.SetFloat("PlayerPX", playerPosition.x);
-		PlayerPrefs.SetFloat("PlayerPY", playerPosition.y);
-		PlayerPrefs.SetFloat("PlayerPZ", playerPosition.z);
+		PlayerPrefs.SetFloat(key + "x", position.x);
+		PlayerPrefs.SetFloat(key + "y", position.y);
+		PlayerPrefs.SetFloat(key + "z", position.z);
 	}
 
-	public static Vector3 LoadPlayerPosition()
+	public static Vector3 LoadVector3(string key)
 	{
-		return new Vector3(PlayerPrefs.GetFloat("PlayerPX"), PlayerPrefs.GetFloat("PlayerPY"), PlayerPrefs.GetFloat("PlayerPZ"));
+		return new Vector3(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"));
 	}
 
-	public static void SavePlayerRotation(Quaternion playerRotation)
+	public static void SaveQuaternion(Quaternion rotation, string key)
 	{
-		PlayerPrefs.SetFloat("PlayerRX", playerRotation.x);
-		PlayerPrefs.SetFloat("PlayerRY", playerRotation.y);
-		PlayerPrefs.SetFloat("PlayerRZ", playerRotation.z);
-		PlayerPrefs.SetFloat("PlayerRW", playerRotation.w);
+		PlayerPrefs.SetFloat(key + "x", rotation.x);
+		PlayerPrefs.SetFloat(key + "y", rotation.y);
+		PlayerPrefs.SetFloat(key + "z", rotation.z);
+		PlayerPrefs.SetFloat(key + "w", rotation.w);
 	}
 
-	public static Quaternion LoadPlayerRotation()
+	public static Quaternion LoadQuaternion(string key)
 	{
-		return new Quaternion(PlayerPrefs.GetFloat("PlayerRX"), PlayerPrefs.GetFloat("PlayerRY"), PlayerPrefs.GetFloat("PlayerRZ"), PlayerPrefs.GetFloat("PlayerRW"));
+		return new Quaternion(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"), PlayerPrefs.GetFloat(key + "w"));
 	}
 }
