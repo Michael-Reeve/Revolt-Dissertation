@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class Options : MonoBehaviour 
+public class Options : MonoBehaviour, ISave
 {
 	public AudioMixer masterMixer;
 	public Slider mainVolumeSlider;
@@ -18,7 +18,7 @@ public class Options : MonoBehaviour
 		return Mathf.Log10(conversion) * 20;
 	}
 
-	public void LoadVolume()
+	public void Load()
 	{
 		mainVolume = PlayerPrefs.GetFloat("MainVolume", 0.8f);
 		masterMixer.SetFloat("mainVolume", 10);
@@ -67,18 +67,11 @@ public class Options : MonoBehaviour
 	
 	void OnApplicationQuit()
 	{
-		SaveVolumes();
+		Save();
 	}
 
-
-	void OnDestroy()
+	public void Save()
 	{
-		SaveVolumes();
-	}
-
-	public void SaveVolumes()
-	{
-		Debug.Log(gameObject.name + "Saved game!");
 		PlayerPrefs.SetFloat("MainVolume", mainVolumeSlider.value);
 		PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
 		PlayerPrefs.SetFloat("SFXVolume", sfxVolumeSlider.value);

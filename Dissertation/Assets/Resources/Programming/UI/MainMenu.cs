@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
 	void Start()
 	{
 		if(options)
-			options.LoadVolume();
+			options.Load();
 	}
 
 	public void ToggleActive()
@@ -32,10 +32,22 @@ public class MainMenu : MonoBehaviour
 
 	public void LoadLevel(string levelName)
 	{
+		Debug.Log(transform.root);
+		SaveGame.Save(transform.root);
 		AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
 		if(loadScreen)
 			loadScreen.LoadIcon(async);
+		StartCoroutine(WaitForLoad(async));
 	}
+
+	private IEnumerator WaitForLoad(AsyncOperation async)
+    {
+		while (!async.isDone) 
+		{
+            yield return null;
+        }
+		SaveGame.Load(transform.root);
+    }
 
 	public void PlaySound(AudioClip clip)
 	{

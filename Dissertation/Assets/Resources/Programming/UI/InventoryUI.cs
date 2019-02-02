@@ -48,7 +48,6 @@ public class InventoryUI : MonoBehaviour
 			highlightedItem = 0;
 		else if (highlightedItem < 0)
 			highlightedItem = slots.Count - 1;
-		Debug.Log(highlightedItem);
 		EventSystem.current.SetSelectedGameObject(slots[highlightedItem]);
 		slots[highlightedItem].GetComponent<UISlot>().selected.enabled = true;
 	}

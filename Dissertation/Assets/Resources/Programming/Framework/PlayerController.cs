@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : Controller 
+public class PlayerController : Controller, ISave
 {
 	private UnityAction KeyPressListener;
 	private UnityAction KeyDownListener;
 	private UnityAction impact;
 	private UnityAction toggleInput;
 	public Attributes attributes;
-	public Camera activeCamera;
 	public Interactible targettedInteractible;
-	public float mouseSensitivity = 1f;
 	public MainMenu mainMenu;
 	private Vector3 position;
 
@@ -45,11 +43,6 @@ public class PlayerController : Controller
 			inventory.controller = this;
 	}
 
-	void Start()
-	{
-		Load();
-	}
-
 	void Active(bool value)
 	{
 		active = value;
@@ -79,6 +72,7 @@ public class PlayerController : Controller
 		{
 			inventory.GUI.HighlightItem(Input.GetAxis("Mouse ScrollWheel"));
 		}
+		transform.position = possessed.transform.position;
 	}
 
 	void KeyPress()
@@ -118,34 +112,24 @@ public class PlayerController : Controller
 	{
 		mainMenu.ToggleActive();
 	}
-	
-	void OnApplicationQuit()
-	{
-		Save();
-	}
-	
-	void OnDestroy()
-	{
-		Save();
-	}
 
 	public void Save()
 	{
 		Debug.Log(gameObject.name + " Saved game!");
-		Debug.Log(possessed.rigidBody.transform.eulerAngles);
-		SaveGame.SavePlayerPosition(possessed.rigidBody.transform.position);
-		SaveGame.SavePlayerRotation(possessed.rigidBody.transform.eulerAngles);
+		//Debug.Log("Body Rotation On End: " + possessed.rigidBody.transform.eulerAngles);
+		SaveGame.SavePlayerPosition(possessed.transform.position);
+		SaveGame.SavePlayerRotation(possessed.transform.rotation);
 		PlayerPrefs.Save();
 	}
 
 	public void Load()
 	{
 		Debug.Log(gameObject.name + " Loaded game!");
-		possessed.rigidBody.transform.position = SaveGame.LoadPlayerPosition();
-		possessed.rigidBody.transform.rotation = Quaternion.Euler(SaveGame.LoadPlayerRotation());
-		Debug.Log(activeCamera.name);
-		activeCamera.transform.rotation = Quaternion.Euler(SaveGame.LoadPlayerRotation());
-		Debug.Log(SaveGame.LoadPlayerRotation());
-		Debug.Log(activeCamera.transform.eulerAngles);
+		possessed.transform.position = SaveGame.LoadPlayerPosition();
+		transform.position = SaveGame.LoadPlayerPosition();
+		possessed.transform.rotation = SaveGame.LoadPlayerRotation();
+		activeCamera.transform.rotation = SaveGame.LoadPlayerRotation();
+		//Debug.Log("Saved Rotation: " + SaveGame.LoadPlayerRotation());
+		//Debug.Log("Body Rotation: " + possessed.rigidBody.transform.eulerAngles);
 	}
 }

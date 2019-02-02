@@ -25,7 +25,7 @@ public class Character : Actor
 			velocity = rigidBody.velocity;
 		if(IsFalling())
 		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 10) * Time.deltaTime, ForceMode.Acceleration);
-		Debug.Log("Grounded: " + IsGrounded());
+		//Debug.Log("Grounded: " + IsGrounded());
 	}
 
 	void OnCollisionEnter(Collision other)
