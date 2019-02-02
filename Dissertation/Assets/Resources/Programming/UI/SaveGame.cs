@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class SaveGame 
 {
-	public static void Save(Transform parent)
+	public static void Save()
 	{
 		List<GameObject> rootObjects = new List<GameObject>();
 		Scene scene = SceneManager.GetActiveScene();
@@ -22,7 +22,7 @@ public static class SaveGame
 		}
 	}
 
-	public static void Load(Transform parent)
+	public static void Load()
 	{
 		List<GameObject> rootObjects = new List<GameObject>();
 		Scene scene = SceneManager.GetActiveScene();

@@ -129,7 +129,8 @@ public class PlayerController : Controller, ISave
 		transform.position = SaveGame.LoadVector3("PlayerPos");
 		possessed.transform.rotation = SaveGame.LoadQuaternion("PlayerRot");
 		activeCamera.transform.rotation = SaveGame.LoadQuaternion("PlayerRot");
-		//Debug.Log("Saved Rotation: " + SaveGame.LoadPlayerRotation());
+		Debug.Log("Saved Rotation: " + SaveGame.LoadQuaternion("PlayerRot"));
+		Debug.Log("Saved Position: " + SaveGame.LoadVector3("PlayerPos"));
 		//Debug.Log("Body Rotation: " + possessed.rigidBody.transform.eulerAngles);
 	}
 }
