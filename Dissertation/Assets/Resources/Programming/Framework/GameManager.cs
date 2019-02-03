@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
 		while (!async.isDone) 
 		{
-			Debug.Log(async.progress);
+			//Debug.Log(async.progress);
             yield return null;
         }
 		SaveGame.Load();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FirstPersonCameraController : CameraController 
+public class FirstPersonCameraController : CameraController, ISave
 {
 	Vector3 initialRotation, currentRot;
 	private UnityAction toggleInput;
@@ -22,6 +22,7 @@ public class FirstPersonCameraController : CameraController
 		base.Awake();
 		toggleInput = new UnityAction (ToggleControls);
 		initialRotation = transform.eulerAngles;
+		Debug.Log("Camera Rotation Set:" + initialRotation);
 		currentRot = initialRotation;
 	}
 
@@ -51,5 +52,17 @@ public class FirstPersonCameraController : CameraController
 	public void ToggleControls()
 	{
 		active = !active;
+	}
+
+	public void Save()
+	{
+		SaveGame.SaveVector3(currentRot, "CameraRot");
+	}
+
+	public void Load()
+	{
+		initialRotation = SaveGame.LoadVector3("CameraRot");
+		currentRot = SaveGame.LoadVector3("CameraRot");
+		Debug.Log("Camera Rotation Loaded!");
 	}
 }
