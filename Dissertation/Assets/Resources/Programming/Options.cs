@@ -22,9 +22,6 @@ public class Options : MonoBehaviour, ISave
 	{
 		mainVolume = PlayerPrefs.GetFloat("MainVolume", 0.8f);
 		masterMixer.SetFloat("mainVolume", Convert(mainVolume));
-		float debugMainVolume = mainVolume;
-		Debug.Log(masterMixer.GetFloat("mainVolume", out debugMainVolume));
-		Debug.Log("Main Volume = " + debugMainVolume);
 		musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.8f);
 		masterMixer.SetFloat("musicVolume", Convert(musicVolume));
 		sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.8f);

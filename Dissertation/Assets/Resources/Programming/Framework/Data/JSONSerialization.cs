@@ -7,18 +7,18 @@ public class JSONSerialization
 {
 	public static T Load<T>(string filename) where T: class
 	{
-		string path = PathForFilename(filename);
-		if(JSONSerialization.PathExists(path))
+		string path = string.Concat(Application.streamingAssetsPath, filename);
+		if(File.Exists(path))
 		{
-		return JsonUtility.FromJson<T>(File.ReadAllText(path));
+			return JsonUtility.FromJson<T>(File.ReadAllText(path));
 		}
 		return default(T);
 	}
 
 	public static void Save<T>(string filename, T data) where T: class
 	{
-	string path = PathForFilename(filename);
-	File.WriteAllText(path, JsonUtility.ToJson(data));
+		string path = string.Concat(Application.streamingAssetsPath, filename);
+		File.WriteAllText(path, JsonUtility.ToJson(data));
 	}
 
 }

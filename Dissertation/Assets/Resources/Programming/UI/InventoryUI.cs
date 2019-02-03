@@ -94,7 +94,8 @@ public class InventoryUI : MonoBehaviour
 			newSlotUI.itemName.text = slot.ContainedItem.itemName;
 			newSlotUI.itemDescription.text = slot.ContainedItem.itemDescription;
 			newSlotUI.itemImage.sprite = slot.ContainedItem.image;
-		} else
+		}
+		else
 		{
 			newSlotUI.itemQuantity.text = "";
 			newSlotUI.itemName.text = "";

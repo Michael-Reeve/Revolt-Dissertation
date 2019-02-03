@@ -18,7 +18,6 @@ public static class SaveGame
 		for(int i = 0; i < saves.Count; i++)
 		{
 			saves[i].Save();
-			Debug.Log("Object: " + i + " out of " + saves.Count);
 		}
 	}
 
@@ -35,14 +34,7 @@ public static class SaveGame
 		for(int i = 0; i < saves.Count; i++)
 		{
 			saves[i].Load();
-			Debug.Log("Object: " + i + " out of " + saves.Count);
 		}
-	}
-
-	public static string SaveJson(object saveObject)
-	{
-		Debug.Log(JsonUtility.ToJson(saveObject));
-		return JsonUtility.ToJson(saveObject);
 	}
 	
 	public static void SaveVector3(Vector3 position, string key)

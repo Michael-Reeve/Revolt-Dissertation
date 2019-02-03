@@ -1,9 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour 
+public class InventoryContainer
+{
+	public List<InventorySlot> items = new List<InventorySlot>();
+	public InventoryContainer(List<InventorySlot> data)
+	{
+		items = data;
+	}
+}
+
+public class Inventory : MonoBehaviour, ISave
 {
 	public int inventorySize;
 	public List<InventorySlot> items = new List<InventorySlot>();
@@ -23,10 +33,6 @@ public class Inventory : MonoBehaviour
 	public void UpdateUI()
 	{
 		GUI.UpdateList();
-		for(int i = 0; i < items.Count; i++)
-		{
-			Debug.Log("Slot: " + i + items[i].Save());
-		}
 	}
 
 	public void AddItem(Item newItem)
@@ -95,6 +101,18 @@ public class Inventory : MonoBehaviour
 			Equippable useItem = (Equippable)items[itemIndex].ContainedItem;
 			useItem.Equip(controller);
 		}
+		UpdateUI();
+	}
+
+	public void Save()
+	{
+		JSONSerialization.Save<InventoryContainer>("playerinfo.txt", new InventoryContainer(items));
+		Debug.Log(JsonUtility.ToJson(new InventoryContainer(items)));
+	}
+
+	public void Load()
+	{	
+		items = JSONSerialization.Load<InventoryContainer>("playerinfo.txt").items;
 		UpdateUI();
 	}
 }

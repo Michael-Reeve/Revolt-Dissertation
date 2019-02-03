@@ -68,7 +68,7 @@ public class PlayerController : Controller, ISave
 		{
 			targettedInteractible = null;
 		}
-		if(Input.GetAxis("Mouse ScrollWheel") != 0)
+		if(Input.GetAxis("Mouse ScrollWheel") != 0 && active)
 		{
 			inventory.GUI.HighlightItem(Input.GetAxis("Mouse ScrollWheel"));
 		}
@@ -90,6 +90,12 @@ public class PlayerController : Controller, ISave
 			if(Input.GetKeyDown("e") == true)
 			{
 				inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
+			}
+			if(Input.GetKeyDown("f") == true)
+			{
+				JSONSerialization.Save("playerinfo.txt", inventory.items[0]);
+				inventory.items[1] = JSONSerialization.Load<InventorySlot>("playerinfo.txt");
+				inventory.UpdateUI();
 			}
 		}
 		if(Input.GetKeyDown("escape") == true)
