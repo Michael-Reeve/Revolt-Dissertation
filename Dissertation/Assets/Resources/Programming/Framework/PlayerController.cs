@@ -121,8 +121,6 @@ public class PlayerController : Controller, ISave
 
 	public void Save()
 	{
-		Debug.Log(gameObject.name + " Saved game!");
-		//Debug.Log("Body Rotation On End: " + possessed.rigidBody.transform.eulerAngles);
 		SaveGame.SaveVector3(possessed.transform.position, "PlayerPos");
 		SaveGame.SaveQuaternion(possessed.transform.rotation, "PlayerRot");
 		PlayerPrefs.Save();
@@ -130,12 +128,8 @@ public class PlayerController : Controller, ISave
 
 	public void Load()
 	{
-		Debug.Log(gameObject.name + " Loaded game!");
 		possessed.transform.position = SaveGame.LoadVector3("PlayerPos");
 		transform.position = SaveGame.LoadVector3("PlayerPos");
 		possessed.transform.rotation = SaveGame.LoadQuaternion("PlayerRot");
-		Debug.Log("Saved Rotation: " + SaveGame.LoadQuaternion("PlayerRot").eulerAngles);
-		Debug.Log("Saved Position: " + SaveGame.LoadVector3("PlayerPos"));
-		//Debug.Log("Body Rotation: " + possessed.rigidBody.transform.eulerAngles);
 	}
 }

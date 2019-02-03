@@ -22,7 +22,6 @@ public class FirstPersonCameraController : CameraController, ISave
 		base.Awake();
 		toggleInput = new UnityAction (ToggleControls);
 		initialRotation = transform.eulerAngles;
-		Debug.Log("Camera Rotation Set:" + initialRotation);
 		currentRot = initialRotation;
 	}
 
@@ -63,6 +62,5 @@ public class FirstPersonCameraController : CameraController, ISave
 	{
 		initialRotation = SaveGame.LoadVector3("CameraRot");
 		currentRot = SaveGame.LoadVector3("CameraRot");
-		Debug.Log("Camera Rotation Loaded!");
 	}
 }

@@ -64,7 +64,6 @@ public class Inventory : MonoBehaviour, ISave
 			}
 			if(item.ContainedItem.eventTrigger != "")
 			{
-				Debug.Log("Event Triggered: " + item.ContainedItem.eventTrigger);
 				EventManager.TriggerEvent(item.ContainedItem.eventTrigger);
 			}
 			if(item.Quantity > 1)
