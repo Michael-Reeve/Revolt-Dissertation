@@ -17,12 +17,16 @@ public class Inventory : MonoBehaviour
 		{
 			items.Add(new InventorySlot());
 		}
-		GUI.UpdateList();
+		UpdateUI();
 	}
 
 	public void UpdateUI()
 	{
 		GUI.UpdateList();
+		for(int i = 0; i < items.Count; i++)
+		{
+			Debug.Log("Slot: " + i + items[i].Save());
+		}
 	}
 
 	public void AddItem(Item newItem)

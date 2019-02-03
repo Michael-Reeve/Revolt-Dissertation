@@ -38,6 +38,12 @@ public static class SaveGame
 			Debug.Log("Object: " + i + " out of " + saves.Count);
 		}
 	}
+
+	public static string SaveJson(object saveObject)
+	{
+		Debug.Log(JsonUtility.ToJson(saveObject));
+		return JsonUtility.ToJson(saveObject);
+	}
 	
 	public static void SaveVector3(Vector3 position, string key)
 	{

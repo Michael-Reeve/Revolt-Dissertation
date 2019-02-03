@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class InventorySlot
 {
 	public bool active;
@@ -46,5 +47,9 @@ public class InventorySlot
 				quantity = value;
 		}
 	} 
-
+	
+	public string Save()
+	{
+		return SaveGame.SaveJson(containedItem);
+	}	
 }
