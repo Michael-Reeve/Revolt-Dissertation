@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
 	public void DeleteAllSaves()
 	{
 		PlayerPrefs.DeleteAll();
-		JSONSerialization.Delete("playerinfo.txt");
+		JSON.Delete("playerinfo.txt");
 	}
 
 	public void DeleteSave(string saveKey)

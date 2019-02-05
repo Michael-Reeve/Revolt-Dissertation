@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class JSONSerialization
+public class JSON
 {
 	public static T Load<T>(string filename) where T: class
 	{
