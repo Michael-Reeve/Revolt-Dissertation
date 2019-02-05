@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 {
 	public static GameManager instance = null;
+	public bool loadingLevel;
     private int level = 3;
 
 	void Awake()
@@ -22,17 +23,19 @@ public class GameManager : MonoBehaviour
 	{
 		SaveGame.Save();
 		AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
+		loadingLevel = true;
 		StartCoroutine(WaitForLoad(async));
 		return async;
 	}
 
-	protected static IEnumerator WaitForLoad(AsyncOperation async)
+	protected IEnumerator WaitForLoad(AsyncOperation async)
     {
 		while (!async.isDone) 
 		{
 			//Debug.Log(async.progress);
             yield return null;
         }
+		loadingLevel = false;
 		SaveGame.Load();
     }
 }

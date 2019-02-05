@@ -34,9 +34,9 @@ public class MainMenu : MonoBehaviour
 	public void LoadLevel(string levelName)
 	{
 		SaveGame.Save();
-		AsyncOperation async = GameManager.instance.LoadLevel(levelName);
+		GameManager.instance.LoadLevel(levelName);
 		if(loadScreen)
-			loadScreen.LoadIcon(async);
+			loadScreen.LoadIcon();
 	}
 
 	public void PlaySound(AudioClip clip)
@@ -51,6 +51,7 @@ public class MainMenu : MonoBehaviour
 	public void DeleteAllSaves()
 	{
 		PlayerPrefs.DeleteAll();
+		JSONSerialization.Delete("playerinfo.txt");
 	}
 
 	public void DeleteSave(string saveKey)

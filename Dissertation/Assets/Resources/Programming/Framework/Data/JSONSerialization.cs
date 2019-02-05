@@ -21,4 +21,16 @@ public class JSONSerialization
 		File.WriteAllText(path, JsonUtility.ToJson(data));
 	}
 
+	public static void Delete(string filename)
+	{
+		string path = string.Concat(Application.streamingAssetsPath, filename);
+		File.Delete(path);
+	}
+
+	public static bool CheckSave(string filename)
+	{
+		string path = string.Concat(Application.streamingAssetsPath, filename);
+		return File.Exists(path);
+	}
+
 }
