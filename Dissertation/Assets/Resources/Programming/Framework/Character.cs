@@ -9,7 +9,7 @@ public class Character : Actor
 	public string characterName;
 	public Attributes characterAttributes;
 	public Vector3 velocity;
-	
+	public float speedModifier = 1;
 
 	void Awake () 
 	{
@@ -39,7 +39,8 @@ public class Character : Actor
 	{
 		if(rigidBody != null)
 		{
-			Vector3 newPosition = (((transform.forward / 100) * direction.z) + ((transform.right / 100) * direction.x)) * characterAttributes.speed;
+			direction = direction.normalized;
+			Vector3 newPosition = (((transform.forward / 100) * direction.z) + ((transform.right / 100) * direction.x)) * characterAttributes.speed * speedModifier;
 			//Debug.Log("X: " + newPosition.x.ToString("F") + " Z: " + newPosition.z.ToString("F"));
 			rigidBody.MovePosition(transform.position + newPosition);
 		}

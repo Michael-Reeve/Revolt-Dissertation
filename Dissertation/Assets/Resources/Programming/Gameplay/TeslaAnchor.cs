@@ -36,7 +36,7 @@ public class TeslaAnchor : Electric, Interactible
 		ClearConnections();
 		controller.GetComponent<Inventory>().AddItem(pickUp);
 		//EventManager.TriggerEvent("UpdateConnections");
-		Destroy(this.gameObject);
+		this.gameObject.SetActive(false);
 	}
 
 	public void UpdateLinks(Electric origin = null)

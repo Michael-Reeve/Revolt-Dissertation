@@ -73,6 +73,7 @@ public class PlayerController : Controller, ISave
 			inventory.GUI.HighlightItem(Input.GetAxis("Mouse ScrollWheel"));
 		}
 		transform.position = possessed.transform.position;
+		possessed.speedModifier = Input_Manager.shiftModifier ? 2: 1;
 	}
 
 	void KeyPress()
@@ -89,7 +90,9 @@ public class PlayerController : Controller, ISave
 			}
 			if(Input.GetKeyDown("e") == true)
 			{
-				inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
+				if(Input_Manager.shiftModifier)
+					inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
+				inventory.UseItem(inventory.GUI.highlightedItem);
 			}
 		}
 		if(Input.GetKeyDown("escape") == true)
