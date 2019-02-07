@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject);    
-		
+		LoadLevelAdditive("MainMenu");
 		DontDestroyOnLoad(gameObject);
 	}
 
@@ -24,18 +24,32 @@ public class GameManager : MonoBehaviour
 		SaveGame.Save();
 		AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
 		loadingLevel = true;
-		StartCoroutine(WaitForLoad(async));
+		StartCoroutine(WaitForLoad(async, levelName));
 		return async;
 	}
 
-	protected IEnumerator WaitForLoad(AsyncOperation async)
+	public AsyncOperation LoadLevelAdditive(string levelName)
+	{
+		SaveGame.Save();
+		AsyncOperation async = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+		loadingLevel = true;
+		StartCoroutine(WaitForLoad(async, levelName));
+		return async;
+	}
+
+	protected IEnumerator WaitForLoad(AsyncOperation async, string levelName)
     {
 		while (!async.isDone) 
 		{
-			//Debug.Log(async.progress);
             yield return null;
         }
 		loadingLevel = false;
+		SceneLoaded(levelName);
 		SaveGame.Load();
     }
+
+	protected void SceneLoaded(string levelName)
+	{
+		SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
+	}
 }

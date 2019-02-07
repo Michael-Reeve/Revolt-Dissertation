@@ -113,7 +113,8 @@ public class PlayerController : Controller, ISave
 
 	public void ToggleMainMenu()
 	{
-		mainMenu.ToggleActive();
+		//mainMenu.ToggleActive();
+		GameManager.instance.LoadLevelAdditive("Menu");
 	}
 
 	public void Save()
