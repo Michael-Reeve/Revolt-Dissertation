@@ -2021,9 +2021,32 @@ Prefab:
       propertyPath: m_Name
       value: Power Tool
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 64222908426175520, guid: dd91976994f0ff64b943b4b421ddacc4,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114419795592328658, guid: dd91976994f0ff64b943b4b421ddacc4, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: dd91976994f0ff64b943b4b421ddacc4, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &386395605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1673410725885682, guid: dd91976994f0ff64b943b4b421ddacc4,
+    type: 2}
+  m_PrefabInternal: {fileID: 386395604}
+--- !u!114 &386395606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 386395605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17bcdf6fe2365da49a4b2bc1626175ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: bdfd728b1d1390443815f1fabfee3f95, type: 2}
 --- !u!1 &425833283
 GameObject:
   m_ObjectHideFlags: 0
