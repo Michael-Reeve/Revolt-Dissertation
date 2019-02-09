@@ -10,7 +10,7 @@ public class PlayerController : Controller, ISave
 	private UnityAction impact;
 	private UnityAction toggleInput;
 	public Attributes attributes;
-	public Interactible targettedInteractible;
+	public List<Interactible> targettedInteractible;
 	public MainMenu mainMenu;
 	public Canvas gui;
 	private Vector3 position;
@@ -59,7 +59,7 @@ public class PlayerController : Controller, ISave
 		RaycastHit raycastHit;
 		if(Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out raycastHit, attributes.interactRange))
 		{
-			Interactible interactible = Utility.GetInterface<Interactible>(raycastHit.collider.gameObject.GetComponent<MonoBehaviour>());
+			List<Interactible> interactible = Utility.GetInterface<Interactible>(raycastHit.collider.gameObject.GetComponents<MonoBehaviour>());
 			if(interactible != null)
 			{
 				targettedInteractible = interactible;
@@ -85,7 +85,10 @@ public class PlayerController : Controller, ISave
 			{
 				if(targettedInteractible != null)
 				{
-					targettedInteractible.Interact(this);
+					foreach(Interactible interactible in targettedInteractible)
+					{
+						interactible.Interact(this);
+					}
 				}
 				Debug.DrawRay(activeCamera.transform.position, activeCamera.transform.forward, Color.red, 5f);
 			}

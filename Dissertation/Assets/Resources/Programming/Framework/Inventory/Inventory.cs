@@ -60,7 +60,19 @@ public class Inventory : MonoBehaviour, ISave
 		{
 			if(controller && item.ContainedItem.itemObject != null)
 			{
-				Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
+				if(ObjectPool.instance)
+				{
+					if(ObjectPool.instance.ContainsItem(item.ContainedItem))
+					{
+						Debug.Log("Test");
+						ObjectPool.instance.Spawn(controller.possessed.transform, ObjectPool.instance.FindItemIndex(item.ContainedItem));
+					}
+					else
+					{
+						Debug.Log("Doesn't contain that");
+					}
+				}
+				//Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
 			}
 			if(item.ContainedItem.eventTrigger != "")
 			{
@@ -101,6 +113,11 @@ public class Inventory : MonoBehaviour, ISave
 			useItem.Equip(controller);
 		}
 		UpdateUI();
+	}
+
+	public void DropItem()
+	{
+
 	}
 
 	public void Save()

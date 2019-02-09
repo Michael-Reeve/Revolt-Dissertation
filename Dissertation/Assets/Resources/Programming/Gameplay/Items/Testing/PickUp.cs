@@ -10,15 +10,15 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 	[SerializeField]
 	protected bool active;
 
-	void Awake()
+	void Start()
 	{
-
+		ObjectPool.instance.usedObjects.Add(this);
 	}
 
 	public void Interact(PlayerController controller)
 	{
 		controller.GetComponent<Inventory>().AddItem(item);
-		this.gameObject.SetActive(false);
+		ObjectPool.instance.AddToPool(this);
 	}
 
 	public void Save()
