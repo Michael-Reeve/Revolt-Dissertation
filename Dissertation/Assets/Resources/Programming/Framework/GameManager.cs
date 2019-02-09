@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 {
 	public static GameManager instance = null;
+	public bool playingGame;
 	public bool loadingLevel;
     private int level = 3;
 
@@ -14,8 +15,7 @@ public class GameManager : MonoBehaviour
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
-			Destroy(gameObject);    
-		LoadLevelAdditive("MainMenu");
+			Destroy(gameObject);
 		DontDestroyOnLoad(gameObject);
 	}
 
@@ -28,21 +28,15 @@ public class GameManager : MonoBehaviour
 		return async;
 	}
 
-	public AsyncOperation LoadLevelAdditive(string levelName)
-	{
-		SaveGame.Save();
-		AsyncOperation async = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
-		loadingLevel = true;
-		StartCoroutine(WaitForLoad(async, levelName));
-		return async;
-	}
 
 	protected IEnumerator WaitForLoad(AsyncOperation async, string levelName)
     {
 		while (!async.isDone) 
 		{
+			Debug.Log(levelName + " loading: " + async.progress);
             yield return null;
         }
+		Debug.Log(levelName + " loading finished.");
 		loadingLevel = false;
 		SceneLoaded(levelName);
 		SaveGame.Load();
@@ -50,6 +44,10 @@ public class GameManager : MonoBehaviour
 
 	protected void SceneLoaded(string levelName)
 	{
-		SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
+		if(levelName != "MainMenu")
+			playingGame = true;
+		else
+			playingGame = false;
 	}
+	
 }

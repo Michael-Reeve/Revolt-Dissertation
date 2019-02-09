@@ -7,10 +7,6 @@ public class JSON
 {
 	public static T Load<T>(string filename) where T: class
 	{
-		while(true)
-		{
-			
-		}
 		string path = string.Concat(Application.streamingAssetsPath, filename);
 		if(File.Exists(path))
 		{

@@ -12,6 +12,7 @@ public class PlayerController : Controller, ISave
 	public Attributes attributes;
 	public Interactible targettedInteractible;
 	public MainMenu mainMenu;
+	public Canvas gui;
 	private Vector3 position;
 
 	void OnEnable()
@@ -114,7 +115,13 @@ public class PlayerController : Controller, ISave
 	public void ToggleMainMenu()
 	{
 		mainMenu.ToggleActive();
-		//GameManager.instance.LoadLevelAdditive("Menu");
+		SetUIVisible(!mainMenu.gameObject.activeInHierarchy);
+	}
+
+	public void SetUIVisible(bool value)
+	{
+		if(gui)
+			gui.gameObject.SetActive(value);
 	}
 
 	public void Save()

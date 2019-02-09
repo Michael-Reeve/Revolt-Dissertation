@@ -33,10 +33,20 @@ public class MainMenu : MonoBehaviour
 
 	public void LoadLevel(string levelName)
 	{
-		SaveGame.Save();
 		GameManager.instance.LoadLevel(levelName);
 		if(loadScreen)
 			loadScreen.LoadIcon();
+	}
+
+	public void ExitGame()
+	{
+		if(GameManager.instance.playingGame)
+		{
+			loadScreen.gameObject.SetActive(true);
+			LoadLevel("MainMenu");
+		}
+		else
+			Application.Quit();
 	}
 
 	public void PlaySound(AudioClip clip)
