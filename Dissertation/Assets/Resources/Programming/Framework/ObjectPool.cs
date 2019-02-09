@@ -24,7 +24,6 @@ public class ObjectPool : MonoBehaviour
 		newObject.transform.parent = this.transform;
 		newObject.transform.position = transform.position;
 		newObject.transform.rotation = transform.rotation;
-		newObject.transform.localScale = transform.localScale;
 		newObject.gameObject.SetActive(false);
 	}
 
@@ -54,14 +53,14 @@ public class ObjectPool : MonoBehaviour
 		return itemIndex;
 	}
 
-	public void Spawn(Transform spawnTransform, int index)
+	public void Spawn(Vector3 spawnPosition, Quaternion spawnRotation, int index)
 	{
 		PickUp spawnObject = pooledObjects[index];
 		pooledObjects.RemoveAt(index);
 		usedObjects.Add(spawnObject);
 		spawnObject.transform.parent = null;
-		spawnObject.transform.position = spawnTransform.position;
-		spawnObject.transform.rotation = spawnTransform.rotation;
+		spawnObject.transform.position = spawnPosition;
+		spawnObject.transform.rotation = spawnRotation;
 		spawnObject.gameObject.SetActive(true);
 	}
 	

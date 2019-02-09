@@ -65,14 +65,13 @@ public class Inventory : MonoBehaviour, ISave
 					if(ObjectPool.instance.ContainsItem(item.ContainedItem))
 					{
 						Debug.Log("Test");
-						ObjectPool.instance.Spawn(controller.possessed.transform, ObjectPool.instance.FindItemIndex(item.ContainedItem));
+						ObjectPool.instance.Spawn(controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation, ObjectPool.instance.FindItemIndex(item.ContainedItem));
 					}
 					else
 					{
-						Debug.Log("Doesn't contain that");
+						Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
 					}
 				}
-				//Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
 			}
 			if(item.ContainedItem.eventTrigger != "")
 			{
