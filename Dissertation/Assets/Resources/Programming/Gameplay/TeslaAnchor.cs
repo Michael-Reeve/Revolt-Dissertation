@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class TeslaAnchor : Electric, Interactible
 {
-	public Item pickUp;
 	private UnityAction updateLinks;
 	private UnityAction Test;
 	
@@ -34,9 +33,6 @@ public class TeslaAnchor : Electric, Interactible
 	public void Interact(PlayerController controller)
 	{
 		ClearConnections();
-		controller.GetComponent<Inventory>().AddItem(pickUp);
-		//EventManager.TriggerEvent("UpdateConnections");
-		Destroy(this.gameObject);
 	}
 
 	public void UpdateLinks(Electric origin = null)

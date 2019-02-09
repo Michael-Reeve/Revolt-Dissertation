@@ -10,8 +10,9 @@ public class PlayerController : Controller, ISave
 	private UnityAction impact;
 	private UnityAction toggleInput;
 	public Attributes attributes;
-	public Interactible targettedInteractible;
+	public List<Interactible> targettedInteractible;
 	public MainMenu mainMenu;
+	public Canvas gui;
 	private Vector3 position;
 
 	void OnEnable()
@@ -58,7 +59,7 @@ public class PlayerController : Controller, ISave
 		RaycastHit raycastHit;
 		if(Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out raycastHit, attributes.interactRange))
 		{
-			Interactible interactible = Utility.GetInterface<Interactible>(raycastHit.collider.gameObject.GetComponent<MonoBehaviour>());
+			List<Interactible> interactible = Utility.GetInterface<Interactible>(raycastHit.collider.gameObject.GetComponents<MonoBehaviour>());
 			if(interactible != null)
 			{
 				targettedInteractible = interactible;
@@ -73,6 +74,7 @@ public class PlayerController : Controller, ISave
 			inventory.GUI.HighlightItem(Input.GetAxis("Mouse ScrollWheel"));
 		}
 		transform.position = possessed.transform.position;
+		possessed.speedModifier = Input_Manager.shiftModifier ? 2: 1;
 	}
 
 	void KeyPress()
@@ -83,19 +85,18 @@ public class PlayerController : Controller, ISave
 			{
 				if(targettedInteractible != null)
 				{
-					targettedInteractible.Interact(this);
+					foreach(Interactible interactible in targettedInteractible)
+					{
+						interactible.Interact(this);
+					}
 				}
 				Debug.DrawRay(activeCamera.transform.position, activeCamera.transform.forward, Color.red, 5f);
 			}
 			if(Input.GetKeyDown("e") == true)
 			{
-				inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
-			}
-			if(Input.GetKeyDown("f") == true)
-			{
-				JSONSerialization.Save("playerinfo.txt", inventory.items[0]);
-				inventory.items[1] = JSONSerialization.Load<InventorySlot>("playerinfo.txt");
-				inventory.UpdateUI();
+				if(Input_Manager.shiftModifier)
+					inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
+				inventory.UseItem(inventory.GUI.highlightedItem);
 			}
 		}
 		if(Input.GetKeyDown("escape") == true)
@@ -117,6 +118,13 @@ public class PlayerController : Controller, ISave
 	public void ToggleMainMenu()
 	{
 		mainMenu.ToggleActive();
+		SetUIVisible(!mainMenu.gameObject.activeInHierarchy);
+	}
+
+	public void SetUIVisible(bool value)
+	{
+		if(gui)
+			gui.gameObject.SetActive(value);
 	}
 
 	public void Save()

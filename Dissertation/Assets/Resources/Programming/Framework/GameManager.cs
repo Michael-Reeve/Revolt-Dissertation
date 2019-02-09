@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 {
 	public static GameManager instance = null;
+	public bool playingGame;
+	public bool loadingLevel;
     private int level = 3;
 
 	void Awake()
@@ -13,8 +15,7 @@ public class GameManager : MonoBehaviour
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
-			Destroy(gameObject);    
-		
+			Destroy(gameObject);
 		DontDestroyOnLoad(gameObject);
 	}
 
@@ -22,17 +23,31 @@ public class GameManager : MonoBehaviour
 	{
 		SaveGame.Save();
 		AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
-		StartCoroutine(WaitForLoad(async));
+		loadingLevel = true;
+		StartCoroutine(WaitForLoad(async, levelName));
 		return async;
 	}
 
-	protected static IEnumerator WaitForLoad(AsyncOperation async)
+
+	protected IEnumerator WaitForLoad(AsyncOperation async, string levelName)
     {
 		while (!async.isDone) 
 		{
-			//Debug.Log(async.progress);
+			Debug.Log(levelName + " loading: " + async.progress);
             yield return null;
         }
+		Debug.Log(levelName + " loading finished.");
+		loadingLevel = false;
+		SceneLoaded(levelName);
 		SaveGame.Load();
     }
+
+	protected void SceneLoaded(string levelName)
+	{
+		if(levelName != "MainMenu")
+			playingGame = true;
+		else
+			playingGame = false;
+	}
+	
 }

@@ -9,16 +9,16 @@ public class LoadScreen : MonoBehaviour
 
 	public Image icon;
 
-	public void LoadIcon(AsyncOperation async)
+	public void LoadIcon()
 	{
-		StartCoroutine(SpinIcon(async));
+		StartCoroutine(SpinIcon());
 	}
 
-	private IEnumerator SpinIcon(AsyncOperation async)
+	private IEnumerator SpinIcon()
     {
-		while (!async.isDone) 
+		while (GameManager.instance.loadingLevel) 
 		{
-			icon.rectTransform.Rotate(new Vector3(icon.rectTransform.eulerAngles.z + 0.1f, 0, 0));
+			icon.rectTransform.Rotate(new Vector3(icon.rectTransform.eulerAngles.z + 0.3f, 0, 0));
             yield return null;
         }
     }

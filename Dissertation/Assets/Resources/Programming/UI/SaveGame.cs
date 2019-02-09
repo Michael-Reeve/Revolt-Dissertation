@@ -25,8 +25,10 @@ public static class SaveGame
 	{
 		List<GameObject> rootObjects = new List<GameObject>();
 		Scene scene = SceneManager.GetActiveScene();
+		Debug.Log(scene.name);
 		scene.GetRootGameObjects(rootObjects);
 		List<ISave> saves = new List<ISave>();
+		Debug.Log("Loading Data");
 		foreach (GameObject gameObject in rootObjects)
 		{
 			saves.AddRange(Utility.GetInterface<ISave>(gameObject.GetComponentsInChildren(typeof(ISave), true)));
@@ -35,6 +37,7 @@ public static class SaveGame
 		{
 			saves[i].Load();
 		}
+		Debug.Log("Data Loaded");
 	}
 	
 	public static void SaveVector3(Vector3 position, string key)
