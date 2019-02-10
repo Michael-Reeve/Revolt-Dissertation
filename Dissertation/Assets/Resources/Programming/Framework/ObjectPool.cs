@@ -53,7 +53,7 @@ public class ObjectPool : MonoBehaviour
 		return itemIndex;
 	}
 
-	public void Spawn(Vector3 spawnPosition, Quaternion spawnRotation, int index)
+	public GameObject Spawn(Vector3 spawnPosition, Quaternion spawnRotation, int index)
 	{
 		PickUp spawnObject = pooledObjects[index];
 		pooledObjects.RemoveAt(index);
@@ -62,6 +62,7 @@ public class ObjectPool : MonoBehaviour
 		spawnObject.transform.position = spawnPosition;
 		spawnObject.transform.rotation = spawnRotation;
 		spawnObject.gameObject.SetActive(true);
+		return spawnObject.gameObject;
 	}
 	
 	void Update () 

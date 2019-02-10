@@ -60,18 +60,35 @@ public class Inventory : MonoBehaviour, ISave
 		{
 			if(controller && item.ContainedItem.itemObject != null)
 			{
-				if(ObjectPool.instance)
-				{
-					if(ObjectPool.instance.ContainsItem(item.ContainedItem))
-					{
-						Debug.Log("Test");
-						ObjectPool.instance.Spawn(controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation, ObjectPool.instance.FindItemIndex(item.ContainedItem));
-					}
-					else
-					{
-						Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
-					}
-				}
+				DropItem(item, controller.possessed.transform.position + controller.possessed.transform.forward);
+			}
+			if(item.ContainedItem.eventTrigger != "")
+			{
+				EventManager.TriggerEvent(item.ContainedItem.eventTrigger);
+			}
+			if(item.Quantity > 1)
+			{
+				item.Quantity -= 1;
+			}
+			else
+			{
+				item.ContainedItem = null;
+			}
+			UpdateUI();
+		}
+		else
+		{
+			Debug.Log("Inventory does not contain the item specified!");
+		}
+	}
+
+	public void RemoveItem(InventorySlot item, Vector3 worldPosition)
+	{
+		if(items.Contains(item) && item.ContainedItem != null)
+		{
+			if(controller && item.ContainedItem.itemObject != null)
+			{
+				DropItem(item, worldPosition);
 			}
 			if(item.ContainedItem.eventTrigger != "")
 			{
@@ -114,9 +131,20 @@ public class Inventory : MonoBehaviour, ISave
 		UpdateUI();
 	}
 
-	public void DropItem()
+	public void DropItem(InventorySlot item, Vector3 worldPosition)
 	{
-
+		if(ObjectPool.instance)
+		{
+			if(ObjectPool.instance.ContainsItem(item.ContainedItem))
+			{
+				Debug.Log("Test");
+				ObjectPool.instance.Spawn(worldPosition, item.ContainedItem.itemObject.transform.rotation, ObjectPool.instance.FindItemIndex(item.ContainedItem));
+			}
+			else
+			{
+				Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
+			}
+		}
 	}
 
 	public void Save()

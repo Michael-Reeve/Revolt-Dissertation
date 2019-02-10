@@ -61,10 +61,5 @@ public class TeslaAnchor : Electric, Interactible
 		CreateArc(conductingTo);
 		ChargeConductors();
 	}
-
-	public void TestEvent()
-	{
-		Debug.Log("Test");
-	}
 	
 }
