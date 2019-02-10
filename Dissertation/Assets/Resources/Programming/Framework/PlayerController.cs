@@ -87,6 +87,7 @@ public class PlayerController : Controller, ISave
 				{
 					foreach(Interactible interactible in targettedInteractible)
 					{
+						Debug.Log(interactible);
 						interactible.Interact(this);
 					}
 				}
