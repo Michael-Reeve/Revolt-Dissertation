@@ -21,15 +21,32 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 		ObjectPool.instance.AddToPool(this);
 	}
 
+	public void LoadData(ObjectData objectData)
+	{
+		if(objectData.position == Vector3.zero)
+			return;
+		gameObject.SetActive(objectData.active);
+		transform.position = objectData.position;
+		transform.rotation = objectData.rotation;
+		transform.parent = objectData.parent;
+	}
+
 	public void Save()
 	{
-		transformData = transform;
-		active = this.gameObject.activeInHierarchy;
-		JSON.SaveAppend("leveldata.txt", this);
+		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
 	{
-		//JSON.Load<GameObject>("leveldata.txt");
+		
+		if(GameManager.instance.levelDictionary != null)
+		{
+			ObjectData loadData = new ObjectData();
+			Debug.Log(gameObject.name + " | " + GameManager.instance.levelDictionary.ContainsKey(gameObject.name));
+			GameManager.instance.levelDictionary.TryGetValue(this.gameObject.name, out loadData);
+			LoadData(loadData);
+			Debug.Log("Loading Data for " + this.name);
+		}
+
 	}
 }

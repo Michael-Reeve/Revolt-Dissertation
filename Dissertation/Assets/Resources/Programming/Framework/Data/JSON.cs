@@ -21,12 +21,6 @@ public class JSON
 		File.WriteAllText(path, JsonUtility.ToJson(data));
 	}
 
-	public static void SaveAppend<T>(string filename, T data) where T: class
-	{
-		string path = string.Concat(Application.streamingAssetsPath, filename);
-		File.AppendAllText(path, JsonUtility.ToJson(data));
-	}
-
 	public static void Delete(string filename)
 	{
 		string path = string.Concat(Application.streamingAssetsPath, filename);
