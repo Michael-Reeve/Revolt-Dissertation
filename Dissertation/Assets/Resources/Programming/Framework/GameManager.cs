@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
 
 	public void AddLevelData(string keyObject, ObjectData objectData)
 	{
-		levelDictionary.Add(keyObject, objectData);
+		levelDictionary[keyObject] = objectData;
+		//levelDictionary.Add(keyObject, objectData);
 	}
 
 	public void LoadLevelData(LevelContainer copyData)
