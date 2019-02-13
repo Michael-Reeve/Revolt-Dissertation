@@ -5438,6 +5438,8 @@ MonoBehaviour:
   lockedOn: 0
   cursorPosition: {x: 0, y: 0}
   cursor: {fileID: 0}
+  graphicRaycaster: {fileID: 1618030313}
+  eventSystem: {fileID: 1974456397}
 --- !u!1 &1255520420
 GameObject:
   m_ObjectHideFlags: 0
@@ -7094,6 +7096,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7019c6af731b5f4dacafc8c79560f17, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1618030313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114131761698981948, guid: e7019c6af731b5f4dacafc8c79560f17,
+    type: 2}
+  m_PrefabInternal: {fileID: 1618030312}
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1628116965
 Prefab:
   m_ObjectHideFlags: 0
