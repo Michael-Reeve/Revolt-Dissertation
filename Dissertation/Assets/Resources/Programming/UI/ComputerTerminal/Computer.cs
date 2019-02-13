@@ -11,7 +11,8 @@ public class Computer : MonoBehaviour, Interactible
 
 	public void Interact(PlayerController controller)
 	{
-		
+		RaycastHit raycastHit = controller.Raycast();
+		Debug.Log(raycastHit.collider);
 	}
 
 	public void SetCursorPosition()

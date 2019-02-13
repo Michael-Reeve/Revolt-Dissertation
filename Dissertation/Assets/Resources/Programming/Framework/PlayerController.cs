@@ -10,7 +10,7 @@ public class PlayerController : Controller, ISave
 	private UnityAction impact;
 	private UnityAction toggleInput;
 	public Attributes attributes;
-	public List<Interactible> targettedInteractible;
+	public List<Interactible> targettedInteractible = new List<Interactible>();
 	public MainMenu mainMenu;
 	public Canvas gui;
 	private Vector3 position;
@@ -54,20 +54,27 @@ public class PlayerController : Controller, ISave
 		Debug.Log("Ouch");
 	}
 
-	void LateUpdate()
+	public RaycastHit Raycast()
 	{
 		RaycastHit raycastHit;
-		if(Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out raycastHit, attributes.interactRange))
+		Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out raycastHit, attributes.interactRange);
+		return raycastHit;
+	}
+
+	void LateUpdate()
+	{
+		RaycastHit raycastHit = Raycast();;
+		if(raycastHit.collider != null)
 		{
 			List<Interactible> interactible = Utility.GetInterface<Interactible>(raycastHit.collider.gameObject.GetComponents<MonoBehaviour>());
-			if(interactible != null)
+			if(interactible[0] != null)
 			{
 				targettedInteractible = interactible;
 			}
 		}
 		else
 		{
-			targettedInteractible = null;
+			targettedInteractible.Clear();
 		}
 		if(Input.GetAxis("Mouse ScrollWheel") != 0 && active)
 		{
@@ -83,8 +90,9 @@ public class PlayerController : Controller, ISave
 		{
 			if(Input.GetKeyDown("mouse 0") == true && possessed.IsGrounded() == true)
 			{
-				if(targettedInteractible != null)
+				if(targettedInteractible.Count > 0)
 				{
+					Debug.Log(targettedInteractible.Count);
 					foreach(Interactible interactible in targettedInteractible)
 					{
 						Debug.Log(interactible);
