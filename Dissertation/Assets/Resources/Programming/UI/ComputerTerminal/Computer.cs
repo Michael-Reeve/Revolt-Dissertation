@@ -27,6 +27,7 @@ public class Computer : MonoBehaviour, Interactible
 		{
 			if(result.gameObject.GetComponent<Button>())
 			{
+				result.gameObject.GetComponent<Button>().Select();
 				result.gameObject.GetComponent<Button>().OnPointerClick(pointerEventData);
 			}
 		}
