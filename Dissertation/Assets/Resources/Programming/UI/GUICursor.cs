@@ -15,7 +15,7 @@ public class GUICursor : MonoBehaviour
 
 	void LateUpdate()
 	{
-		if(player.targettedInteractible == null)
+		if(player.targettedInteractible.Count == 0)
 		{
 			SetCursor("default");
 		}

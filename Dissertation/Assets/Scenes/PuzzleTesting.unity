@@ -6953,6 +6953,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1236911013}
     m_Modifications:
+    - target: {fileID: 114111109699679460, guid: e7019c6af731b5f4dacafc8c79560f17,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224097857680659974, guid: e7019c6af731b5f4dacafc8c79560f17,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -7048,6 +7053,44 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1255520422}
+    - target: {fileID: 1735616179018802, guid: e7019c6af731b5f4dacafc8c79560f17, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975323349672834, guid: e7019c6af731b5f4dacafc8c79560f17, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111109699679460, guid: e7019c6af731b5f4dacafc8c79560f17,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111109699679460, guid: e7019c6af731b5f4dacafc8c79560f17,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111109699679460, guid: e7019c6af731b5f4dacafc8c79560f17,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1946617919}
+    - target: {fileID: 114111109699679460, guid: e7019c6af731b5f4dacafc8c79560f17,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111109699679460, guid: e7019c6af731b5f4dacafc8c79560f17,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111109699679460, guid: e7019c6af731b5f4dacafc8c79560f17,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7019c6af731b5f4dacafc8c79560f17, type: 2}
   m_IsPrefabAsset: 0
@@ -9171,6 +9214,11 @@ Transform:
   m_Father: {fileID: 1663667082}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+--- !u!1 &1946617919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1975323349672834, guid: e7019c6af731b5f4dacafc8c79560f17,
+    type: 2}
+  m_PrefabInternal: {fileID: 1618030312}
 --- !u!1 &1946884319
 GameObject:
   m_ObjectHideFlags: 0
