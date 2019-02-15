@@ -6,14 +6,32 @@ using UnityEngine.UI;
 
 public class Computer : MonoBehaviour, Interactible
 {
-	public bool lockedOn;
+	public bool locked;
+	public int[] keycode;
+	public List<Email> emails = new List<Email>();
 	public Vector2 cursorPosition;
 	public RectTransform cursor;
 	public GraphicRaycaster graphicRaycaster;
 	public EventSystem eventSystem;
+	public GameObject emailList;
+	public GameObject emailUI;
+	public GameObject emailDoc;
+	public Text emailTitle;
+	public Text emailContents;
 
 	void Awake()
 	{
+		for(int i = 0; i < emails.Count; i++)
+		{
+			GameObject newEmail = Instantiate(emailUI, emailList.transform);
+			EmailUI newEmailUI = newEmail.GetComponent<EmailUI>();
+			Debug.Log(emails[i].emailTitle);
+			Debug.Log(newEmailUI);
+			newEmailUI.emailData = emails[i];
+			newEmailUI.emailDoc = emailDoc;
+			newEmailUI.emailTitle = emailTitle;
+			newEmailUI.emailContents = emailContents;
+		}
 		//graphicRaycaster = GetComponent<GraphicRaycaster>();
 	}
 
@@ -29,8 +47,14 @@ public class Computer : MonoBehaviour, Interactible
 			{
 				result.gameObject.GetComponent<Button>().Select();
 				result.gameObject.GetComponent<Button>().OnPointerClick(pointerEventData);
+				//result.gameObject.GetComponent<Button>().interactable = false;
 			}
 		}
+	}
+
+	public void ToggleActive(GameObject gameObject)
+	{
+		gameObject.SetActive(!gameObject.activeInHierarchy);
 	}
 
 	public void SetCursorPosition()
