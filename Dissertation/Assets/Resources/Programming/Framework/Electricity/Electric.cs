@@ -146,6 +146,7 @@ public class Electric : MonoBehaviour
 		{
 			if(CheckEffectExists(conductor) == false)
 			{
+				Debug.Log("Test");
 				GameObject arc = Instantiate(electricArc, transform.position, electricArc.transform.rotation);
 				LightningArc arcElectric = arc.GetComponentInChildren<LightningArc>();
 				arcElectric.origin = this; arcElectric.conductor = conductor;
