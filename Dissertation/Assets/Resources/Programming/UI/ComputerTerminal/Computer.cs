@@ -25,8 +25,6 @@ public class Computer : MonoBehaviour, Interactible
 		{
 			GameObject newEmail = Instantiate(emailUI, emailList.transform);
 			EmailUI newEmailUI = newEmail.GetComponent<EmailUI>();
-			Debug.Log(emails[i].emailTitle);
-			Debug.Log(newEmailUI);
 			newEmailUI.emailData = emails[i];
 			newEmailUI.emailDoc = emailDoc;
 			newEmailUI.emailTitle = emailTitle;
