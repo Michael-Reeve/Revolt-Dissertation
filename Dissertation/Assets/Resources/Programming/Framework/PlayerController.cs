@@ -92,10 +92,8 @@ public class PlayerController : Controller, ISave
 			{
 				if(targettedInteractible.Count > 0)
 				{
-					Debug.Log(targettedInteractible.Count);
 					foreach(Interactible interactible in targettedInteractible)
 					{
-						Debug.Log(interactible);
 						interactible.Interact(this);
 					}
 				}
