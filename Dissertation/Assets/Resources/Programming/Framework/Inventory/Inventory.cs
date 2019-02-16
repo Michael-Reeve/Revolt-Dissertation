@@ -137,7 +137,6 @@ public class Inventory : MonoBehaviour, ISave
 		{
 			if(ObjectPool.instance.ContainsItem(item.ContainedItem))
 			{
-				Debug.Log("Test");
 				ObjectPool.instance.Spawn(worldPosition, item.ContainedItem.itemObject.transform.rotation, ObjectPool.instance.FindItemIndex(item.ContainedItem));
 			}
 			else
