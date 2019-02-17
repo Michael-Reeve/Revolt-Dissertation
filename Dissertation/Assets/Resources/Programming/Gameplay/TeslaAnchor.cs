@@ -16,12 +16,6 @@ public class TeslaAnchor : Electric, Interactible
 	void OnDisable()
 	{
 		EventManager.StopListening("UpdateConnections", updateLinks);
-		Invoke("RefreshLinks", Time.unscaledDeltaTime);
-	}
-
-	void RefreshLinks()
-	{
-		EventManager.TriggerEvent("UpdateConnections");
 	}
 
 	void Awake()
@@ -59,6 +53,10 @@ public class TeslaAnchor : Electric, Interactible
 	public void UpdateLinksEvent()
 	{
 		GetConductors();
+		foreach(Electric electric in conductingTo)
+		{
+			Debug.Log(electric.name);
+		}
 		Debug.Log(conductingTo.Count + " Radius: " + (arcRadius/100 * Voltage));
 		CreateArc(conductingTo);
 		ChargeConductors();
