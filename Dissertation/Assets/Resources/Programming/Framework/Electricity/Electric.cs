@@ -161,7 +161,7 @@ public class Electric : MonoBehaviour
 		int totalVoltage = 0;
 		foreach(Electric electric in conductingFrom)
 		{
-			int distance = Mathf.RoundToInt(Vector3.Distance(this.transform.position, electric.transform.position)) * 10;
+			int distance = Mathf.RoundToInt(Vector3.Distance(this.transform.position, electric.transform.position)) * 3;
 			totalVoltage += (int)((electric.Voltage - distance) / electric.conductingTo.Count);
 			Debug.Log("current Voltage:" + totalVoltage + " | current Electric:" + electric.name);
 		}

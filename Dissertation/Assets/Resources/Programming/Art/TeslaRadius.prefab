@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198794698667878588}
   - component: {fileID: 199692463243322122}
   - component: {fileID: 114359488442595816}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4775387731039582}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeslaRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}

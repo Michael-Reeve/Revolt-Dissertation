@@ -67,7 +67,7 @@ public class PlayerController : Controller, ISave
 		if(raycastHit.collider != null)
 		{
 			List<Interactible> interactible = Utility.GetInterface<Interactible>(raycastHit.collider.gameObject.GetComponents<MonoBehaviour>());
-			if(interactible[0] != null && interactible != null)
+			if(interactible.Count > 0 && interactible[0] != null)
 			{
 				targettedInteractible = interactible;
 			}

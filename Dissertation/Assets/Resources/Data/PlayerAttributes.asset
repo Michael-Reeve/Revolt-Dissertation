@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: PlayerAttributes
   m_EditorClassIdentifier: 
   speed: 10
-  jumpForce: 4
-  interactRange: 2
+  jumpForce: 10
+  interactRange: 4
   mouseSensitivity: 1

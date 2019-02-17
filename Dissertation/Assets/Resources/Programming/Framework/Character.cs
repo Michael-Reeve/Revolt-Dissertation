@@ -31,12 +31,15 @@ public class Character : Actor
 			Vector3 SlopeForward = Vector3.Cross(transform.right, raycastHit.normal);
 			float SlopeAngle = Vector3.SignedAngle(transform.forward, SlopeForward, Vector3.up);  
 			slopeAngle = Vector3.SignedAngle(Vector3.up, raycastHit.normal, Vector3.up);
-			transform.eulerAngles = new Vector3(-slopeAngle, transform.eulerAngles.y, 0);
+			if(slopeAngle <= 45)
+				transform.eulerAngles = new Vector3(-slopeAngle, transform.eulerAngles.y, 0);
 		}
 		if(rigidBody != null)
 			velocity = rigidBody.velocity;
 		if(IsFalling())
-		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 10) * Time.deltaTime, ForceMode.Acceleration);
+		{
+		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 100) * Time.deltaTime, ForceMode.Acceleration);
+		}
 		//Debug.Log("Grounded: " + IsGrounded());
 	}
 
