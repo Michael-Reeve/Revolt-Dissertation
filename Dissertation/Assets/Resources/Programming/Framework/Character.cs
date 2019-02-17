@@ -6,6 +6,8 @@ public class Character : Actor
 {	
 	public Controller characterController;
 	public Rigidbody rigidBody;
+	public CapsuleCollider capsule;
+	public float slopeAngle;
 	public string characterName;
 	public Attributes characterAttributes;
 	public Vector3 velocity;
@@ -17,14 +19,27 @@ public class Character : Actor
 			characterController.active = true;
 		if(this.GetComponentInChildren<Rigidbody>() == true) 
 			rigidBody = this.GetComponentInChildren<Rigidbody>();
+		if(GetComponent<CapsuleCollider>())
+			capsule = GetComponent<CapsuleCollider>();
 	}
 	
 	void Update () 
 	{
+		RaycastHit raycastHit;
+		if(Physics.Raycast(transform.position, (Vector3.up * -1), out raycastHit))
+		{
+			Vector3 SlopeForward = Vector3.Cross(transform.right, raycastHit.normal);
+			float SlopeAngle = Vector3.SignedAngle(transform.forward, SlopeForward, Vector3.up);  
+			slopeAngle = Vector3.SignedAngle(Vector3.up, raycastHit.normal, Vector3.up);
+			if(slopeAngle <= 45)
+				transform.eulerAngles = new Vector3(-slopeAngle, transform.eulerAngles.y, 0);
+		}
 		if(rigidBody != null)
 			velocity = rigidBody.velocity;
 		if(IsFalling())
-		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 10) * Time.deltaTime, ForceMode.Acceleration);
+		{
+		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 100) * Time.deltaTime, ForceMode.Acceleration);
+		}
 		//Debug.Log("Grounded: " + IsGrounded());
 	}
 

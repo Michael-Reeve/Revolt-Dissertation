@@ -12,8 +12,17 @@ public class Electric : MonoBehaviour
 	protected List<Electric> conductingFrom = new List<Electric>();
 	protected List<GameObject> arcEffects = new List<GameObject>();
 	public GameObject electricArc;
-	public float arcRadius = 10;
+	public GameObject electricRadius;
+	public LayerMask layerMask;
+	public float arcRadius = 5;
+	[SerializeField]
 	protected int voltage = 0;
+
+	void Start()
+	{
+		if(electricRadius)
+			electricRadius.SetActive(false);
+	}
 	public int Voltage
 	{
 		get
@@ -76,6 +85,7 @@ public class Electric : MonoBehaviour
 	public void GetConductors()
 	{
 		List<Electric> foundElectrics = FindConductors();
+		SetParticleRadius();
 		foreach(Electric electric in foundElectrics)
 		{
 			if(ConductorOccluded(electric) == false)
@@ -86,12 +96,30 @@ public class Electric : MonoBehaviour
 		}
 	}
 
+	void SetParticleRadius()
+	{
+		if(arcRadius / 100 * voltage > 0)
+		{
+			if(electricRadius)
+			{
+				electricRadius.SetActive(true);
+				electricRadius.GetComponentInChildren<TeslaRadius>().radius = arcRadius / 100 * voltage;
+			}
+		}
+		else
+		{
+			if(electricRadius)
+				electricRadius.SetActive(false);
+		}
+	}
+
 	private bool ConductorOccluded(Electric electric)
 	{
 		RaycastHit raycastHit;
-		if(Physics.Raycast(transform.position, Vector3.Normalize(electric.transform.position - transform.position), out raycastHit, voltage, 1 << 0))
+		if(Physics.Raycast(transform.position, Vector3.Normalize(electric.transform.position - transform.position), out raycastHit, voltage, layerMask))
 		{
-			Debug.Log(raycastHit.collider.name + " this: " + this.name);
+			Debug.Log(this.name + " Occluded By: " + raycastHit.collider.name);
+			Debug.DrawLine(transform.position, raycastHit.point, Color.red, 3f);
 			if(raycastHit.collider.GetComponent<Electric>() == electric)
 			{
 				return false;
@@ -133,7 +161,7 @@ public class Electric : MonoBehaviour
 		int totalVoltage = 0;
 		foreach(Electric electric in conductingFrom)
 		{
-			float distance = Vector3.Distance(this.transform.position, electric.transform.position);
+			int distance = Mathf.RoundToInt(Vector3.Distance(this.transform.position, electric.transform.position)) * 3;
 			totalVoltage += (int)((electric.Voltage - distance) / electric.conductingTo.Count);
 			Debug.Log("current Voltage:" + totalVoltage + " | current Electric:" + electric.name);
 		}

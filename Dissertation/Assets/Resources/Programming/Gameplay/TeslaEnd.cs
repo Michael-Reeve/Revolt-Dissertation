@@ -7,6 +7,7 @@ public class TeslaEnd : Electric
 {
 	public UnityEvent completitionEvent;
 	private UnityAction updateLinks;
+	public int voltageToMeet = 30;
 
 	void Awake()
 	{
@@ -22,7 +23,7 @@ public class TeslaEnd : Electric
 
 	public void CheckVoltage(Electric origin = null)
 	{
-		if(Voltage > 0)
+		if(Voltage > voltageToMeet)
 		{
 			Debug.Log("Circuit Complete!");
 			if(completitionEvent != null)

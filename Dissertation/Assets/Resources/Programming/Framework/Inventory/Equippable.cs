@@ -12,7 +12,6 @@ public class Equippable : Item
         {
             Debug.Log("Equip! " + this.itemName + " to " + controller.name);
             controller.inventory.equippedItem = this;
-            //Instantiate(itemObject, controller.possessed.transform.position, itemObject.transform.rotation, controller.possessed.transform);
         }
         else if(controller.inventory.equippedItem == this)
         {
