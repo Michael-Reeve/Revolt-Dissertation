@@ -16,6 +16,7 @@ public class TeslaAnchor : Electric, Interactible
 	void OnDisable()
 	{
 		EventManager.StopListening("UpdateConnections", updateLinks);
+		voltage = 0;
 		Invoke("RefreshLinks", Time.unscaledDeltaTime);
 	}
 
