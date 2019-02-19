@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TeslaStart : Electric, Interactible
+public class TeslaStart : Electric
 {
 	private UnityAction updateLinks;
 	
@@ -55,6 +55,12 @@ public class TeslaStart : Electric, Interactible
 		Debug.Log(conductingTo.Count + " Radius: " + (arcRadius/100 * Voltage));
 		CreateArc(conductingTo);
 		ChargeConductors();
+	}
+
+	public void AddVoltage(int voltage)
+	{
+		Voltage += voltage;
+		this.chargeAction();
 	}
 	
 	public void Interact(PlayerController controller)
