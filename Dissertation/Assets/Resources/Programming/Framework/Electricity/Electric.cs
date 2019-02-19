@@ -55,6 +55,7 @@ public class Electric : MonoBehaviour
 		}
 		arcEffects.Clear();
 	}
+	
 	public List<Electric> GetConnections(Electric origin)
 	{
 		List<Electric> allConnections = new List<Electric>();
@@ -66,6 +67,17 @@ public class Electric : MonoBehaviour
 		foreach(Electric electric in conductingFrom)
 		{
 			allConnections.Add(electric);
+		}
+		return allConnections;
+	}
+
+	public List<Electric> GetConnectionsTo(Electric origin)
+	{
+		List<Electric> allConnections = new List<Electric>();
+		foreach(Electric electric in conductingTo)
+		{
+			allConnections.Add(electric);
+			allConnections.AddRange(electric.GetConnectionsTo(this));
 		}
 		return allConnections;
 	}
@@ -161,8 +173,11 @@ public class Electric : MonoBehaviour
 		int totalVoltage = 0;
 		foreach(Electric electric in conductingFrom)
 		{
-			int distance = Mathf.RoundToInt(Vector3.Distance(this.transform.position, electric.transform.position)) * 3;
-			totalVoltage += (int)((electric.Voltage - distance) / electric.conductingTo.Count);
+			int distance = 5;
+			if(electric.conductingTo.Count != 0)
+				totalVoltage += (int)((electric.Voltage - distance) / electric.conductingTo.Count);
+			else
+				totalVoltage += (int)(electric.Voltage - distance);
 			Debug.Log("current Voltage:" + totalVoltage + " | current Electric:" + electric.name);
 		}
 		return totalVoltage;
@@ -187,6 +202,8 @@ public class Electric : MonoBehaviour
 	{
 		foreach(GameObject arc in conductor.arcEffects)
 		{
+			if(arc == null)
+				break;
 			LightningArc arcElectric = arc.GetComponentInChildren<LightningArc>();
 			if(arcElectric.conductor == this || arcElectric.origin == this)
 			{
