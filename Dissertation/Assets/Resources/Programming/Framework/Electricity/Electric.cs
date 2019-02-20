@@ -128,7 +128,8 @@ public class Electric : MonoBehaviour
 	private bool ConductorOccluded(Electric electric)
 	{
 		RaycastHit raycastHit;
-		if(Physics.Raycast(transform.position, Vector3.Normalize(electric.transform.position - transform.position), out raycastHit, voltage, layerMask))
+		Vector3 electricPosition = new Vector3(electric.transform.position.x, electric.transform.position.y + 1, electric.transform.position.z);
+		if(Physics.Raycast(transform.position, Vector3.Normalize(electricPosition - transform.position), out raycastHit, voltage, layerMask))
 		{
 			Debug.Log(this.name + " Occluded By: " + raycastHit.collider.name);
 			Debug.DrawLine(transform.position, raycastHit.point, Color.red, 3f);

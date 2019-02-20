@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33094092663054106}
   - component: {fileID: 23838142184355110}
   - component: {fileID: 65103198327822138}
+  - component: {fileID: 114645443961570374}
   m_Layer: 0
   m_Name: Blocker
   m_TagString: Untagged
@@ -96,3 +97,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114645443961570374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1357397571020560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcf0250bc46e5b4f8a23f6a3a4c5ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: -5.6, z: 0}
+  speed: 0.3

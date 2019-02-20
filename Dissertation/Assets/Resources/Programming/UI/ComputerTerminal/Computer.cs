@@ -7,16 +7,14 @@ using UnityEngine.UI;
 public class Computer : MonoBehaviour, Interactible
 {
 	public bool locked;
-	public int[] keycode;
+	public string keycode;
 	public List<Email> emails = new List<Email>();
-	public bool lockedOn;
-	public Vector2 cursorPosition;
-	public RectTransform cursor;
 	public GraphicRaycaster graphicRaycaster;
 	public EventSystem eventSystem;
 	public GameObject emailList;
 	public GameObject emailUI;
 	public GameObject emailDoc;
+	public LockScreen lockScreen;
 	public Text emailTitle;
 	public Text emailContents;
 
@@ -30,6 +28,11 @@ public class Computer : MonoBehaviour, Interactible
 			newEmailUI.emailDoc = emailDoc;
 			newEmailUI.emailTitle = emailTitle;
 			newEmailUI.emailContents = emailContents;
+		}
+		if(locked)
+		{
+			lockScreen.gameObject.SetActive(true);
+			lockScreen.GenerateKeys(keycode);
 		}
 		//graphicRaycaster = GetComponent<GraphicRaycaster>();
 	}
@@ -47,6 +50,14 @@ public class Computer : MonoBehaviour, Interactible
 				result.gameObject.GetComponent<Button>().Select();
 				result.gameObject.GetComponent<Button>().OnPointerClick(pointerEventData);
 				//result.gameObject.GetComponent<Button>().interactable = false;
+			}
+		}
+		if(locked)
+		{
+			if(lockScreen.getKeyCode() == keycode)
+			{
+				lockScreen.gameObject.SetActive(false);
+				locked = false;
 			}
 		}
 	}
