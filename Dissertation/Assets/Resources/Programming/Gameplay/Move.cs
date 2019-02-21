@@ -14,7 +14,7 @@ public class Move : MonoBehaviour
 	{
 		startPosition = transform.position;
 		desiredPosition = startPosition + offset;
-
+		speed /= 100;
 	}
 
 	public void GoTo()
@@ -28,9 +28,9 @@ public class Move : MonoBehaviour
 		float alpha = 0f;
 		while(Vector3.Equals(transform.position, desiredPosition) == false)
 		{
-			alpha += 0.01f;
+			alpha += Time.deltaTime * speed;
 			transform.position = Vector3.Lerp(transform.position, desiredPosition, alpha);
-			yield return new WaitForSeconds(speed);
+			yield return new WaitForEndOfFrame();
 		}
 	}
 

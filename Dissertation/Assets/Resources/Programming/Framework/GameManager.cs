@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance = null;
 	public bool playingGame;
 	public bool loadingLevel;
+	public string currentLevel;
     private int level = 3;
 	public Dictionary<string, ObjectData> levelDictionary = new Dictionary<string, ObjectData>();
 
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
 
 	protected void SceneLoaded(string levelName)
 	{
+		currentLevel = SceneManager.GetActiveScene().name;
 		Debug.Log(levelDictionary.Count);
 		if(JSON.CheckSave(SceneManager.GetActiveScene().name +".txt"))
 			LoadLevelData(JSON.Load<LevelContainer>(SceneManager.GetActiveScene().name + ".txt"));

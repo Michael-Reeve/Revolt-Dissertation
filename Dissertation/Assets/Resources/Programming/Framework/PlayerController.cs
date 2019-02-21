@@ -138,15 +138,18 @@ public class PlayerController : Controller, ISave
 
 	public void Save()
 	{
-		SaveGame.SaveVector3(possessed.transform.position, "PlayerPos");
-		SaveGame.SaveQuaternion(possessed.transform.rotation, "PlayerRot");
+		SaveGame.SaveVector3(possessed.transform.position, "PlayerPos" + GameManager.instance.currentLevel);
+		SaveGame.SaveQuaternion(possessed.transform.rotation, "PlayerRot" + GameManager.instance.currentLevel);
 		PlayerPrefs.Save();
 	}
 
 	public void Load()
 	{
-		possessed.transform.position = SaveGame.LoadVector3("PlayerPos");
-		transform.position = SaveGame.LoadVector3("PlayerPos");
-		possessed.transform.rotation = SaveGame.LoadQuaternion("PlayerRot");
+		if(SaveGame.LoadVector3("PlayerPos" + GameManager.instance.currentLevel) != Vector3.zero)
+		{
+			possessed.transform.position = SaveGame.LoadVector3("PlayerPos" + GameManager.instance.currentLevel);
+			transform.position = SaveGame.LoadVector3("PlayerPos" + GameManager.instance.currentLevel);
+		}
+		possessed.transform.rotation = SaveGame.LoadQuaternion("PlayerRot" + GameManager.instance.currentLevel);
 	}
 }

@@ -49,7 +49,10 @@ public static class SaveGame
 
 	public static Vector3 LoadVector3(string key)
 	{
-		return new Vector3(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"));
+		if(PlayerPrefs.HasKey(key))
+			return new Vector3(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"));
+		else
+			return Vector3.zero;
 	}
 
 	public static void SaveQuaternion(Quaternion rotation, string key)
@@ -62,6 +65,9 @@ public static class SaveGame
 
 	public static Quaternion LoadQuaternion(string key)
 	{
-		return new Quaternion(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"), PlayerPrefs.GetFloat(key + "w"));
+		if(PlayerPrefs.HasKey(key))
+			return new Quaternion(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"), PlayerPrefs.GetFloat(key + "w"));
+		else
+			return Quaternion.identity;
 	}
 }
