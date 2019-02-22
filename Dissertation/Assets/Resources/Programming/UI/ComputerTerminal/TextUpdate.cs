@@ -45,7 +45,7 @@ public class TextUpdate : MonoBehaviour
 	public void GetVoltages()
 	{
 		connectedVoltages = "Required Voltage: " + teslaEnd.voltageToMeet + "\n\n";
-		electrics = teslaStart.GetConnectionsTo(teslaStart);
+		electrics = teslaStart.GetConnections(teslaStart);
 		foreach(Electric electric in electrics)
 		{
 			if(electric == teslaStart || electric == teslaEnd)

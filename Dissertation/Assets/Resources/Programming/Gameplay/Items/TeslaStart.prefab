@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 65413965262153726}
   - component: {fileID: 114806591250089944}
   - component: {fileID: 65031553211214150}
+  - component: {fileID: 114800784788376124}
   m_Layer: 12
   m_Name: TeslaStart
   m_TagString: Untagged
@@ -442,8 +443,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131924332363210}
-  m_LocalRotation: {x: 0.50000006, y: 0.50000006, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -175.98036, y: 7.25, z: 14}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -195.01959, y: 3.25, z: -82.006}
   m_LocalScale: {x: 0.5, y: 0.5000007, z: 0.5000007}
   m_Children:
   - {fileID: 4531599683795628}
@@ -495,7 +496,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ca9cc85ce8cb30a4d9bb8c6fe215d178, type: 2}
+  - {fileID: 2100000, guid: e8a986e0aa52a44439953308a2e918a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -798,14 +799,12 @@ MonoBehaviour:
   locked: 0
   keycode: 
   emails: []
-  lockedOn: 0
-  cursorPosition: {x: 0, y: 0}
-  cursor: {fileID: 0}
   graphicRaycaster: {fileID: 114936891063831880}
   eventSystem: {fileID: 0}
   emailList: {fileID: 1607874952264950}
   emailUI: {fileID: 1103644731958044, guid: cd2eb2ea06b659e48b083dc8afe0b348, type: 2}
   emailDoc: {fileID: 1152117429949140}
+  lockScreen: {fileID: 0}
   emailTitle: {fileID: 114194410706506642}
   emailContents: {fileID: 114010495206443572}
 --- !u!114 &114356699414169594
@@ -1255,9 +1254,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1ba2cc0112062459575ed11637779b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conductor: {fileID: 114791132768701194, guid: b86f4c6134d924a4e813533fe65a3730,
-    type: 2}
+  conductor: {fileID: 114806591250089944}
   radius: 0
+--- !u!114 &114800784788376124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131924332363210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65eb31a9c7d953a4491c04f44ed38121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 1225239821997682, guid: 6312bee83d007f54d9ddb53b8e09a4db, type: 2}
+  electric: {fileID: 114806591250089944}
+  conductors: []
 --- !u!114 &114806591250089944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1270,15 +1282,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  conductingFrom: []
   conductingTo: []
-  electricArc: {fileID: 1225239821997682, guid: 18228830406c14146a46c863ea16060c,
-    type: 2}
-  electricRadius: {fileID: 1497006164158808}
   layerMask:
     serializedVersion: 2
     m_Bits: 4097
-  arcRadius: 5
-  voltage: 0
+  maxRadius: 5
+  electricOffset: {x: 0, y: 0, z: 0}
+  onVoltageChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114800784788376124}
+        m_MethodName: UpdateEffects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114777894229795238}
+        m_MethodName: UpdateRadius
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114911867231115728
 MonoBehaviour:
   m_ObjectHideFlags: 1

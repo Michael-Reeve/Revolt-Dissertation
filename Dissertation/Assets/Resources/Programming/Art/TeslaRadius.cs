@@ -18,25 +18,19 @@ public class TeslaRadius : MonoBehaviour
 		particleShape = particleMain.shape;
 		particles = new ParticleSystem.Particle[particleMain.main.maxParticles];
 	}
-
-	void Update()
+	
+	void Start()
 	{
-		//Attract();
-		particleShape.radius = radius;
+		UpdateRadius();
 	}
 
-	public void Attract()
+	public void UpdateRadius()
 	{
-		particleMain.GetParticles(particles);
-		for(int i = 0; i < particles.Length; i++)
-		{
-			if(conductor != null)
-			{
-				Vector3 particleDirection = (conductor.transform.position - particles[i].position).normalized;
-				particles[i].velocity = particleDirection * arcSpeed;
-				Debug.DrawRay(particles[i].position, particleDirection, Color.red, 5f);
-			}
-		}
-		particleMain.SetParticles(particles, particles.Length);
+		radius = conductor.GetRadius();
+		particleShape.radius = radius;
+		if(radius == 0)
+			this.gameObject.SetActive(false);
+		else
+			this.gameObject.SetActive(true);
 	}
 }

@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4567280680119216}
   - component: {fileID: 33488229649769704}
-  - component: {fileID: 114791132768701194}
-  - component: {fileID: 65257966260180304}
   - component: {fileID: 114763930683601854}
+  - component: {fileID: 114791132768701194}
+  - component: {fileID: 114788372494453816}
+  - component: {fileID: 65257966260180304}
   m_Layer: 12
   m_Name: TeslaAnchor (3)
   m_TagString: Untagged
@@ -115,15 +116,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1251152958149062}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -180, y: 2.75, z: -86.27151}
+  m_LocalRotation: {x: 0.5000007, y: 0.4999993, z: -0.4999993, w: 0.5000007}
+  m_LocalPosition: {x: -197.60152, y: 1.925, z: -92.52}
   m_LocalScale: {x: 0.5, y: 0.5000007, z: 0.5000007}
   m_Children:
   - {fileID: 4174485673451406}
   - {fileID: 4999356830459668}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: -90.00001}
 --- !u!4 &4575650226374982
 Transform:
   m_ObjectHideFlags: 1
@@ -252,6 +253,20 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: f3cb605bfc54b7e41ad86177f35ba694, type: 2}
   transformData: {fileID: 0}
   active: 0
+--- !u!114 &114788372494453816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251152958149062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65eb31a9c7d953a4491c04f44ed38121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 1225239821997682, guid: 6312bee83d007f54d9ddb53b8e09a4db, type: 2}
+  electric: {fileID: 114791132768701194}
+  conductors: []
 --- !u!114 &114791132768701194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,15 +279,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  conductingFrom: []
   conductingTo: []
-  electricArc: {fileID: 1225239821997682, guid: 18228830406c14146a46c863ea16060c,
-    type: 2}
-  electricRadius: {fileID: 1676668433606722}
   layerMask:
     serializedVersion: 2
     m_Bits: 4097
-  arcRadius: 5
-  voltage: 0
+  maxRadius: 5
+  electricOffset: {x: 0, y: 0.5, z: 0}
+  onVoltageChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114788372494453816}
+        m_MethodName: UpdateEffects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114405501387946318}
+        m_MethodName: UpdateRadius
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!198 &198460453445998316
 ParticleSystem:
   m_ObjectHideFlags: 1

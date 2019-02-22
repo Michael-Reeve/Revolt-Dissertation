@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class LightningEffect : MonoBehaviour 
 {
-	public ParticleMagnet effect;
-	public ElectricNew electric;
-	public List<ElectricNew> conductors;
-	private List<ParticleMagnet> effects;
+	public GameObject effect;
+	public Electric electric;
+	public List<Electric> conductors;
+	private List<ParticleMagnet> effects = new List<ParticleMagnet>();
 
-	public void CreateEffect()
+	void OnDisable()
+	{
+		RemoveEffects();
+	}
+
+	private void CreateEffect()
 	{
 		conductors = electric.conductingTo;
-		foreach(ElectricNew conductor in conductors)
+		foreach(Electric conductor in conductors)
 		{
-			ParticleMagnet newEffect = Instantiate(effect, transform.position, Quaternion.identity);
-			effects.Add(newEffect);
-			newEffect.conductor = conductor.gameObject;
+			GameObject newEffect = Instantiate(effect, transform.position + electric.electricOffset, Quaternion.identity);
+			ParticleMagnet newMagnet = newEffect.GetComponentInChildren<ParticleMagnet>();
+			effects.Add(newMagnet);
+			newMagnet.conductor = conductor.gameObject;
 		}
 	}
 
-	public void RemoveEffects()
+	private void RemoveEffects()
 	{
 		if(effects != null && effects.Count >= 1)
 		{
@@ -31,8 +37,13 @@ public class LightningEffect : MonoBehaviour
 			effects.Clear();
 			effects.TrimExcess();
 			effects = new List<ParticleMagnet>();
-			Debug.Log(effects.Count);
 		}
+	}
+
+	public void UpdateEffects()
+	{
+		RemoveEffects();
+		CreateEffect();
 	}
 
 }

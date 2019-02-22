@@ -70,6 +70,7 @@ public class PlayerController : Controller, ISave
 			if(interactible.Count > 0 && interactible[0] != null)
 			{
 				targettedInteractible = interactible;
+				targettedInteractible.TrimExcess();
 			}
 		}
 		else
@@ -92,11 +93,12 @@ public class PlayerController : Controller, ISave
 			{
 				if(targettedInteractible.Count > 0)
 				{
-					Debug.Log(targettedInteractible.Count);
+					//Debug.Log(targettedInteractible.Count);
 					foreach(Interactible interactible in targettedInteractible)
 					{
 						Debug.Log(interactible);
-						interactible.Interact(this);
+						if(interactible != null)
+							interactible.Interact(this);
 					}
 				}
 				Debug.DrawRay(activeCamera.transform.position, activeCamera.transform.forward, Color.red, 5f);

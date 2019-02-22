@@ -2,27 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Electric : MonoBehaviour
 {
 	public bool active;
-	public delegate void ChargeAction(Electric obj = null);
+	public delegate void ChargeAction();
 	public ChargeAction chargeAction;
-	public List<Electric> conductingTo = new List<Electric>();
-	protected List<Electric> conductingFrom = new List<Electric>();
-	protected List<GameObject> arcEffects = new List<GameObject>();
-	public GameObject electricArc;
-	public GameObject electricRadius;
+	public List<Electric> conductingFrom;
+	public List<Electric> conductingTo;
 	public LayerMask layerMask;
-	public float arcRadius = 5;
-	[SerializeField]
+	public float maxRadius = 5;
+	public Vector3 electricOffset;
 	protected int voltage = 0;
+	public UnityEvent onVoltageChange;
 
-	void Start()
-	{
-		if(electricRadius)
-			electricRadius.SetActive(false);
-	}
 	public int Voltage
 	{
 		get
@@ -31,31 +25,138 @@ public class Electric : MonoBehaviour
 		}
 		set
 		{
-			if(value >= 100)
+			if(value != voltage)
 			{
-				voltage = 100;
-			}
-			else if (value <= 0)
-			{
-				voltage = 0;
+				if(value >= 100)
+				{
+					voltage = 100;
+				}
+				else if (value <= 0)
+				{
+					voltage = 0;
+				}
+				else
+				{
+					voltage = value;
+				}
 			}
 			else
 			{
-				voltage = value;
+				onVoltageChange.Invoke();
 			}
 		}
 	}
 
-	protected void ResetEffects()
+	public float GetRadius()
 	{
-		List<GameObject> effectsToRemove = arcEffects;
-		foreach(GameObject arcObject in effectsToRemove)
-		{
-			Destroy(arcObject);
-		}
-		arcEffects.Clear();
+		return maxRadius / 100 * voltage;
 	}
-	
+
+	protected List<Electric> FindConductors()
+	{
+		List<Electric> foundElectrics = new List<Electric>();
+		foundElectrics = Utility.GetInRadius<Electric>(maxRadius / 100 * voltage, transform.position);
+		if(foundElectrics.Contains(this))
+			foundElectrics.Remove(this);
+		foundElectrics = SortConductors(foundElectrics);
+		foundElectrics.TrimExcess();
+		return foundElectrics;
+	}
+
+	private List<Electric> SortConductors(List<Electric> foundElectrics)
+	{
+		List<Electric> foundElectricsCopy = new List<Electric>();
+		foundElectricsCopy.AddRange(foundElectrics);
+		foreach(Electric electric in foundElectricsCopy)
+		{
+			if(conductingFrom.Contains(electric))
+			{
+				foundElectrics.Remove(electric);
+			}
+			Vector3 direction = (electric.transform.position + electric.electricOffset) - (transform.position + electricOffset);
+			if(CanConnect(electric, transform.position + electricOffset, direction) == false)
+				foundElectrics.Remove(electric);
+		}
+		return foundElectrics;
+	}
+
+	protected bool CanConnect(Electric electric, Vector3 origin, Vector3 direction)
+	{
+		RaycastHit raycastHit;
+		if(Physics.Raycast(origin, Vector3.Normalize(direction), out raycastHit, voltage, layerMask))
+		{
+			Debug.DrawLine(transform.position, raycastHit.point, Color.red, 3f);
+			if(raycastHit.collider.GetComponentInParent<Electric>() == electric)
+			{
+				return true;
+			}
+			else
+			{
+				Debug.Log(this.name + " Occluded By: " + raycastHit.collider.name);
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	protected void Difference()
+	{
+		List<Electric> electrics = FindConductors();
+		List<Electric> difference = conductingTo.Except(electrics).ToList();
+		foreach(Electric electric in difference)
+		{
+			if(electric.conductingFrom.Contains(this))
+			{
+				electric.conductingFrom.Remove(this);
+				electric.conductingFrom.TrimExcess();
+				electric.CalcultageVoltage();
+			}
+		}
+	}
+
+	protected void SetConductors()
+	{
+		foreach(Electric electric in conductingTo)
+		{
+			if(electric.conductingFrom.Contains(this))
+				continue;
+			electric.conductingFrom.Add(this);
+		}
+	}
+
+	protected void ChargeConductors()
+	{
+		int distance = 5;
+		foreach(Electric electric in conductingTo)
+		{
+			electric.CalcultageVoltage();
+			if(electric.chargeAction != null)
+				electric.chargeAction();
+		}
+	}
+
+	protected void CalcultageVoltage()
+	{
+		float newVoltage = 0;
+		int distance = 5;
+		foreach(Electric electric in conductingFrom)
+		{
+			newVoltage += ((electric.Voltage / conductingFrom.Count) - distance);
+		}
+		this.Voltage = Mathf.RoundToInt(newVoltage);
+	}
+
+	public void UpdateConnections()
+	{
+		Difference();
+		conductingTo = FindConductors();
+		SetConductors();
+		ChargeConductors();
+	}
+
 	public List<Electric> GetConnections(Electric origin)
 	{
 		List<Electric> allConnections = new List<Electric>();
@@ -64,154 +165,7 @@ public class Electric : MonoBehaviour
 			allConnections.Add(electric);
 			allConnections.AddRange(electric.GetConnections(this));
 		}
-		foreach(Electric electric in conductingFrom)
-		{
-			allConnections.Add(electric);
-		}
 		return allConnections;
-	}
-
-	public List<Electric> GetConnectionsTo(Electric origin)
-	{
-		List<Electric> allConnections = new List<Electric>();
-		foreach(Electric electric in conductingTo)
-		{
-			allConnections.Add(electric);
-			allConnections.AddRange(electric.GetConnectionsTo(this));
-		}
-		return allConnections;
-	}
-
-	protected void ClearConnections()
-	{
-		List<Electric> allConnections = GetConnections(this);
-		foreach(Electric electric in allConnections)
-		{
-			Debug.Log("Cleared " + electric.gameObject.name);
-			electric.ResetEffects();
-			electric.conductingTo = new List<Electric>();
-			electric.conductingFrom = new List<Electric>();
-		}
-	}
-
-	public void GetConductors()
-	{
-		List<Electric> foundElectrics = FindConductors();
-		SetParticleRadius();
-		foreach(Electric electric in foundElectrics)
-		{
-			if(ConductorOccluded(electric) == false)
-			{
-				conductingTo.Add(electric);
-				electric.conductingFrom.Add(this);
-			}
-		}
-	}
-
-	void SetParticleRadius()
-	{
-		if(arcRadius / 100 * voltage > 0)
-		{
-			if(electricRadius)
-			{
-				electricRadius.SetActive(true);
-				electricRadius.GetComponentInChildren<TeslaRadius>().radius = arcRadius / 100 * voltage;
-			}
-		}
-		else
-		{
-			if(electricRadius)
-				electricRadius.SetActive(false);
-		}
-	}
-
-	private bool ConductorOccluded(Electric electric)
-	{
-		RaycastHit raycastHit;
-		Vector3 electricPosition = new Vector3(electric.transform.position.x, electric.transform.position.y + 1, electric.transform.position.z);
-		if(Physics.Raycast(transform.position, Vector3.Normalize(electricPosition - transform.position), out raycastHit, voltage, layerMask))
-		{
-			Debug.Log(this.name + " Occluded By: " + raycastHit.collider.name);
-			Debug.DrawLine(transform.position, raycastHit.point, Color.red, 3f);
-			if(raycastHit.collider.GetComponent<Electric>() == electric)
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-
-	private List<Electric> FindConductors()
-	{
-		List<Electric> foundElectrics = new List<Electric>();
-		foundElectrics = Utility.GetInRadius<Electric>(arcRadius / 100 * voltage, transform.position);
-		if(foundElectrics.Contains(this))
-			foundElectrics.Remove(this);
-		List<Electric> foundElectricsCopy = new List<Electric>();
-		foundElectricsCopy.AddRange(foundElectrics);
-		foreach(Electric electric in foundElectricsCopy)
-		{
-			if(conductingFrom.Contains(electric) || conductingTo.Contains(electric))
-			{
-				foundElectrics.Remove(electric);
-			}
-		}
-		return foundElectrics;
-	}
-
-	public virtual void ChargeConductors()
-	{
-		foreach(Electric electric in conductingTo)
-		{
-			electric.Voltage = electric.CalculateVoltage();
-			if(electric.chargeAction != null)
-				electric.chargeAction();
-		}
-	}
-
-	public int CalculateVoltage()
-	{
-		int totalVoltage = 0;
-		foreach(Electric electric in conductingFrom)
-		{
-			int distance = 5;
-			if(electric.conductingTo.Count != 0)
-				totalVoltage += (int)((electric.Voltage - distance) / electric.conductingTo.Count);
-			else
-				totalVoltage += (int)(electric.Voltage - distance);
-			Debug.Log("current Voltage:" + totalVoltage + " | current Electric:" + electric.name);
-		}
-		return totalVoltage;
-	}
-
-	protected void CreateArc(List<Electric> linkedConductors)
-	{
-		foreach(Electric conductor in linkedConductors)
-		{
-			if(CheckEffectExists(conductor) == false)
-			{
-				Debug.Log("Test");
-				GameObject arc = Instantiate(electricArc, transform.position, electricArc.transform.rotation);
-				LightningArc arcElectric = arc.GetComponentInChildren<LightningArc>();
-				arcElectric.origin = this; arcElectric.conductor = conductor;
-				arcEffects.Add(arc); conductor.arcEffects.Add(arc);
-			}
-		}
-	}
-
-	protected bool CheckEffectExists(Electric conductor)
-	{
-		foreach(GameObject arc in conductor.arcEffects)
-		{
-			if(arc == null)
-				break;
-			LightningArc arcElectric = arc.GetComponentInChildren<LightningArc>();
-			if(arcElectric.conductor == this || arcElectric.origin == this)
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 
 }

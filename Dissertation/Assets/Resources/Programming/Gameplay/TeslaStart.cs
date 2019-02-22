@@ -19,56 +19,25 @@ public class TeslaStart : Electric
 
 	void Awake()
 	{
-		updateLinks = new UnityAction (UpdateLinksEvent);
+		updateLinks = new UnityAction (UpdateLinks);
 		chargeAction = UpdateLinks;
 	}
 
 	void OnDrawGizmos()
 	{
 		Gizmos.color = new Color(0, 1, 0, 0.4f);
-		Gizmos.DrawSphere(transform.position, (arcRadius/100 * Voltage));
+		Gizmos.DrawSphere(transform.position, (maxRadius / 100 * Voltage));
 	}
 
-	public void UpdateLinks(Electric origin = null)
+	public void UpdateLinks()
 	{
-		if(origin != null)
-		{
-			if(conductingTo.Contains(origin))
-			{
-				Debug.Log("Caught recursion!");
-				return;
-			}
-		}
-		GetConductors();
-		CreateArc(conductingTo);
-		ChargeConductors();
-	}
-
-	private void UpdateLinksEvent()
-	{
-		ClearConnections();
-		GetConductors();
-		foreach(Electric electric in conductingTo)
-		{
-			Debug.Log(electric.name);
-		}
-		Debug.Log(conductingTo.Count + " Radius: " + (arcRadius/100 * Voltage));
-		CreateArc(conductingTo);
-		ChargeConductors();
+		UpdateConnections();
+		onVoltageChange.Invoke();
 	}
 
 	public void AddVoltage(int voltage)
 	{
 		Voltage += voltage;
 		this.chargeAction();
-	}
-	
-	public void Interact(PlayerController controller)
-	{
-		if (controller.inventory.equippedItem != null)
-		{
-			Voltage += 5;
-			this.chargeAction();
-		}
 	}
 }

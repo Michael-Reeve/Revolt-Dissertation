@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class ElectricNew : MonoBehaviour
 {
 	public bool active;
-	public delegate void ChargeAction(ElectricNew obj = null);
+	public delegate void ChargeAction();
 	public ChargeAction chargeAction;
 	public List<ElectricNew> conductingFrom;
 	public List<ElectricNew> conductingTo;
