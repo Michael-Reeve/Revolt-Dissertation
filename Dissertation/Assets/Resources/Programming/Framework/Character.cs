@@ -12,6 +12,8 @@ public class Character : Actor
 	public Attributes characterAttributes;
 	public Vector3 velocity;
 	public float speedModifier = 1;
+	public Vector3 movementVelocity;
+	public Vector3 lastPos;
 
 	void Awake () 
 	{
@@ -40,12 +42,16 @@ public class Character : Actor
 		{
 		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 100) * Time.deltaTime, ForceMode.Acceleration);
 		}
-		//Debug.Log("Grounded: " + IsGrounded());
+	}
+
+	void FixedUpdate()
+	{
+		movementVelocity = (rigidBody.position - lastPos);
+        lastPos = rigidBody.position;
 	}
 
 	void OnCollisionEnter(Collision other)
 	{
-		//Debug.Log(rigidBody.velocity.magnitude);
 		if(rigidBody.velocity.magnitude > 0.2f)
 			EventManager.TriggerEvent("PlayerCollision");
 	}

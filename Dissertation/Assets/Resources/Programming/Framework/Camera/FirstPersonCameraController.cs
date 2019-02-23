@@ -36,7 +36,7 @@ public class FirstPersonCameraController : CameraController, ISave
 		possessed.transform.eulerAngles = new Vector3(possessed.transform.eulerAngles.x, currentRot.y, possessed.transform.eulerAngles.z);
 	}
 
-	void LateUpdate ()
+	void Update ()
 	{
 		if (active)
 		{
