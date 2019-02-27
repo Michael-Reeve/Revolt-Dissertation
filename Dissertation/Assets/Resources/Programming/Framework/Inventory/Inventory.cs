@@ -32,7 +32,8 @@ public class Inventory : MonoBehaviour, ISave
 
 	public void UpdateUI()
 	{
-		GUI.UpdateList();
+		if(GUI)
+			GUI.UpdateList();
 	}
 
 	public void AddItem(Item newItem)
