@@ -145,14 +145,14 @@ public class Inventory : MonoBehaviour, ISave
 
 	public void Save()
 	{
-		JSON.Save<InventoryContainer>("playerinfo.txt", new InventoryContainer(items));
+		JSON.Save<InventoryContainer>("playerinfo.txt", GameManager.saveProfile, new InventoryContainer(items));
 		Debug.Log(JsonUtility.ToJson(new InventoryContainer(items)));
 	}
 
 	public void Load()
 	{	
-		if(JSON.CheckSave("playerinfo.txt"))
-			items = JSON.Load<InventoryContainer>("playerinfo.txt").items;
+		if(JSON.CheckSave("playerinfo.txt", GameManager.saveProfile))
+			items = JSON.Load<InventoryContainer>("playerinfo.txt", GameManager.saveProfile).items;
 		UpdateUI();
 	}
 }

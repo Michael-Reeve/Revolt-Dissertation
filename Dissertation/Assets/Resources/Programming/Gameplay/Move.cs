@@ -51,7 +51,6 @@ public class Move : MonoBehaviour, ISave
 
 	public void Load()
 	{
-		Debug.Log("Test");
 		if(GameManager.instance.levelDictionary != null)
 		{
 			ObjectData loadData = new ObjectData();

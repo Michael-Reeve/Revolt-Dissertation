@@ -58,14 +58,14 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
+	public void SetProfile(int profile)
+	{
+		GameManager.saveProfile = profile;
+	}
+
 	public void DeleteAllSaves()
 	{
 		PlayerPrefs.DeleteAll();
-		JSON.Delete("playerinfo.txt");
-	}
-
-	public void DeleteSave(string saveKey)
-	{
-		PlayerPrefs.DeleteKey(saveKey);
+		JSON.Delete("playerinfo.txt", GameManager.saveProfile);
 	}
 }

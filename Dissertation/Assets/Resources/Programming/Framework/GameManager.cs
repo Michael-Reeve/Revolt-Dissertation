@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	public bool loadingLevel;
 	public string currentLevel;
     private int level = 3;
+	public static int saveProfile = 0;
 	public Dictionary<string, ObjectData> levelDictionary = new Dictionary<string, ObjectData>();
 
 	void Awake()
@@ -23,8 +24,10 @@ public class GameManager : MonoBehaviour
 
 	public AsyncOperation LoadLevel(string levelName)
 	{
+		if(saveProfile == 0)
+			return null;
 		SaveGame.Save();
-		JSON.Save(SceneManager.GetActiveScene().name + ".txt", new LevelContainer(levelDictionary));
+		JSON.Save(SceneManager.GetActiveScene().name + ".txt", saveProfile, new LevelContainer(levelDictionary));
 		Debug.Log("LEVEL: " + JsonUtility.ToJson(new LevelContainer(levelDictionary)));
 		AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
 		loadingLevel = true;
@@ -35,7 +38,6 @@ public class GameManager : MonoBehaviour
 	public void AddLevelData(string keyObject, ObjectData objectData)
 	{
 		levelDictionary[keyObject] = objectData;
-		//levelDictionary.Add(keyObject, objectData);
 	}
 
 	public void LoadLevelData(LevelContainer copyData)
@@ -66,8 +68,8 @@ public class GameManager : MonoBehaviour
 	{
 		currentLevel = SceneManager.GetActiveScene().name;
 		Debug.Log(levelDictionary.Count);
-		if(JSON.CheckSave(SceneManager.GetActiveScene().name +".txt"))
-			LoadLevelData(JSON.Load<LevelContainer>(SceneManager.GetActiveScene().name + ".txt"));
+		if(JSON.CheckSave(SceneManager.GetActiveScene().name +".txt", saveProfile))
+			LoadLevelData(JSON.Load<LevelContainer>(SceneManager.GetActiveScene().name + ".txt", saveProfile));
 		Debug.Log(levelDictionary.Count);
 		if(levelName != "MainMenu")
 			playingGame = true;
