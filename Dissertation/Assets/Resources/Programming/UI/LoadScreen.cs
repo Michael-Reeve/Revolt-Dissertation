@@ -18,7 +18,7 @@ public class LoadScreen : MonoBehaviour
     {
 		while (GameManager.instance.loadingLevel) 
 		{
-			icon.rectTransform.Rotate(new Vector3(icon.rectTransform.eulerAngles.z + 0.3f, 0, 0));
+			icon.rectTransform.Rotate(new Vector3(0, 0, icon.rectTransform.eulerAngles.z + 0.3f));
             yield return null;
         }
     }

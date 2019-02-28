@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour 
+public class Move : MonoBehaviour, ISave
 {
 	private bool moved;
 	public Vector3 offset;
@@ -38,7 +38,7 @@ public class Move : MonoBehaviour
 	{
 		if(objectData.position == Vector3.zero)
 			return;
-		gameObject.SetActive(objectData.active);
+		moved = objectData.active;
 		transform.position = objectData.position;
 		transform.rotation = objectData.rotation;
 		transform.parent = objectData.parent;
@@ -46,12 +46,12 @@ public class Move : MonoBehaviour
 
 	public void Save()
 	{
-		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
+		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(moved, transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
 	{
-		
+		Debug.Log("Test");
 		if(GameManager.instance.levelDictionary != null)
 		{
 			ObjectData loadData = new ObjectData();
