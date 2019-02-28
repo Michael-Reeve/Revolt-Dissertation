@@ -18,6 +18,7 @@ public class TeslaAnchor : Electric
 		EventManager.StopListening("UpdateConnections", updateLinks);
 		voltage = 0;
 		Invoke("RefreshLinks", Time.unscaledDeltaTime);
+		Difference();
 	}
 
 	void RefreshLinks()
@@ -39,6 +40,7 @@ public class TeslaAnchor : Electric
 
 	public void UpdateLinks()
 	{
+		Debug.Log("Event Triggered " + this.name);
 		UpdateConnections();
 		onVoltageChange.Invoke();
 	}

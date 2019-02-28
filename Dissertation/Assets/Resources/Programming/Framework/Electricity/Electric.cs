@@ -102,6 +102,9 @@ public class Electric : MonoBehaviour
 		}
 	}
 
+	/// Gets all electrics within the current radius
+	/// If the electric exists in ConductingTo but is not found in the new check, it's added to the difference list.
+	/// If an electric in difference is conducting from this, removes that reference on the object.
 	protected void Difference()
 	{
 		List<Electric> electrics = FindConductors();
@@ -110,6 +113,7 @@ public class Electric : MonoBehaviour
 		{
 			if(electric.conductingFrom.Contains(this))
 			{
+				Debug.Log("Purging " + this.name + " references from " + electric.name);
 				electric.conductingFrom.Remove(this);
 				electric.conductingFrom.TrimExcess();
 				electric.CalcultageVoltage();

@@ -10,5 +10,6 @@ public class Dialogue : ScriptableObject
 	public AudioClip audio;
 	public enum priority {Contextual, Dialogue};
 	public priority dialoguePriority;
+	public float length;
 	
 }

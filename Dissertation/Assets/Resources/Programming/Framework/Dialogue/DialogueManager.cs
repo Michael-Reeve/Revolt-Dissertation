@@ -7,7 +7,7 @@ public class DialogueManager : MonoBehaviour
 	public List<Dialogue> dialogueQueue;
 	public Dialogue currentDialogue;
 	public AudioSource audioSource;
-
+	public bool isPlaying;
 	private static DialogueManager dialogueManager;
     public static DialogueManager instance
     {
@@ -39,15 +39,23 @@ public class DialogueManager : MonoBehaviour
 	private void Play(Dialogue dialogue)
 	{
 		currentDialogue = dialogue;
-		audioSource.clip = dialogue.audio;
-		Invoke("Finished", dialogue.audio.length + 0.05f);
+		isPlaying = true;
+		if(dialogue.audio)
+		{
+			audioSource.clip = dialogue.audio;
+			Invoke("Finished", dialogue.audio.length + 0.05f);
+		}
+		else
+		{
+			Invoke("Finished", dialogue.length + 0.05f);
+		}
 		audioSource.Play();
 	}
 
 	public void AddDialogue(Dialogue dialogue)
 	{
 		//Debug.Log(dialogue.dialoguePriority + " Play!");
-		if(audioSource.clip != null && audioSource.isPlaying)
+		if(isPlaying)
 		{
 			Interrupt(dialogue);
 		}
@@ -79,25 +87,21 @@ public class DialogueManager : MonoBehaviour
 
 	private void Finished()
 	{
-		//Debug.Log(currentDialogue.name + " Finished");
-		if(audioSource.isPlaying == false)
+		isPlaying = false;
+		if(dialogueQueue.Count > 0)
 		{
-			if(dialogueQueue.Count > 0)
-			{
-				Play(dialogueQueue[0]);
-				dialogueQueue.RemoveAt(0);
-			}
-			else
-			{
-				currentDialogue = null;
-			}
-			SubtitleChange();
+			Play(dialogueQueue[0]);
+			dialogueQueue.RemoveAt(0);
 		}
+		else
+		{
+			currentDialogue = null;
+		}
+		SubtitleChange();
 	}
 
 	private void SubtitleChange()
 	{
-		//Debug.Log("Event Triggered: Subtitle Change");
 		EventManager.TriggerEvent("DialogueChange");
 	}
 }

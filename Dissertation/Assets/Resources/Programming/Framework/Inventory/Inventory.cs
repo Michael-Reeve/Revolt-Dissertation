@@ -63,10 +63,6 @@ public class Inventory : MonoBehaviour, ISave
 			{
 				DropItem(item, controller.possessed.transform.position + controller.possessed.transform.forward);
 			}
-			if(item.ContainedItem.eventTrigger != "")
-			{
-				EventManager.TriggerEvent(item.ContainedItem.eventTrigger);
-			}
 			if(item.Quantity > 1)
 			{
 				item.Quantity -= 1;
@@ -90,10 +86,6 @@ public class Inventory : MonoBehaviour, ISave
 			if(controller && item.ContainedItem.itemObject != null)
 			{
 				DropItem(item, worldPosition);
-			}
-			if(item.ContainedItem.eventTrigger != "")
-			{
-				EventManager.TriggerEvent(item.ContainedItem.eventTrigger);
 			}
 			if(item.Quantity > 1)
 			{
@@ -144,6 +136,10 @@ public class Inventory : MonoBehaviour, ISave
 			{
 				Instantiate(item.ContainedItem.itemObject, controller.possessed.transform.position + controller.possessed.transform.forward, item.ContainedItem.itemObject.transform.rotation);
 			}
+		}
+		if(item.ContainedItem.eventTrigger != "")
+		{
+			EventManager.TriggerEvent(item.ContainedItem.eventTrigger);
 		}
 	}
 
