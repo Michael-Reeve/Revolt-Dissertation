@@ -53,14 +53,31 @@ public class FirstPersonCameraController : CameraController, ISave
 		active = !active;
 	}
 
+	public void LoadData(ObjectData objectData)
+	{
+		if(objectData.position == Vector3.zero)
+			return;
+		transform.position = objectData.position;
+		transform.rotation = objectData.rotation;
+		initialRotation = objectData.rotation.eulerAngles;
+		currentRot = objectData.rotation.eulerAngles;
+		transform.parent = objectData.parent;
+	}
+
 	public void Save()
 	{
-		SaveGame.SaveVector3(currentRot, "CameraRot");
+		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(this.gameObject.activeInHierarchy, possessed.transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
 	{
-		initialRotation = SaveGame.LoadVector3("CameraRot");
-		currentRot = SaveGame.LoadVector3("CameraRot");
+		if(GameManager.instance.levelDictionary != null)
+		{
+			ObjectData loadData = new ObjectData();
+			Debug.Log(gameObject.name + " | " + GameManager.instance.levelDictionary.ContainsKey(gameObject.name));
+			GameManager.instance.levelDictionary.TryGetValue(this.gameObject.name, out loadData);
+			LoadData(loadData);
+			Debug.Log("Loading Data for " + this.name);
+		}
 	}
 }

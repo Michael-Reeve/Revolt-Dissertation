@@ -126,6 +126,12 @@ public class PlayerController : Controller
 		Active(!active);
 	}
 
+	public void SaveData(string data)
+	{
+		data = string.Concat (data, " " + Time.time);
+		JSON.SaveUsage(GameManager.saveProfile, data);
+	}
+
 	public void ToggleMainMenu()
 	{
 		mainMenu.ToggleActive();

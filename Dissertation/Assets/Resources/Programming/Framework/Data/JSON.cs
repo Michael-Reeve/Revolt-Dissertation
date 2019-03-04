@@ -7,7 +7,7 @@ public class JSON
 {
 	public static string GetProfile(int profile = 1)
 	{
-		string path = string.Concat(Application.dataPath, "/playerProfiles/" + profile);
+		string path = string.Concat(Application.dataPath, "/playerProfiles/" + profile + "/");
 		if(Directory.Exists(path) == false)
 		{
 			Directory.CreateDirectory(path);
@@ -22,6 +22,19 @@ public class JSON
 			return JsonUtility.FromJson<T>(File.ReadAllText(path));
 		}
 		return default(T);
+	}
+
+	public static void SaveUsage(int profile, string data)
+	{
+		string path = string.Concat(GetProfile(profile), "UsageStats.txt");
+		if(File.Exists(path))
+		{
+			File.AppendAllText(path, data + System.Environment.NewLine);
+		}
+		else
+		{
+			File.WriteAllText(path, data + System.Environment.NewLine);
+		}
 	}
 
 	public static void Save<T>(string filename, int profile, T data) where T: class
@@ -41,5 +54,4 @@ public class JSON
 		string path = string.Concat(GetProfile(profile), filename);
 		return File.Exists(path);
 	}
-
 }

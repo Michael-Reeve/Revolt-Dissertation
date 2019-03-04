@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class TeslaEnd : Electric
 {
+	public bool completed;
 	public UnityEvent completitionEvent;
 	private UnityAction updateLinks;
 	public int voltageToMeet = 30;
@@ -23,8 +24,9 @@ public class TeslaEnd : Electric
 
 	public void CheckVoltage()
 	{
-		if(Voltage > voltageToMeet)
+		if(Voltage > voltageToMeet && !completed)
 		{
+			completed = true;
 			Debug.Log("Circuit Complete!");
 			if(completitionEvent != null)
 				completitionEvent.Invoke();

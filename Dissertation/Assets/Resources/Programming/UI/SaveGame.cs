@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class SaveGame 
 {
+
 	public static void Save()
 	{
 		List<GameObject> rootObjects = new List<GameObject>();
@@ -40,34 +41,4 @@ public static class SaveGame
 		Debug.Log("Data Loaded");
 	}
 	
-	public static void SaveVector3(Vector3 position, string key)
-	{
-		PlayerPrefs.SetFloat(key + "x", position.x);
-		PlayerPrefs.SetFloat(key + "y", position.y);
-		PlayerPrefs.SetFloat(key + "z", position.z);
-	}
-
-	public static Vector3 LoadVector3(string key)
-	{
-		if(PlayerPrefs.HasKey(key))
-			return new Vector3(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"));
-		else
-			return Vector3.zero;
-	}
-
-	public static void SaveQuaternion(Quaternion rotation, string key)
-	{
-		PlayerPrefs.SetFloat(key + "x", rotation.x);
-		PlayerPrefs.SetFloat(key + "y", rotation.y);
-		PlayerPrefs.SetFloat(key + "z", rotation.z);
-		PlayerPrefs.SetFloat(key + "w", rotation.w);
-	}
-
-	public static Quaternion LoadQuaternion(string key)
-	{
-		if(PlayerPrefs.HasKey(key))
-			return new Quaternion(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"), PlayerPrefs.GetFloat(key + "w"));
-		else
-			return Quaternion.identity;
-	}
 }
