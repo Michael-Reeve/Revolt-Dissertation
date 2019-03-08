@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : Controller 
+public class PlayerController : Controller, ISave
 {
-
 	private UnityAction KeyPressListener;
 	private UnityAction KeyDownListener;
 	private UnityAction impact;
 	private UnityAction toggleInput;
 	public Attributes attributes;
-	public Camera activeCamera;
-	public Interactible targettedInteractible;
-	public float mouseSensitivity = 1f;
+	public List<Interactible> targettedInteractible = new List<Interactible>();
 	public MainMenu mainMenu;
+	public Canvas gui;
+	private Vector3 position;
 
 	void OnEnable()
 	{
@@ -43,7 +42,6 @@ public class PlayerController : Controller
 		Input_Manager.LockCursor(true);
 		if(inventory == true)
 			inventory.controller = this;
-		
 	}
 
 	void Active(bool value)
@@ -56,25 +54,35 @@ public class PlayerController : Controller
 		Debug.Log("Ouch");
 	}
 
-	void LateUpdate()
+	public RaycastHit Raycast()
 	{
 		RaycastHit raycastHit;
-		if(Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out raycastHit, attributes.interactRange))
+		Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out raycastHit, attributes.interactRange);
+		return raycastHit;
+	}
+
+	void LateUpdate()
+	{
+		RaycastHit raycastHit = Raycast();;
+		if(raycastHit.collider != null)
 		{
-			Interactible interactible = Utility.GetInterface<Interactible>(raycastHit.collider.gameObject.GetComponent<MonoBehaviour>());
-			if(interactible != null)
+			List<Interactible> interactible = Utility.GetInterface<Interactible>(raycastHit.collider.gameObject.GetComponents<MonoBehaviour>());
+			if(interactible.Count > 0 && interactible[0] != null)
 			{
 				targettedInteractible = interactible;
+				targettedInteractible.TrimExcess();
 			}
 		}
 		else
 		{
-			targettedInteractible = null;
+			targettedInteractible.Clear();
 		}
-		if(Input.GetAxis("Mouse ScrollWheel") != 0)
+		if(Input.GetAxis("Mouse ScrollWheel") != 0 && active)
 		{
 			inventory.GUI.HighlightItem(Input.GetAxis("Mouse ScrollWheel"));
 		}
+		transform.position = possessed.transform.position;
+		possessed.speedModifier = Input_Manager.shiftModifier ? 2: 1;
 	}
 
 	void KeyPress()
@@ -83,11 +91,23 @@ public class PlayerController : Controller
 		{
 			if(Input.GetKeyDown("mouse 0") == true && possessed.IsGrounded() == true)
 			{
-				if(targettedInteractible != null)
+				if(targettedInteractible.Count > 0)
 				{
-					targettedInteractible.Interact(this);
+					//Debug.Log(targettedInteractible.Count);
+					foreach(Interactible interactible in targettedInteractible)
+					{
+						Debug.Log(interactible);
+						if(interactible != null)
+							interactible.Interact(this);
+					}
 				}
 				Debug.DrawRay(activeCamera.transform.position, activeCamera.transform.forward, Color.red, 5f);
+			}
+			if(Input.GetKeyDown("e") == true)
+			{
+				if(Input_Manager.shiftModifier)
+					inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
+				inventory.UseItem(inventory.GUI.highlightedItem);
 			}
 		}
 		if(Input.GetKeyDown("escape") == true)
@@ -109,6 +129,29 @@ public class PlayerController : Controller
 	public void ToggleMainMenu()
 	{
 		mainMenu.ToggleActive();
+		SetUIVisible(!mainMenu.gameObject.activeInHierarchy);
 	}
-	
+
+	public void SetUIVisible(bool value)
+	{
+		if(gui)
+			gui.gameObject.SetActive(value);
+	}
+
+	public void Save()
+	{
+		SaveGame.SaveVector3(possessed.transform.position, "PlayerPos" + GameManager.instance.currentLevel);
+		SaveGame.SaveQuaternion(possessed.transform.rotation, "PlayerRot" + GameManager.instance.currentLevel);
+		PlayerPrefs.Save();
+	}
+
+	public void Load()
+	{
+		if(SaveGame.LoadVector3("PlayerPos" + GameManager.instance.currentLevel) != Vector3.zero)
+		{
+			possessed.transform.position = SaveGame.LoadVector3("PlayerPos" + GameManager.instance.currentLevel);
+			transform.position = SaveGame.LoadVector3("PlayerPos" + GameManager.instance.currentLevel);
+		}
+		possessed.transform.rotation = SaveGame.LoadQuaternion("PlayerRot" + GameManager.instance.currentLevel);
+	}
 }

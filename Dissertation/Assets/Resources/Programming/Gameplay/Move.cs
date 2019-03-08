@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour 
+public class Move : MonoBehaviour, ISave
 {
+	private bool moved;
 	public Vector3 offset;
 	public float speed;
 	private Vector3 startPosition;
@@ -13,12 +14,13 @@ public class Move : MonoBehaviour
 	{
 		startPosition = transform.position;
 		desiredPosition = startPosition + offset;
-
+		speed /= 100;
 	}
 
 	public void GoTo()
 	{
 		StartCoroutine("MoveTo");
+		moved = true;
 	}
 
 	IEnumerator MoveTo()
@@ -26,10 +28,39 @@ public class Move : MonoBehaviour
 		float alpha = 0f;
 		while(Vector3.Equals(transform.position, desiredPosition) == false)
 		{
-			alpha += 0.01f;
+			alpha += Time.deltaTime * speed;
 			transform.position = Vector3.Lerp(transform.position, desiredPosition, alpha);
-			yield return new WaitForSeconds(speed);
+			yield return new WaitForEndOfFrame();
 		}
+	}
+
+	public void LoadData(ObjectData objectData)
+	{
+		if(objectData.position == Vector3.zero)
+			return;
+		moved = objectData.active;
+		transform.position = objectData.position;
+		transform.rotation = objectData.rotation;
+		transform.parent = objectData.parent;
+	}
+
+	public void Save()
+	{
+		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(moved, transform.position, transform.rotation, transform.parent));
+	}
+
+	public void Load()
+	{
+		Debug.Log("Test");
+		if(GameManager.instance.levelDictionary != null)
+		{
+			ObjectData loadData = new ObjectData();
+			Debug.Log(gameObject.name + " | " + GameManager.instance.levelDictionary.ContainsKey(gameObject.name));
+			GameManager.instance.levelDictionary.TryGetValue(this.gameObject.name, out loadData);
+			LoadData(loadData);
+			Debug.Log("Loading Data for " + this.name);
+		}
+
 	}
 
 }

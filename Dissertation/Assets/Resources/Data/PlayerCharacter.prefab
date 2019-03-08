@@ -38,8 +38,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1428908835748598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 1, z: 6.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_LocalPosition: {x: -190.01, y: 1, z: -127.05205}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
+>>>>>>> master
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,7 +55,11 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1428908835748598}
+<<<<<<< HEAD
   m_Enabled: 1
+=======
+  m_Enabled: 0
+>>>>>>> master
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -116,10 +125,19 @@ MonoBehaviour:
   active: 1
   characterController: {fileID: 0}
   rigidBody: {fileID: 54137814070738010}
+<<<<<<< HEAD
+=======
+  capsule: {fileID: 0}
+  slopeAngle: 0
+>>>>>>> master
   characterName: 
   characterAttributes: {fileID: 11400000, guid: 318e900fb9b7dd14986d13717260d6bb,
     type: 2}
   velocity: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
+  speedModifier: 15
+>>>>>>> master
 --- !u!136 &136916342542853158
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -130,6 +148,12 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
+<<<<<<< HEAD
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+=======
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 2, z: -0.00000008940697}
+>>>>>>> master

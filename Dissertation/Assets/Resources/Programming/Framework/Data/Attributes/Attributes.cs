@@ -10,4 +10,5 @@ public class Attributes : ScriptableObject
 	public float speed;
 	public float jumpForce;
 	public float interactRange;
+	public float mouseSensitivity = 1f;
 }

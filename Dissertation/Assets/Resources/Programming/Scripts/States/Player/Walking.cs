@@ -19,5 +19,10 @@ public class Walking : State
 		{
 			owner.switchState(typeof(Idle));
 		}
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			if(owner.controller.possessed.IsGrounded())
+				owner.switchState(typeof(Jump));
+		}
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tesla Anchor
   itemDescription: 
-  image: {fileID: 21300000, guid: 54a1d28b302b6484d8633cc09baf1238, type: 3}
+  image: {fileID: 21300000, guid: 0e8e512df251d7942bfd77c0f536f450, type: 3}
   itemObject: {fileID: 1251152958149062, guid: b86f4c6134d924a4e813533fe65a3730, type: 2}
   stackable: 1
   eventTrigger: UpdateConnections
-  behaviour: {fileID: 11400000, guid: 80b218efe2c681d409979d99a0819656, type: 2}
+  behaviour: {fileID: 11400000, guid: 9376cb4dc65f25a4e9eeca2a8f879220, type: 2}

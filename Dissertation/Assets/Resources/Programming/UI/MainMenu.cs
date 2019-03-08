@@ -10,10 +10,11 @@ public class MainMenu : MonoBehaviour
 	public Options options;
 	public AudioSource audioSource;
 
-	void Awake()
+	void Start()
 	{
+		//SaveGame.Load();
 		if(options)
-			options.LoadVolume();
+			options.Load();
 	}
 
 	public void ToggleActive()
@@ -32,9 +33,20 @@ public class MainMenu : MonoBehaviour
 
 	public void LoadLevel(string levelName)
 	{
-		AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
+		GameManager.instance.LoadLevel(levelName);
 		if(loadScreen)
-			loadScreen.LoadIcon(async);
+			loadScreen.LoadIcon();
+	}
+
+	public void ExitGame()
+	{
+		if(GameManager.instance.playingGame)
+		{
+			loadScreen.gameObject.SetActive(true);
+			LoadLevel("MainMenu");
+		}
+		else
+			Application.Quit();
 	}
 
 	public void PlaySound(AudioClip clip)
@@ -44,5 +56,16 @@ public class MainMenu : MonoBehaviour
 		audioSource.clip = clip;
 		audioSource.Play();
 		}
+	}
+
+	public void DeleteAllSaves()
+	{
+		PlayerPrefs.DeleteAll();
+		JSON.Delete("playerinfo.txt");
+	}
+
+	public void DeleteSave(string saveKey)
+	{
+		PlayerPrefs.DeleteKey(saveKey);
 	}
 }

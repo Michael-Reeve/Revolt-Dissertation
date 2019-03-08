@@ -15,15 +15,15 @@ public class GUICursor : MonoBehaviour
 
 	void LateUpdate()
 	{
-		if(player.targettedInteractible == null)
+		if(player.targettedInteractible.Count == 0)
 		{
 			SetCursor("default");
 		}
-		else if (player.targettedInteractible is Computer)
+		else if (player.targettedInteractible[0] is Computer)
 		{
 			SetCursor("cursor");
 		}
-		else if (player.targettedInteractible is Interactible)
+		else if (player.targettedInteractible[0] is Interactible)
 		{
 			SetCursor("interactible");
 		}

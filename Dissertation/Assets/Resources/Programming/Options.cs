@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class Options : MonoBehaviour 
+public class Options : MonoBehaviour, ISave
 {
 	public AudioMixer masterMixer;
 	public Slider mainVolumeSlider;
@@ -13,16 +13,21 @@ public class Options : MonoBehaviour
 	public Slider dialogueVolumeSlider;
 	protected float mainVolume, musicVolume, sfxVolume, dialogueVolume;
 
-	public void LoadVolume()
+	public float Convert(float conversion)
+	{
+		return Mathf.Log10(conversion) * 20;
+	}
+
+	public void Load()
 	{
 		mainVolume = PlayerPrefs.GetFloat("MainVolume", 0.8f);
-		SetMainVolume();
+		masterMixer.SetFloat("mainVolume", Convert(mainVolume));
 		musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.8f);
-		SetMusicVolume();
+		masterMixer.SetFloat("musicVolume", Convert(musicVolume));
 		sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.8f);
-		SetSFXVolume();
+		masterMixer.SetFloat("sfxVolume", Convert(sfxVolume));
 		dialogueVolume = PlayerPrefs.GetFloat("DialogueVolume", 0.8f);
-		SetDialogueVolume();
+		masterMixer.SetFloat("dialogueVolume", Convert(dialogueVolume));
 		SetSliders();
 	}
 
@@ -36,33 +41,39 @@ public class Options : MonoBehaviour
 
 	public void SetMainVolume()
 	{
-		mainVolume = Mathf.Log10(mainVolumeSlider.value) * 20;
-		masterMixer.SetFloat("mainVolume", mainVolume);
+		mainVolume = mainVolumeSlider.value;
+		masterMixer.SetFloat("mainVolume", Convert(mainVolume));
 	}
 
 	public void SetMusicVolume()
 	{
-		musicVolume = Mathf.Log10(musicVolumeSlider.value) * 20;
-		masterMixer.SetFloat("musicVolume", musicVolume);
+		musicVolume = musicVolumeSlider.value;
+		masterMixer.SetFloat("musicVolume", Convert(musicVolume));
 	}
 
 	public void SetSFXVolume()
 	{
-		sfxVolume = Mathf.Log10(sfxVolumeSlider.value) * 20;
-		masterMixer.SetFloat("sfxVolume", sfxVolume);
+		sfxVolume = sfxVolumeSlider.value;
+		masterMixer.SetFloat("sfxVolume", Convert(sfxVolume));
 	}
 
 	public void SetDialogueVolume()
 	{
-		dialogueVolume = Mathf.Log10(dialogueVolumeSlider.value) * 20;
-		masterMixer.SetFloat("dialogueVolume", dialogueVolume);
+		dialogueVolume = dialogueVolumeSlider.value;
+		masterMixer.SetFloat("dialogueVolume", Convert(dialogueVolume));
 	}
 	
 	void OnApplicationQuit()
+	{
+		Save();
+	}
+
+	public void Save()
 	{
 		PlayerPrefs.SetFloat("MainVolume", mainVolumeSlider.value);
 		PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
 		PlayerPrefs.SetFloat("SFXVolume", sfxVolumeSlider.value);
 		PlayerPrefs.SetFloat("DialogueVolume", dialogueVolumeSlider.value);
+		PlayerPrefs.Save();
 	}
 }

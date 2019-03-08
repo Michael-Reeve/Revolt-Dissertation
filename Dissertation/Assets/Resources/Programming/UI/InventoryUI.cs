@@ -48,7 +48,6 @@ public class InventoryUI : MonoBehaviour
 			highlightedItem = 0;
 		else if (highlightedItem < 0)
 			highlightedItem = slots.Count - 1;
-		Debug.Log(highlightedItem);
 		EventSystem.current.SetSelectedGameObject(slots[highlightedItem]);
 		slots[highlightedItem].GetComponent<UISlot>().selected.enabled = true;
 	}
@@ -95,7 +94,8 @@ public class InventoryUI : MonoBehaviour
 			newSlotUI.itemName.text = slot.ContainedItem.itemName;
 			newSlotUI.itemDescription.text = slot.ContainedItem.itemDescription;
 			newSlotUI.itemImage.sprite = slot.ContainedItem.image;
-		} else
+		}
+		else
 		{
 			newSlotUI.itemQuantity.text = "";
 			newSlotUI.itemName.text = "";

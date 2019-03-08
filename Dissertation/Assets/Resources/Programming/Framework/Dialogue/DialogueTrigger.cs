@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour 
 {
-	public Dialogue dialogue;
+	public Dialogue[] dialogues;
 	
 	void OnTriggerEnter(Collider collider)
 	{
 		if(collider.gameObject.GetComponent<Character>())
 		{
-			DialogueManager.instance.AddDialogue(dialogue);
+			foreach(Dialogue dialogue in dialogues)
+			{
+				DialogueManager.instance.AddDialogue(dialogue);
+			}
 			Destroy(this.gameObject);
 		}
 	}

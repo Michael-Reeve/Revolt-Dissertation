@@ -16,10 +16,8 @@ public abstract class CameraController : MonoBehaviour
 	public float smoothingAmount;
 	protected float smoothing;
 	protected Camera thisCamera;
-	public GameObject possessed;
+	public Character possessed;
 	public Vector3 offset;
-	
-
 
 	void OnEnable()
 	{
@@ -37,18 +35,17 @@ public abstract class CameraController : MonoBehaviour
 		return true;
 	}
 
-
-	void Start () 
+	public virtual void Awake()
 	{
 		thisCamera = GetComponent<Camera>();
 		smoothing = smoothingAmount;
 		initialRot = transform.eulerAngles;
 		if(possessed != null)
 		{
-			if(possessed.transform.parent.GetComponent<PlayerController>())
+			if(possessed.characterController != null)
 			{
-				sensitivity = possessed.transform.parent.GetComponent<PlayerController>().mouseSensitivity;
-				possessed.transform.parent.GetComponent<PlayerController>().activeCamera = thisCamera;
+				sensitivity = possessed.characterAttributes.mouseSensitivity;
+				possessed.characterController.activeCamera = thisCamera;
 			}
 		}
 	}

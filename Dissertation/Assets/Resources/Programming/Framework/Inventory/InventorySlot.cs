@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class InventorySlot
 {
 	public bool active;
+	[SerializeField]
 	protected Item containedItem;
+	[SerializeField]
 	protected int quantity = 1;
 
 	public Item ContainedItem
@@ -45,6 +48,5 @@ public class InventorySlot
 			else
 				quantity = value;
 		}
-	} 
-
+	} 	
 }

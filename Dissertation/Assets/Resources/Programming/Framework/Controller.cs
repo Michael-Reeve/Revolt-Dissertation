@@ -9,12 +9,7 @@ public class Controller : MonoBehaviour
 	public Character possessed;
 	protected int layer = 9;
 	public Inventory inventory;
-	// Use this for initialization
-	void Awake () 
-	{
-		
-	}
-
+	public Camera activeCamera;
 	public void Possess(Character newCharacter)
 	{
 		if(possessed != null)

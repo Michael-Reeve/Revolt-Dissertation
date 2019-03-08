@@ -15,7 +15,6 @@ public class Useable : Item
 
     public virtual void Use(Controller controller)
     {
-        Debug.Log("TestUse! " + controller.name);
         behaviour.Use(controller, this);
     }
 	

@@ -13,16 +13,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Bool_keys: []
   m_Int_keys:
+<<<<<<< HEAD
   - pbDefaultEditLevel
   - pbDefaultSelectionMode
   - pb_GIWorkflowMode
   m_Float_keys: []
+=======
+  - pbHandleAlignment
+  - pbDefaultEditLevel
+  m_Float_keys:
+  - pbEditorScroll.x
+  - pbEditorScroll.y
+>>>>>>> master
   m_String_keys: []
   m_Color_keys: []
   m_Material_keys: []
   m_Bool_values: 
+<<<<<<< HEAD
   m_Int_values: 000000000200000001000000
   m_Float_values: []
+=======
+  m_Int_values: 0000000000000000
+  m_Float_values:
+  - 0
+  - 0
+>>>>>>> master
   m_String_values: []
   m_Color_values: []
   m_Material_values: []

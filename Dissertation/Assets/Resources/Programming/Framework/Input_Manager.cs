@@ -6,6 +6,7 @@ public class Input_Manager : MonoBehaviour
 {
 
 	public static bool cursorLocked = false;
+	public static bool shiftModifier = false;
 	void Update () 
 	{
 		if(Input.anyKeyDown)
@@ -15,6 +16,14 @@ public class Input_Manager : MonoBehaviour
 		if(Input.anyKey)
 		{
 			EventManager.TriggerEvent("InputKey");
+		}
+		if(Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			shiftModifier = true;
+		}
+		if(Input.GetKeyUp(KeyCode.LeftShift))
+		{
+			shiftModifier = false;
 		}
 	}
 

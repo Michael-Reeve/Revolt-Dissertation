@@ -5,11 +5,15 @@ using UnityEngine;
 public class Character : Actor 
 {	
 	public Controller characterController;
-	private Rigidbody rigidBody;
+	public Rigidbody rigidBody;
+	public CapsuleCollider capsule;
+	public float slopeAngle;
 	public string characterName;
 	public Attributes characterAttributes;
 	public Vector3 velocity;
-	
+	public float speedModifier = 1;
+	public Vector3 movementVelocity;
+	public Vector3 lastPos;
 
 	void Awake () 
 	{
@@ -17,20 +21,37 @@ public class Character : Actor
 			characterController.active = true;
 		if(this.GetComponentInChildren<Rigidbody>() == true) 
 			rigidBody = this.GetComponentInChildren<Rigidbody>();
+		if(GetComponent<CapsuleCollider>())
+			capsule = GetComponent<CapsuleCollider>();
 	}
 	
 	void Update () 
 	{
+		RaycastHit raycastHit;
+		if(Physics.Raycast(transform.position, (Vector3.up * -1), out raycastHit))
+		{
+			Vector3 SlopeForward = Vector3.Cross(transform.right, raycastHit.normal);
+			float SlopeAngle = Vector3.SignedAngle(transform.forward, SlopeForward, Vector3.up);  
+			slopeAngle = Vector3.SignedAngle(Vector3.up, raycastHit.normal, Vector3.up);
+			if(slopeAngle <= 45)
+				transform.eulerAngles = new Vector3(-slopeAngle, transform.eulerAngles.y, 0);
+		}
 		if(rigidBody != null)
 			velocity = rigidBody.velocity;
 		if(IsFalling())
-		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 10) * Time.deltaTime, ForceMode.Acceleration);
-		Debug.Log("Grounded: " + IsGrounded());
+		{
+		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 100) * Time.deltaTime, ForceMode.Acceleration);
+		}
+	}
+
+	void FixedUpdate()
+	{
+		movementVelocity = (rigidBody.position - lastPos);
+        lastPos = rigidBody.position;
 	}
 
 	void OnCollisionEnter(Collision other)
 	{
-		//Debug.Log(rigidBody.velocity.magnitude);
 		if(rigidBody.velocity.magnitude > 0.2f)
 			EventManager.TriggerEvent("PlayerCollision");
 	}
@@ -39,8 +60,8 @@ public class Character : Actor
 	{
 		if(rigidBody != null)
 		{
-			Vector3 newPosition = (((transform.forward / 100) * direction.z) + ((transform.right / 100) * direction.x)) * characterAttributes.speed;
-			//Debug.Log("X: " + newPosition.x.ToString("F") + " Z: " + newPosition.z.ToString("F"));
+			direction = direction.normalized;
+			Vector3 newPosition = (((transform.forward / 100) * direction.z) + ((transform.right / 100) * direction.x)) * characterAttributes.speed * speedModifier;
 			rigidBody.MovePosition(transform.position + newPosition);
 		}
 	}

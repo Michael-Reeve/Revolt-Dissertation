@@ -25,8 +25,15 @@ public static class SaveGame
 	{
 		List<GameObject> rootObjects = new List<GameObject>();
 		Scene scene = SceneManager.GetActiveScene();
+<<<<<<< HEAD
 		scene.GetRootGameObjects(rootObjects);
 		List<ISave> saves = new List<ISave>();
+=======
+		Debug.Log(scene.name);
+		scene.GetRootGameObjects(rootObjects);
+		List<ISave> saves = new List<ISave>();
+		Debug.Log("Loading Data");
+>>>>>>> master
 		foreach (GameObject gameObject in rootObjects)
 		{
 			saves.AddRange(Utility.GetInterface<ISave>(gameObject.GetComponentsInChildren(typeof(ISave), true)));
@@ -35,6 +42,10 @@ public static class SaveGame
 		{
 			saves[i].Load();
 		}
+<<<<<<< HEAD
+=======
+		Debug.Log("Data Loaded");
+>>>>>>> master
 	}
 	
 	public static void SaveVector3(Vector3 position, string key)
@@ -46,7 +57,14 @@ public static class SaveGame
 
 	public static Vector3 LoadVector3(string key)
 	{
+<<<<<<< HEAD
 		return new Vector3(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"));
+=======
+		if(PlayerPrefs.HasKey(key))
+			return new Vector3(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"));
+		else
+			return Vector3.zero;
+>>>>>>> master
 	}
 
 	public static void SaveQuaternion(Quaternion rotation, string key)
@@ -59,6 +77,13 @@ public static class SaveGame
 
 	public static Quaternion LoadQuaternion(string key)
 	{
+<<<<<<< HEAD
 		return new Quaternion(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"), PlayerPrefs.GetFloat(key + "w"));
+=======
+		if(PlayerPrefs.HasKey(key))
+			return new Quaternion(PlayerPrefs.GetFloat(key + "x"), PlayerPrefs.GetFloat(key + "y"), PlayerPrefs.GetFloat(key + "z"), PlayerPrefs.GetFloat(key + "w"));
+		else
+			return Quaternion.identity;
+>>>>>>> master
 	}
 }

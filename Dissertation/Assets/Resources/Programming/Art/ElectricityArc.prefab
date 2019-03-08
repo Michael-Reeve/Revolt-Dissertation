@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conductor: {fileID: 0}
+  origin: {fileID: 0}
 --- !u!198 &198794698667878588
 ParticleSystem:
   m_ObjectHideFlags: 1

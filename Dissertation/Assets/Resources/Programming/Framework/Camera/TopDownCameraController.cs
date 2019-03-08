@@ -51,16 +51,6 @@ public class TopDownCameraController : CameraController
 		return onScreen;
 	}
 
-	Vector3 ClampPossessed(float xClamp = 0, float yClamp = 0)
-	{
-		Vector3 clampedRot = transform.eulerAngles;		
-		if (xClamp != 0)
-			clampedRot.x = Mathf.Clamp(clampedRot.x, xClamp * -1, xClamp);
-		if (yClamp != 0)
-			clampedRot.y = Mathf.Clamp(clampedRot.y, yClamp * -1, yClamp);
-		return clampedRot;
-	}
-
 	void ConstrainCamera()
 	{
 		if(IsOnScreen(possessed.transform.position))
