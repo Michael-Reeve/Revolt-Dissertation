@@ -40,7 +40,6 @@ public class TeslaAnchor : Electric
 
 	public void UpdateLinks()
 	{
-		Debug.Log("Event Triggered " + this.name);
 		UpdateConnections();
 		onVoltageChange.Invoke();
 	}

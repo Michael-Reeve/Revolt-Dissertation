@@ -8,7 +8,7 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 	[SerializeField]
 	protected Transform transformData;
 	[SerializeField]
-	protected bool active;
+	public bool active = true;
 
 	void Start()
 	{
@@ -17,8 +17,11 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 
 	public void Interact(PlayerController controller)
 	{
-		controller.GetComponent<Inventory>().AddItem(item);
-		ObjectPool.instance.AddToPool(this);
+		if(active)
+		{
+			controller.GetComponent<Inventory>().AddItem(item);
+			ObjectPool.instance.AddToPool(this);
+		}
 	}
 
 	public void LoadData(ObjectData objectData)

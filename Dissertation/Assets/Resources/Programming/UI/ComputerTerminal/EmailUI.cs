@@ -29,7 +29,10 @@ public class EmailUI : MonoBehaviour
 		}
 		else
 		{
-			emailDoc.SetActive(false);
+			if(emailDoc.activeInHierarchy == false)
+				emailDoc.SetActive(true);
+			else
+				emailDoc.SetActive(false);
 		}
 	}
 }

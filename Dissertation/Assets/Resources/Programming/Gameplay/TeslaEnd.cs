@@ -27,6 +27,12 @@ public class TeslaEnd : Electric
 		if(Voltage > voltageToMeet && !completed)
 		{
 			completed = true;
+			foreach(Electric anchor in GetConnectionsFrom(this))
+			{
+				Debug.Log(anchor.name);
+				if(anchor.GetComponent<PickUp>())
+					anchor.GetComponent<PickUp>().active = false;
+			}
 			Debug.Log("Circuit Complete!");
 			if(completitionEvent != null)
 				completitionEvent.Invoke();

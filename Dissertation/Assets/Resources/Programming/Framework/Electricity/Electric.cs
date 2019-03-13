@@ -172,4 +172,15 @@ public class Electric : MonoBehaviour
 		return allConnections;
 	}
 
+		public List<Electric> GetConnectionsFrom(Electric origin)
+	{
+		List<Electric> allConnections = new List<Electric>();
+		foreach(Electric electric in conductingFrom)
+		{
+			allConnections.Add(electric);
+			allConnections.AddRange(electric.GetConnectionsFrom(this));
+		}
+		return allConnections;
+	}
+
 }
