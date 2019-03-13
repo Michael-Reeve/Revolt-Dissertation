@@ -36,6 +36,10 @@ public class GUICursor : MonoBehaviour
 			if(cursorImage.name.ToLower() == cursorName.ToLower())
 			{
 				cursor.sprite = cursorImage.image;
+				if(cursorName == "cursor")
+					cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(5, -5);
+				else
+					cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
 				return;
 			}
 		}
