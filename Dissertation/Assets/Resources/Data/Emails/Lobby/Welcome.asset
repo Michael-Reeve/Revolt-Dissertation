@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Welcome
   m_EditorClassIdentifier: 
   emailTitle: Welcome!
-  emailContents: 'Welcome to the XXXX facility, pioneers in robotics, bio-engineering,
+  emailContents: 'Welcome to the Nikola Tesla facility, pioneers in robotics, bio-engineering,
     and artificial intelligence.
 
 
