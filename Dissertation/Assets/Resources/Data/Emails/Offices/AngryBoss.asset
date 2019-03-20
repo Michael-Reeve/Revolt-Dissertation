@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf2ac9bb500f9147be3b1a3b8a7dd77, type: 3}
+  m_Name: AngryBoss
+  m_EditorClassIdentifier: 
+  emailTitle: Anchors locked away
+  emailContents: 'Look. I know they''re fun. I know they can even be a good way to
+    spend a break.
+
+
+    But they''re not just a toy. These have a real, functional purpose. That bridge
+    is supposed to remain out of access. Furthermore, their presence has lead to a
+    massive decrease in productivity. Because of this, I will be locking them in the
+    locker.
+
+
+    If anyone gets them out, I''ll expect a letter of resignation.'

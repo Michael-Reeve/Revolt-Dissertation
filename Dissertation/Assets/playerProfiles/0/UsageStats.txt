@@ -5,3 +5,6 @@ First Puzzle Completed at:  23.28988
 First Puzzle Completed at:  23.72211
 First Puzzle Completed at:  26.06717
 Second Puzzle completed at:  105.8486
+First Puzzle Completed at:  41.70879
+Second Puzzle completed at:  94.53043
+Third Puzzle completed at:  149.6359
