@@ -72,6 +72,10 @@ public class PlayerController : Controller
 				targettedInteractible = interactible;
 				targettedInteractible.TrimExcess();
 			}
+			else
+			{
+				targettedInteractible.Clear();
+			}
 		}
 		else
 		{
