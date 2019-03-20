@@ -3,36 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EmailUI : MonoBehaviour 
+namespace Computer
 {
-	public Text emailButtonText;
-	public Email emailData;
-	public GameObject emailDoc;
-	public Text emailTitle;
-	public Text emailContents;
-
-	void Start()
+	public class EmailUI : MonoBehaviour 
 	{
-		emailButtonText.text = emailData.emailTitle;
-	}
+		public Text emailButtonText;
+		public Email emailData;
+		public GameObject emailDoc;
+		public Text emailTitle;
+		public Text emailContents;
 
-	public void ToggleEmail()
-	{
-		if(emailTitle.text != emailData.emailTitle)
+		void Start()
 		{
-			if(emailDoc.activeInHierarchy == false)
-			{
-				emailDoc.SetActive(true);
-			}
-			emailTitle.text = emailData.emailTitle;
-			emailContents.text = emailData.emailContents;
+			emailButtonText.text = emailData.emailTitle;
 		}
-		else
+
+		public void ToggleEmail()
 		{
-			if(emailDoc.activeInHierarchy == false)
-				emailDoc.SetActive(true);
+			if(emailTitle.text != emailData.emailTitle)
+			{
+				if(emailDoc.activeInHierarchy == false)
+				{
+					emailDoc.SetActive(true);
+				}
+				emailTitle.text = emailData.emailTitle;
+				emailContents.text = emailData.emailContents;
+			}
 			else
-				emailDoc.SetActive(false);
+			{
+				if(emailDoc.activeInHierarchy == false)
+					emailDoc.SetActive(true);
+				else
+					emailDoc.SetActive(false);
+			}
 		}
 	}
 }

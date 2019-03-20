@@ -2,28 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LockScreen : MonoBehaviour 
+namespace Computer
 {
-	public GameObject keyObject;
-	public GameObject keyGrid;
-	public List<ComputerKeyCode> keyCodes;
-
-	public void GenerateKeys(string keycode)
+	public class LockScreen : MonoBehaviour 
 	{
-		for(int i = 0; i < keycode.Length; i++)
-		{
-			GameObject key = Instantiate(keyObject, keyGrid.transform);
-			keyCodes.Add(key.GetComponent<ComputerKeyCode>());
-		}
-	}
+		public GameObject keyObject;
+		public GameObject keyGrid;
+		public List<ComputerKeyCode> keyCodes;
 
-	public string getKeyCode()
-	{
-		string keyCode = "";
-		foreach(ComputerKeyCode keycode in keyCodes)
+		public void GenerateKeys(string keycode)
 		{
-			keyCode += keycode.key;
+			for(int i = 0; i < keycode.Length; i++)
+			{
+				GameObject key = Instantiate(keyObject, keyGrid.transform);
+				keyCodes.Add(key.GetComponent<ComputerKeyCode>());
+			}
 		}
-		return keyCode;
+
+		public string getKeyCode()
+		{
+			string keyCode = "";
+			foreach(ComputerKeyCode keycode in keyCodes)
+			{
+				keyCode += keycode.key;
+			}
+			return keyCode;
+		}
 	}
 }
+

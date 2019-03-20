@@ -5,4 +5,6 @@ using UnityEngine;
 public interface Interactible
 {
 	void Interact(PlayerController controller);
+
+	bool IsActive();
 }

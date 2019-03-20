@@ -8,5 +8,10 @@ public class DialogueInteractible : Interactible
 	{
 		
 	}
+
+	public bool IsActive()
+	{
+		return true;
+	}
 	
 }

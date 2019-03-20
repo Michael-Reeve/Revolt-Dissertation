@@ -3,33 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ComputerKeyCode : MonoBehaviour 
+namespace Computer
 {
-	public Text keyText;
-	public int key;
-
-	void Start()
+	public class ComputerKeyCode : MonoBehaviour 
 	{
-		keyText.text = key.ToString();
-	}
+		public Text keyText;
+		public int key;
 
-	public void Add(int value)
-	{
-		key += value;
-		if(key >= 10)
+		void Start()
 		{
-			key = 0;
+			keyText.text = key.ToString();
 		}
-		else if (key <= -1)
+
+		public void Add(int value)
 		{
-			key = 9;
+			key += value;
+			if(key >= 10)
+			{
+				key = 0;
+			}
+			else if (key <= -1)
+			{
+				key = 9;
+			}
+			UpdateText();
 		}
-		UpdateText();
-	}
 
-	private void UpdateText()
-	{
-		keyText.text = key.ToString();
-	}
+		private void UpdateText()
+		{
+			keyText.text = key.ToString();
+		}
 
+	}
 }
+

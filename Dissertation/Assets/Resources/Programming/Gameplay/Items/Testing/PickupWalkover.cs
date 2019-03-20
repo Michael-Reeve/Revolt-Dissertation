@@ -12,4 +12,9 @@ public class PickupWalkover : MonoBehaviour, Interactible
 		controller.GetComponent<Inventory>().AddItem(item);
 		Destroy(this.gameObject);
 	}
+
+	public bool IsActive()
+	{
+		return true;
+	}
 }

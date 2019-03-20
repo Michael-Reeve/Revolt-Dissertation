@@ -24,6 +24,11 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 		}
 	}
 
+	public bool IsActive()
+	{
+		return active;
+	}
+
 	public void LoadData(ObjectData objectData)
 	{
 		if(objectData.position == Vector3.zero)
