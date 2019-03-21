@@ -51,7 +51,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1225239821997682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.249415, y: -1.02, z: 1.6091361}
+  m_LocalPosition: {x: -191.8664, y: 1.5, z: -83.36783}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4907347817057564}
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1095883756877948}
   m_LocalRotation: {x: -0.4869982, y: 0.5126722, z: -0.5126722, w: 0.4869982}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.11639404, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4775387731039582}
@@ -269,7 +269,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0}
+      maxColor: {r: 0.6666667, g: 0.6838905, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3691,16 +3691,16 @@ ParticleSystem:
       properties: 0
   LightsModule:
     enabled: 0
-    ratio: 0
+    ratio: 1
     light: {fileID: 0}
     randomDistribution: 1
     color: 1
-    range: 1
-    intensity: 1
+    range: 0
+    intensity: 0
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3753,7 +3753,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3803,7 +3803,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 20
+    maxLights: 10
   TrailModule:
     enabled: 1
     mode: 1
@@ -4632,7 +4632,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 2100000, guid: d361b80bb3254fc478dea7259f7fcb68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
