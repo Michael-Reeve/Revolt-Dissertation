@@ -7,21 +7,21 @@ public class FootstepNoise : MonoBehaviour
 
 	public AudioSource audioSource;
 	public Headbob headbob;
-	[Range (10,-10)]
+	[Range (-1, 1)]
 	public int offsetTrigger;
 	public List<AudioClip> footsteps;
 	private bool stepAvailable;
 	
-	void Update () 
+	void FixedUpdate () 
 	{
-		Debug.Log(headbob.offsetAlpha / 10);
-		if(Mathf.RoundToInt(headbob.offsetAlpha / 10) == offsetTrigger)
+		//Debug.Log(headbob.offsetAlpha);
+		if(headbob.offsetAlpha * offsetTrigger / 100 >= 1)
 		{
 			stepAvailable = false;
 			audioSource.clip = footsteps[(int)Random.Range(0, footsteps.Count)];
 			audioSource.Play();
 		}
-		if(-Mathf.RoundToInt(headbob.offsetAlpha / 10) == offsetTrigger)
+		if(headbob.offsetAlpha * offsetTrigger / -100 >= 1)
 		{
 			stepAvailable = true;
 		}

@@ -15,11 +15,15 @@ public class Headbob : MonoBehaviour
 	void FixedUpdate()
 	{
 		velocity = cameraController.possessed.movementVelocity * 10;
+		float realFrequency = frequency * Mathf.Round(velocity.magnitude);
+		//Debug.Log("Frequency: " + frequency + " | Real Frequency: " + realFrequency);
 
-		cameraOffset = (Mathf.Sin(Time.time * frequency) * amplitude) * Mathf.Round(velocity.magnitude);
-		offsetAlpha = Mathf.Round(cameraOffset * (100/(Mathf.Sin(3.1415f / 2) * amplitude)));
+		cameraOffset = (Mathf.Sin(Time.time * realFrequency) * amplitude) * Mathf.Round(velocity.magnitude);
+		offsetAlpha = Mathf.Round(cameraOffset * (100/ (Mathf.Sin(3.1415f / 2) * amplitude)));
 
-		//Debug.Log("OffsetAlpha: " + offsetAlpha);
+		float test = Mathf.Round(cameraOffset * (100/(Mathf.Sin((3.1415f / 2) * realFrequency) * amplitude)));
+		Debug.Log("OffsetAlphaTest: " + test);
+		Debug.Log("OffsetAlpha: " + offsetAlpha);
 		transform.position = new Vector3(transform.position.x, transform.position.y + cameraOffset, transform.position.z);
     	//transform.eulerAngles = new Vector3(transform.eulerAngles.x + (cameraOffset * 5), transform.eulerAngles.y, transform.eulerAngles.z);
 	}
