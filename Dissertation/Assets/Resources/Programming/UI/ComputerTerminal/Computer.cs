@@ -51,8 +51,20 @@ namespace Computer
 			{
 				if(result.gameObject.GetComponent<Button>())
 				{
-					result.gameObject.GetComponent<Button>().Select();
-					result.gameObject.GetComponent<Button>().OnPointerClick(pointerEventData);
+					Button resultButton = result.gameObject.GetComponent<Button>();
+					if(locked)
+					{
+						if(result.gameObject.GetComponent<EmailUI>() == false)
+						{
+							resultButton.Select();
+							resultButton.OnPointerClick(pointerEventData);
+						}
+					}
+					else
+					{
+						resultButton.Select();
+						resultButton.OnPointerClick(pointerEventData);
+					}
 					//result.gameObject.GetComponent<Button>().interactable = false;
 				}
 			}

@@ -19,26 +19,30 @@ namespace Computer
 		void Start()
 		{
 			button = GetComponent<Button>();
-			emailButtonText.text = emailData.emailTitle;
+			if(emailData)
+				emailButtonText.text = emailData.emailTitle;
 		}
 
 		public void ToggleEmail()
 		{
-			if(emailTitle.text != emailData.emailTitle)
+			if(emailData != null)
 			{
-				if(emailDoc.activeInHierarchy == false)
+				if(emailTitle.text != emailData.emailTitle)
 				{
-					emailDoc.SetActive(true);
+					if(emailDoc.activeInHierarchy == false)
+					{
+						emailDoc.SetActive(true);
+					}
+					emailTitle.text = emailData.emailTitle;
+					emailContents.text = emailData.emailContents;
 				}
-				emailTitle.text = emailData.emailTitle;
-				emailContents.text = emailData.emailContents;
-			}
-			else
-			{
-				if(emailDoc.activeInHierarchy == false)
-					emailDoc.SetActive(true);
 				else
-					emailDoc.SetActive(false);
+				{
+					if(emailDoc.activeInHierarchy == false)
+						emailDoc.SetActive(true);
+					else
+						emailDoc.SetActive(false);
+				}
 			}
 			if(audioSource)
 				audioSource.Play();
