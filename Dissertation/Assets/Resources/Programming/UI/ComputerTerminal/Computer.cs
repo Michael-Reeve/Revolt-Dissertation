@@ -18,6 +18,7 @@ namespace Computer
 		public LockScreen lockScreen;
 		public Text emailTitle;
 		public Text emailContents;
+		public AudioSource computerAudio;
 
 		void Awake()
 		{
@@ -29,6 +30,8 @@ namespace Computer
 				newEmailUI.emailDoc = emailDoc;
 				newEmailUI.emailTitle = emailTitle;
 				newEmailUI.emailContents = emailContents;
+				if(computerAudio)
+					newEmailUI.audioSource = computerAudio;
 			}
 			if(locked)
 			{

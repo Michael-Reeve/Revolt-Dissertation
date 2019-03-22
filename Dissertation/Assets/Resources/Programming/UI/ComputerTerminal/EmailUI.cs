@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Computer
 {
-	public class EmailUI : MonoBehaviour 
+	public class EmailUI : MonoBehaviour
 	{
 		public Text emailButtonText;
 		public Email emailData;
 		public GameObject emailDoc;
 		public Text emailTitle;
 		public Text emailContents;
+		public AudioSource audioSource;
+		private Button button;
 
 		void Start()
 		{
+			button = GetComponent<Button>();
 			emailButtonText.text = emailData.emailTitle;
 		}
 
@@ -36,6 +40,8 @@ namespace Computer
 				else
 					emailDoc.SetActive(false);
 			}
+			if(audioSource)
+				audioSource.Play();
 		}
 	}
 }
