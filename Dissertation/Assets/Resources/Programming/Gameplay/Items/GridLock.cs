@@ -10,10 +10,11 @@ public class GridLock : MonoBehaviour
 	public Vector3 offset;
 	private Vector3 currentPosition;
 	public bool overlapping;
+	private Color originalColor;
 	void Awake()
 	{
 		MeshRenderer meshRend = GetComponentInChildren<MeshRenderer>();
-		meshRend.material.color = Color.blue;
+		originalColor = meshRend.material.color;
 	}
 
 	void Update () 
@@ -35,6 +36,7 @@ public class GridLock : MonoBehaviour
 		{
 			MeshRenderer meshRend = GetComponentInChildren<MeshRenderer>();
 			meshRend.material.color = Color.red;
+			meshRend.material.SetColor("_EmissionColor", originalColor + new Color(1, 0, 0, 0));
 			overlapping = true;
 		}
     }
@@ -44,6 +46,7 @@ public class GridLock : MonoBehaviour
 		{
 			MeshRenderer meshRend = GetComponentInChildren<MeshRenderer>();
 			meshRend.material.color = Color.blue;
+			meshRend.material.SetColor("_EmissionColor", originalColor + new Color(0, 0, 1, 0));
 			overlapping = false;
 		}
     }
