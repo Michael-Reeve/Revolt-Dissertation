@@ -7,6 +7,7 @@ public class FirstPersonCameraController : CameraController, ISave
 {
 	Vector3 initialRotation, currentRot;
 	private UnityAction toggleInput;
+	private Headbob headbob;
 
 	void OnEnable()
 	{
@@ -23,6 +24,8 @@ public class FirstPersonCameraController : CameraController, ISave
 		toggleInput = new UnityAction (ToggleControls);
 		initialRotation = transform.eulerAngles;
 		currentRot = initialRotation;
+		if(GetComponent<Headbob>())
+			headbob = GetComponent<Headbob>();
 	}
 
 	public override void RotatePossessed(Vector2 input, float sensitivity = 1)
@@ -44,6 +47,8 @@ public class FirstPersonCameraController : CameraController, ISave
 			{
 				MoveToPossessed(smoothed, smoothing);
 				RotatePossessed(new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")));
+				if(headbob)
+					{ headbob.SetCameraPosition(); headbob.SetCameraRotation(); }
 			}	
 		}
 	}

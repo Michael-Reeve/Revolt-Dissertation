@@ -14,4 +14,4 @@ MonoBehaviour:
   subtitle: Exactly.
   audio: {fileID: 0}
   dialoguePriority: 1
-  length: 0.4
+  length: 0.75

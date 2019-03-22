@@ -18,5 +18,7 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 59bdc2b58df943f4ab486e2de526e2f7, type: 3}
   - name: Cursor
     image: {fileID: 21300000, guid: ecb456702b0e61b49b3960b808de9fcd, type: 3}
+  - name: Keycard
+    image: {fileID: 21300000, guid: cc174fad260e61f40b3dad3ccb1c2058, type: 3}
   itemFrame: {fileID: 21300000, guid: 37d351ca943241b4abbd38cfbb8ba95e, type: 3}
   displayText: 

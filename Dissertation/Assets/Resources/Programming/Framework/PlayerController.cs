@@ -83,7 +83,8 @@ public class PlayerController : Controller
 		}
 		if(Input.GetAxis("Mouse ScrollWheel") != 0 && active)
 		{
-			inventory.GUI.HighlightItem(Input.GetAxis("Mouse ScrollWheel"));
+			if(inventory.equippedItem == null)
+				inventory.GUI.HighlightItem(Input.GetAxis("Mouse ScrollWheel"));
 		}
 		transform.position = possessed.transform.position;
 		possessed.speedModifier = Input_Manager.shiftModifier ? 2: 1;
@@ -119,6 +120,7 @@ public class PlayerController : Controller
 			ToggleMainMenu();
 		}
 	}
+	
 
 	void KeyDown()
 	{

@@ -7,6 +7,10 @@ public class Move : MonoBehaviour, ISave
 	private bool moved;
 	public Vector3 offset;
 	public float speed;
+	[Space]
+	public AudioSource audioSource;
+	public AudioClip moveSound;
+	public AudioClip finishSound;
 	private Vector3 startPosition;
 	private Vector3 desiredPosition;
 
@@ -17,20 +21,53 @@ public class Move : MonoBehaviour, ISave
 		speed /= 100;
 	}
 
-	public void GoTo()
+	public void Toggle()
 	{
-		StartCoroutine("MoveTo");
-		moved = true;
+		if(moved)
+			Reverse();
+		else
+			GoTo();
 	}
 
-	IEnumerator MoveTo()
+	public void GoTo()
+	{
+		StartCoroutine(MoveTo(desiredPosition));
+		moved = true;
+		if(audioSource != null)
+		{
+			audioSource.clip = moveSound;
+			audioSource.Play();
+		}
+			
+	}
+
+	public void Reverse()
+	{
+		if(moved)
+		{
+			StartCoroutine(MoveTo(startPosition));
+			moved = false;
+			if(audioSource != null)
+			{
+				audioSource.clip = moveSound;
+				audioSource.Play();
+			}
+		}
+	}
+
+	IEnumerator MoveTo(Vector3 newPos)
 	{
 		float alpha = 0f;
-		while(Vector3.Equals(transform.position, desiredPosition) == false)
+		while(Vector3.Equals(transform.position, newPos) == false)
 		{
 			alpha += Time.deltaTime * speed;
-			transform.position = Vector3.Lerp(transform.position, desiredPosition, alpha);
+			transform.position = Vector3.MoveTowards(transform.position, newPos, alpha);
 			yield return new WaitForEndOfFrame();
+		}
+		if(audioSource != null)
+		{
+			audioSource.clip = finishSound;
+			audioSource.Play();
 		}
 	}
 

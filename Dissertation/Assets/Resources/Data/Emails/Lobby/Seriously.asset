@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf2ac9bb500f9147be3b1a3b8a7dd77, type: 3}
+  m_Name: Seriously
+  m_EditorClassIdentifier: 
+  emailTitle: Are they serious?
+  emailContents: 'Sent to: henrikNosplund@icarus.net
+
+
+    Are they serious?
+
+
+    Look, I know that I''ve been pretty lenient about the whole Ava thing. But for
+    god''s sake, she''s been recently widowed, and that was their fault! I won''t
+    hold it against her if she forgets something on her way to work every so often.
+    I''ll keep a spare keycard aside for her, just in case.
+
+
+    You gonna be alright over there? I know that last month you guys caught Oskar
+    trying to download data from the servers. Hopefully that was the only incident
+    - honestly, I think it''s that which put them on edge.
+
+
+    See you soon.'
