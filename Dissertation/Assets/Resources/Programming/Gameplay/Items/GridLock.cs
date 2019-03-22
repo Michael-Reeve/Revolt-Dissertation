@@ -15,6 +15,8 @@ public class GridLock : MonoBehaviour
 	{
 		MeshRenderer meshRend = GetComponentInChildren<MeshRenderer>();
 		originalColor = meshRend.material.color;
+		meshRend.material.color = Color.blue;
+		meshRend.material.SetColor("_EmissionColor", originalColor + new Color(0, 0, 1, 0));
 	}
 
 	void Update () 

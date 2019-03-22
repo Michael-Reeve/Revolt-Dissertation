@@ -6,6 +6,7 @@ public class LightSettings : MonoBehaviour
 {
 	public List<Light> lights;
 	public List<MeshRenderer> lightObjects;
+	public AudioSource soundEffect;
 
 	void Start()
 	{
@@ -35,5 +36,6 @@ public class LightSettings : MonoBehaviour
 		{
 			lightObject.material.EnableKeyword("_EMISSION");
 		}
+		if(soundEffect) soundEffect.Play();
 	}
 }

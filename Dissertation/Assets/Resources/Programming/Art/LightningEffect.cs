@@ -32,7 +32,8 @@ public class LightningEffect : MonoBehaviour
 		{
 			for(int i = 0; i < effects.Count; i++)
 			{
-				Destroy(effects[i].gameObject);
+				if(effects[i].gameObject != null)
+					Destroy(effects[i].gameObject);
 			}
 			effects.Clear();
 			effects.TrimExcess();

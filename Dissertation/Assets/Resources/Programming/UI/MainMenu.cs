@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour
 
 	public void LoadLevel(string levelName)
 	{
+		Debug.Log("Loading Level: " + levelName);
 		GameManager.instance.LoadLevel(levelName);
 		if(loadScreen)
 			loadScreen.LoadIcon();
@@ -53,8 +54,8 @@ public class MainMenu : MonoBehaviour
 	{
 		if(audioSource != null)
 		{
-		audioSource.clip = clip;
-		audioSource.Play();
+			audioSource.clip = clip;
+			audioSource.Play();
 		}
 	}
 
