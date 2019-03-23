@@ -49,13 +49,13 @@ public class Electric : MonoBehaviour
 
 	public float GetRadius()
 	{
-		return maxRadius / 100 * voltage;
+		return maxRadius / 100 * Mathf.Clamp(Voltage * 2.5f, 0, 100);
 	}
 
 	protected List<Electric> FindConductors()
 	{
 		List<Electric> foundElectrics = new List<Electric>();
-		foundElectrics = Utility.GetInRadius<Electric>(maxRadius / 100 * voltage, transform.position);
+		foundElectrics = Utility.GetInRadius<Electric>(GetRadius(), transform.position);
 		if(foundElectrics.Contains(this))
 			foundElectrics.Remove(this);
 		foundElectrics = SortConductors(foundElectrics);

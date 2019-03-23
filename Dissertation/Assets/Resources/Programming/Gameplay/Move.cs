@@ -50,6 +50,7 @@ public class Move : MonoBehaviour, ISave
 			if(audioSource != null)
 			{
 				audioSource.clip = moveSound;
+				audioSource.loop = true;
 				audioSource.Play();
 			}
 		}
@@ -66,6 +67,7 @@ public class Move : MonoBehaviour, ISave
 		}
 		if(audioSource != null)
 		{
+			audioSource.loop = false;
 			audioSource.clip = finishSound;
 			audioSource.Play();
 		}

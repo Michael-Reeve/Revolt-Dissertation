@@ -129,6 +129,8 @@ MonoBehaviour:
   emailDoc: {fileID: 0}
   emailTitle: {fileID: 0}
   emailContents: {fileID: 0}
+  audioSource: {fileID: 0}
+  sfxClick: {fileID: 8300000, guid: b08bb5ea37933d442a6b3ce6fa880006, type: 3}
 --- !u!114 &114681422259572782
 MonoBehaviour:
   m_ObjectHideFlags: 1

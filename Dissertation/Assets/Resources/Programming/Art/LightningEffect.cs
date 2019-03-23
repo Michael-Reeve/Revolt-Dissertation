@@ -22,11 +22,11 @@ public class LightningEffect : MonoBehaviour
 			GameObject newEffect = Instantiate(effect, transform.position + electric.electricOffset, Quaternion.identity);
 			ParticleMagnet newMagnet = newEffect.GetComponentInChildren<ParticleMagnet>();
 			effects.Add(newMagnet);
-			newMagnet.conductor = conductor.gameObject;
+			newMagnet.conductor = conductor;
 		}
 	}
 
-	private void RemoveEffects()
+	public void RemoveEffects()
 	{
 		if(effects != null && effects.Count >= 1)
 		{

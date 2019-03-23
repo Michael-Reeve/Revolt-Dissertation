@@ -14,6 +14,7 @@ namespace Computer
 		public Text emailTitle;
 		public Text emailContents;
 		public AudioSource audioSource;
+		public AudioClip sfxClick; 
 		private Button button;
 
 		void Start()
@@ -45,7 +46,12 @@ namespace Computer
 				}
 			}
 			if(audioSource)
+			{
+				Debug.Log(sfxClick.name);
+				Debug.Log(audioSource.name);
+				audioSource.clip = sfxClick;
 				audioSource.Play();
+			}
 		}
 	}
 }

@@ -32,6 +32,11 @@ public class TeslaEnd : Electric
 				Debug.Log(anchor.name);
 				if(anchor.GetComponent<PickUp>())
 					anchor.GetComponent<PickUp>().active = false;
+				if(anchor.GetComponent<LightningEffect>())
+				{
+					Debug.Log("AssertYes");
+					anchor.GetComponent<LightningEffect>().RemoveEffects();
+				}
 			}
 			Debug.Log("Circuit Complete!");
 			if(completitionEvent != null)

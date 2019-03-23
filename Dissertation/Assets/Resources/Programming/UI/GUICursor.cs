@@ -23,7 +23,7 @@ public class GUICursor : MonoBehaviour
 		{
 			SetCursor("cursor");
 		}
-		else if (player.targettedInteractible[0] is Interactible && player.targettedInteractible[0].IsActive() && player.inventory.equippedItem)
+		else if (player.targettedInteractible[0] is Door && player.targettedInteractible[0].IsActive() && player.inventory.equippedItem)
 		{
 			SetCursor("keycard");
 		}

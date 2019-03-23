@@ -26,7 +26,7 @@ public class TeslaStart : Electric
 	void OnDrawGizmos()
 	{
 		Gizmos.color = new Color(0, 1, 0, 0.4f);
-		Gizmos.DrawSphere(transform.position, (maxRadius / 100 * Voltage));
+		Gizmos.DrawSphere(transform.position, GetRadius());
 	}
 
 	public void UpdateLinks()

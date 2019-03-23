@@ -8,7 +8,7 @@ public class ParticleMagnet : MonoBehaviour
 	private ParticleSystem particleMain;
 	private ParticleSystem.Particle[] particles;
 	private ParticleCollisionEvent[] collisionEvents;
-	public GameObject conductor;
+	public Electric conductor;
 	private float arcSpeed = 10f;
 	
 	void Awake()
@@ -29,7 +29,8 @@ public class ParticleMagnet : MonoBehaviour
 		{
 			if(conductor != null)
 			{
-				Vector3 particleDirection = (conductor.transform.position - particles[i].position).normalized;
+				Vector3 conductorPosition = conductor.transform.position + (conductor.electricOffset * 3);
+				Vector3 particleDirection = (conductorPosition - particles[i].position).normalized;
 				particles[i].velocity = particleDirection * arcSpeed;
 				Debug.DrawRay(particles[i].position, particleDirection, Color.red, 5f);
 			}
