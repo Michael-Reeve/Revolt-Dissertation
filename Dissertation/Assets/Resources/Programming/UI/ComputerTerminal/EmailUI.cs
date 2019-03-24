@@ -26,6 +26,7 @@ namespace Computer
 
 		public void ToggleEmail()
 		{
+			PlaySound();
 			if(emailData != null)
 			{
 				if(emailTitle.text != emailData.emailTitle)
@@ -45,10 +46,11 @@ namespace Computer
 						emailDoc.SetActive(false);
 				}
 			}
-			if(audioSource)
+		}
+		private void PlaySound()
+		{
+			if(audioSource != null && sfxClick != null)
 			{
-				Debug.Log(sfxClick.name);
-				Debug.Log(audioSource.name);
 				audioSource.clip = sfxClick;
 				audioSource.Play();
 			}

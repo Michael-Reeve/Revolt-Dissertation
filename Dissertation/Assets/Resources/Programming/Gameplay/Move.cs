@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Move : MonoBehaviour, ISave
 {
-	private bool moved;
-	private bool moving;
+	private bool moved = false;
+	private bool moving = false;
 	public Vector3 offset;
 	public float speed;
 	[Space]
