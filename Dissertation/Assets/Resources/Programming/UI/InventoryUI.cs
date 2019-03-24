@@ -52,6 +52,14 @@ public class InventoryUI : MonoBehaviour
 		slots[highlightedItem].GetComponent<UISlot>().selected.enabled = true;
 	}
 
+	public void HighlightItemDirect(int input)
+	{
+		slots[highlightedItem].GetComponent<UISlot>().selected.enabled = false;
+		highlightedItem = input;
+		EventSystem.current.SetSelectedGameObject(slots[highlightedItem]);
+		slots[highlightedItem].GetComponent<UISlot>().selected.enabled = true;
+	}
+
 	public void UseHighlighted()
 	{
 		inventoryReference.UseItem(highlightedItem);

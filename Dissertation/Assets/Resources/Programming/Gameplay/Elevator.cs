@@ -13,8 +13,8 @@ public class Elevator : MonoBehaviour
 		if(player != null && linkedElevator != null)
 		{
 			ToggleDoors();
-			Invoke("Teleport", 1f);
 			linkedElevator.ToggleDoors();
+			Invoke("Teleport", 3f);
 		}
 		else
 		{
@@ -26,6 +26,8 @@ public class Elevator : MonoBehaviour
 	{
 		Vector3 playerOffset = player.transform.position - transform.position;
 		player.transform.position = linkedElevator.transform.position + playerOffset;
+		linkedElevator.ToggleDoors();
+		ToggleDoors();
 	}
 
 	public void ToggleDoors()

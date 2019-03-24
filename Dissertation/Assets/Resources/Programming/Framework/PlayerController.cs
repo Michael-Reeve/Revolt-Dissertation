@@ -14,6 +14,7 @@ public class PlayerController : Controller
 	public MainMenu mainMenu;
 	public Canvas gui;
 	private Vector3 position;
+	private int keyboardSelect;
 
 	void OnEnable()
 	{
@@ -107,6 +108,15 @@ public class PlayerController : Controller
 					}
 				}
 				Debug.DrawRay(activeCamera.transform.position, activeCamera.transform.forward, Color.red, 5f);
+			}
+			if(System.Int32.TryParse(Input.inputString, out keyboardSelect))
+			{
+				if(keyboardSelect == 0)
+					keyboardSelect = 10;
+				Debug.Log(keyboardSelect);
+				keyboardSelect--;
+				if(inventory.equippedItem == null)
+					inventory.GUI.HighlightItemDirect(keyboardSelect);
 			}
 			if(Input.GetKeyDown("e") == true)
 			{
