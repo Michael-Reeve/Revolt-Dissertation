@@ -50,6 +50,7 @@ public class Move : MonoBehaviour, ISave
 		if(moved)
 		{
 			StartCoroutine(MoveTo(startPosition));
+			moving = true;
 			moved = false;
 			if(audioSource != null)
 			{
