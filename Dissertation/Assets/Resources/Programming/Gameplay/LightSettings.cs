@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightSettings : MonoBehaviour 
+public class LightSettings : MonoBehaviour
 {
 	public List<Light> lights;
 	public List<MeshRenderer> lightObjects;
@@ -38,4 +38,5 @@ public class LightSettings : MonoBehaviour
 		}
 		if(soundEffect) soundEffect.Play();
 	}
+
 }

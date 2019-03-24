@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, Interactible 
+public class Door : MonoBehaviour, Interactible, ISave
 {
 	public bool active = true;
 	[Space]
@@ -116,5 +116,33 @@ public class Door : MonoBehaviour, Interactible
 			transform.rotation = Quaternion.Lerp(transform.rotation, desiredState.rotation, alpha);
 			yield return new WaitForEndOfFrame();
 		}
+	}
+
+	public void LoadData(ObjectData objectData)
+	{
+		if(objectData.position == Vector3.zero)
+			return;
+		locked = objectData.active;
+		transform.position = objectData.position;
+		transform.rotation = objectData.rotation;
+		transform.parent = objectData.parent;
+	}
+
+	public void Save()
+	{
+		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(locked, transform.position, transform.rotation, transform.parent));
+	}
+
+	public void Load()
+	{
+		if(GameManager.instance.levelDictionary != null)
+		{
+			ObjectData loadData = new ObjectData();
+			Debug.Log(gameObject.name + " | " + GameManager.instance.levelDictionary.ContainsKey(gameObject.name));
+			GameManager.instance.levelDictionary.TryGetValue(this.gameObject.name, out loadData);
+			LoadData(loadData);
+			Debug.Log("Loading Data for " + this.name);
+		}
+
 	}
 }
