@@ -120,9 +120,11 @@ public class PlayerController : Controller
 			}
 			if(Input.GetKeyDown("e") == true)
 			{
-				if(Input_Manager.shiftModifier)
-					inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
 				inventory.UseItem(inventory.GUI.highlightedItem);
+			}
+			else if(Input.GetKeyDown("r"))
+			{
+				inventory.RemoveItem(inventory.items[inventory.GUI.highlightedItem]);
 			}
 		}
 		if(Input.GetKeyDown("escape") == true)
