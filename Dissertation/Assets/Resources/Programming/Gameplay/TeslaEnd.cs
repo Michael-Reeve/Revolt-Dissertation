@@ -8,7 +8,8 @@ public class TeslaEnd : Electric
 	public bool completed;
 	public UnityEvent completitionEvent;
 	private UnityAction updateLinks;
-	public int voltageToMeet = 30;
+	public int minVoltage = 30;
+	public int maxVoltage = 40;
 
 	void Awake()
 	{
@@ -24,7 +25,7 @@ public class TeslaEnd : Electric
 
 	public void CheckVoltage()
 	{
-		if(Voltage > voltageToMeet && !completed)
+		if(Voltage > minVoltage  && Voltage < maxVoltage && !completed)
 		{
 			completed = true;
 			foreach(Electric anchor in GetConnectionsFrom(this))

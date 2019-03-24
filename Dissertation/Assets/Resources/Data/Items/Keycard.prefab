@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23460214187874146}
   - component: {fileID: 64125292115577408}
   - component: {fileID: 114753102567265322}
+  - component: {fileID: 114729143832570322}
   m_Layer: 0
   m_Name: Keycard
   m_TagString: Untagged
@@ -36,13 +37,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1556530871473326}
-  m_LocalRotation: {x: -0.19264394, y: 0.19264394, z: -0.68035895, w: 0.68035895}
+  m_LocalRotation: {x: -0.27706397, y: 0.27706397, z: -0.65056556, w: 0.65056556}
   m_LocalPosition: {x: 7.404, y: 2.845, z: -16.12}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 31.619001, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 46.137, z: -90.00001}
 --- !u!23 &23460214187874146
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -59,6 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: e8a986e0aa52a44439953308a2e918a6, type: 2}
+  - {fileID: 2100000, guid: 532ea3323f2a8dc478aacc522574727d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,6 +101,19 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 140b0bc64e4271f40a2b12a9c2b4e12b, type: 3}
+--- !u!114 &114729143832570322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1556530871473326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0348885831fa3d34d9727e81384851a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  mesh: {fileID: 23460214187874146}
 --- !u!114 &114753102567265322
 MonoBehaviour:
   m_ObjectHideFlags: 1

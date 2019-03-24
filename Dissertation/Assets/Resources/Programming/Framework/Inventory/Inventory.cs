@@ -20,6 +20,8 @@ public class Inventory : MonoBehaviour, ISave
 	public Equippable equippedItem;
 	public InventoryUI GUI;
 	public Controller controller;
+	public Transform heldItemPoint;
+	private GameObject heldItem;
 
 	void Start()
 	{
@@ -120,8 +122,27 @@ public class Inventory : MonoBehaviour, ISave
 		{
 			Equippable useItem = (Equippable)items[itemIndex].ContainedItem;
 			useItem.Equip(controller);
+			EquipItem(useItem);
 		}
 		UpdateUI();
+	}
+
+	public void EquipItem(Item item)
+	{
+		if(equippedItem == true)
+		{
+			if(item.itemObject != null)
+			{
+				GameObject newItem = Instantiate(item.itemObject, heldItemPoint);
+				newItem.transform.localPosition = Vector3.zero;
+				newItem.GetComponent<Collider>().isTrigger = true;
+				heldItem = newItem;
+			}
+		}
+		else
+		{
+			Destroy(heldItem);
+		}
 	}
 
 	public void DropItem(InventorySlot item, Vector3 worldPosition)

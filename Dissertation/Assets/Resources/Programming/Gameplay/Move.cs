@@ -5,6 +5,7 @@ using UnityEngine;
 public class Move : MonoBehaviour, ISave
 {
 	private bool moved;
+	private bool moving;
 	public Vector3 offset;
 	public float speed;
 	[Space]
@@ -23,6 +24,8 @@ public class Move : MonoBehaviour, ISave
 
 	public void Toggle()
 	{
+		if(moving)
+			return;
 		if(moved)
 			Reverse();
 		else
@@ -32,6 +35,7 @@ public class Move : MonoBehaviour, ISave
 	public void GoTo()
 	{
 		StartCoroutine(MoveTo(desiredPosition));
+		moving = true;
 		moved = true;
 		if(audioSource != null)
 		{
@@ -65,6 +69,12 @@ public class Move : MonoBehaviour, ISave
 			transform.position = Vector3.MoveTowards(transform.position, newPos, alpha);
 			yield return new WaitForEndOfFrame();
 		}
+		Finished();
+	}
+
+	private void Finished()
+	{
+		moving = false;
 		if(audioSource != null)
 		{
 			audioSource.loop = false;

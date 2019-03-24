@@ -9,6 +9,7 @@ public class TextUpdate : MonoBehaviour
 	public Text currentVoltage;
 	public Text otherVoltages;
 	private List<Electric> electrics;
+	public List<Button> buttons;
 	private string connectedVoltages;
 	public TeslaStart teslaStart;
 	public TeslaEnd teslaEnd;
@@ -40,17 +41,22 @@ public class TextUpdate : MonoBehaviour
 		currentVoltage.text = teslaStart.Voltage.ToString();
 		GetVoltages();
 		otherVoltages.text = connectedVoltages;
+		if(teslaEnd.completed == true)
+		{
+			foreach(Button button in buttons)
+				button.interactable = false;
+		}
 	}
 
 	public void GetVoltages()
 	{
-		connectedVoltages = "Required Voltage: " + teslaEnd.voltageToMeet + "\n\n";
+		connectedVoltages = "Required Voltage: " + teslaEnd.minVoltage + "<-->" + teslaEnd.maxVoltage + "\n\n";
 		electrics = teslaStart.GetConnections(teslaStart);
 		foreach(Electric electric in electrics)
 		{
 			if(electric == teslaStart || electric == teslaEnd)
 				continue;
-			connectedVoltages +=  electrics.IndexOf(electric)+ ": " + electric.Voltage + "\n";
+			connectedVoltages +=  "Connection " + (electrics.IndexOf(electric) + 1) + ": " + electric.Voltage + "\n";
 		}
 	}
 }
