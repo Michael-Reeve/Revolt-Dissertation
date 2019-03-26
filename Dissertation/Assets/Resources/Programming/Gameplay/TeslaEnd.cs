@@ -25,7 +25,7 @@ public class TeslaEnd : Electric
 
 	public void CheckVoltage()
 	{
-		if(Voltage > minVoltage  && Voltage < maxVoltage && !completed)
+		if(Voltage >= minVoltage  && Voltage <= maxVoltage && !completed)
 		{
 			completed = true;
 			foreach(Electric anchor in GetConnectionsFrom(this))

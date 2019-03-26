@@ -20,5 +20,14 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: ecb456702b0e61b49b3960b808de9fcd, type: 3}
   - name: Keycard
     image: {fileID: 21300000, guid: cc174fad260e61f40b3dad3ccb1c2058, type: 3}
+  hints:
+  - hintName: interact
+    hintText: Use the left mouse button to interact with objects.
+  - hintName: equip
+    hintText: Press E to equip items. R will drop the selected item.
+  - hintName: changeitem
+    hintText: You can use either your number keys or mousewheel to select items.
+  - hintName: takingtime
+    hintText: If you are struggling, remember to check the power screen and map.
   itemFrame: {fileID: 21300000, guid: 37d351ca943241b4abbd38cfbb8ba95e, type: 3}
   displayText: 

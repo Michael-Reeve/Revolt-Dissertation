@@ -8,6 +8,8 @@ public class GUIDatabase : ScriptableObject
 {
 	public List<namedImage> cursors;
 	[Space]
+	public List<Hint> hints;
+	[Space]
 	public Sprite itemFrame;
 	public string displayText;
 }
@@ -18,6 +20,13 @@ public struct namedImage
 {
 	public string name;
 	public Sprite image;
+}
+
+[System.Serializable]
+public struct Hint
+{
+	public string hintName;
+	public string hintText;
 }
 
 

@@ -41,7 +41,7 @@ public class GUICursor : MonoBehaviour
 			{
 				cursor.sprite = cursorImage.image;
 				if(cursorName == "cursor")
-					cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(2, -2);
+					cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(3f, -3f);
 				else
 					cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
 				return;

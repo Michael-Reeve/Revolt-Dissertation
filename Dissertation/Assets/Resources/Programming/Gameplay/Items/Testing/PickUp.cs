@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PickUp : MonoBehaviour, Interactible, ISave
 {
@@ -9,6 +10,9 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 	protected Transform transformData;
 	[SerializeField]
 	public bool active = true;
+	public bool repeatEvents = false;
+	private bool pickedUp;
+	public UnityEvent pickupEvent;
 
 	void Start()
 	{
@@ -20,7 +24,18 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 		if(active)
 		{
 			controller.GetComponent<Inventory>().AddItem(item);
+			if(!pickedUp)
+				pickupEvent.Invoke();
 			ObjectPool.instance.AddToPool(this);
+
+			if(repeatEvents)
+			{
+				pickedUp = false;
+			}
+			else
+			{
+				pickedUp = true;
+			}
 		}
 	}
 

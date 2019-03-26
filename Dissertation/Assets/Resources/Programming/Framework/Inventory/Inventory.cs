@@ -61,6 +61,8 @@ public class Inventory : MonoBehaviour, ISave
 	{
 		if(items.Contains(item) && item.ContainedItem != null)
 		{
+			if(equippedItem == item.ContainedItem)
+				UseItem(GUI.highlightedItem);
 			if(controller && item.ContainedItem.itemObject != null)
 			{
 				DropItem(item, controller.possessed.transform.position + controller.possessed.transform.forward);
@@ -85,6 +87,8 @@ public class Inventory : MonoBehaviour, ISave
 	{
 		if(items.Contains(item) && item.ContainedItem != null)
 		{
+			if(equippedItem == item.ContainedItem)
+				UseItem(GUI.highlightedItem);
 			if(controller && item.ContainedItem.itemObject != null)
 			{
 				DropItem(item, worldPosition);
