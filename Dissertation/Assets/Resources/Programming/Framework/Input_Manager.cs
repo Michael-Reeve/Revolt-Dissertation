@@ -32,6 +32,7 @@ public class Input_Manager : MonoBehaviour
 		if(active == true)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
 			cursorLocked = true;
 		}
 		else
