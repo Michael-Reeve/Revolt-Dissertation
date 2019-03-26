@@ -38,7 +38,7 @@ public class TextUpdate : MonoBehaviour
 
 	public void UpdateText()
 	{
-		currentVoltage.text = teslaStart.Voltage.ToString();
+		currentVoltage.text = "Start: " + teslaStart.Voltage.ToString() +" | " + "End: " + teslaEnd.Voltage.ToString();
 		GetVoltages();
 		otherVoltages.text = connectedVoltages;
 		if(teslaEnd.completed == true)

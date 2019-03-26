@@ -1092,6 +1092,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVoltage: {fileID: 114194410706506642}
   otherVoltages: {fileID: 114010495206443572}
+  buttons:
+  - {fileID: 114604715163269592}
+  - {fileID: 114712197870871228}
   teslaStart: {fileID: 114806591250089944}
   teslaEnd: {fileID: 0}
 --- !u!114 &114742503667315048
@@ -5924,7 +5927,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 294.99957}
-  m_SizeDelta: {x: 500, y: 90}
+  m_SizeDelta: {x: 550, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224087766569363536
 RectTransform:

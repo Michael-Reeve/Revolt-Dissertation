@@ -54,6 +54,7 @@ public class Inventory : MonoBehaviour, ISave
 				break;
 			}
 		}
+		GUI.PlayUISound("pickup");
 		UpdateUI();
 	}
 
@@ -75,6 +76,7 @@ public class Inventory : MonoBehaviour, ISave
 			{
 				item.ContainedItem = null;
 			}
+			GUI.PlayUISound("drop");
 			UpdateUI();
 		}
 		else
@@ -101,6 +103,7 @@ public class Inventory : MonoBehaviour, ISave
 			{
 				item.ContainedItem = null;
 			}
+			GUI.PlayUISound("drop");
 			UpdateUI();
 		}
 		else
@@ -133,6 +136,7 @@ public class Inventory : MonoBehaviour, ISave
 
 	public void EquipItem(Item item)
 	{
+		GUI.PlayUISound("equip");
 		if(equippedItem == true)
 		{
 			if(item.itemObject != null)

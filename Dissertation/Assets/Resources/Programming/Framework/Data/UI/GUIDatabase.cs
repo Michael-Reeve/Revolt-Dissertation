@@ -10,8 +10,11 @@ public class GUIDatabase : ScriptableObject
 	[Space]
 	public List<Hint> hints;
 	[Space]
+	public List<UISound> sounds;
+	[Space]
 	public Sprite itemFrame;
 	public string displayText;
+
 }
 
 
@@ -27,6 +30,13 @@ public struct Hint
 {
 	public string hintName;
 	public string hintText;
+}
+
+[System.Serializable]
+public struct UISound
+{
+	public string clipName;
+	public AudioClip clip;
 }
 
 

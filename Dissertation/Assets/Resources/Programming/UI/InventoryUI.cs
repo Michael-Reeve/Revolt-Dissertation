@@ -14,6 +14,16 @@ public class InventoryUI : MonoBehaviour
 	public GUIDatabase database;
 	public int maxHorizontalSize = 4;
 	public int highlightedItem;
+	public AudioSource audioSource;
+	public Dictionary<string, AudioClip> uiSounds = new Dictionary<string, AudioClip>();
+
+	void Start()
+	{
+		foreach(UISound sound in database.sounds)
+		{
+			uiSounds.Add(sound.clipName, sound.clip);
+		}
+	}
 
 	public bool Active
 	{
@@ -35,6 +45,13 @@ public class InventoryUI : MonoBehaviour
 				active = value;
 			}
 		}
+	}
+
+	public void PlayUISound(string soundQue)
+	{
+		AudioClip clipToPlay;
+		uiSounds.TryGetValue(soundQue, out clipToPlay);
+		audioSource.PlayOneShot(clipToPlay);
 	}
 	
 	public void HighlightItem(float input)

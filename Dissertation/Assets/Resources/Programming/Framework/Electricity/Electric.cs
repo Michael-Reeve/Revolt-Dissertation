@@ -148,7 +148,7 @@ public class Electric : MonoBehaviour
 		int distance = 5;
 		foreach(Electric electric in conductingFrom)
 		{
-			newVoltage += ((electric.Voltage / conductingFrom.Count) - distance);
+			newVoltage += ((electric.Voltage / electric.conductingTo.Count) - distance);
 		}
 		this.Voltage = Mathf.RoundToInt(newVoltage);
 	}
