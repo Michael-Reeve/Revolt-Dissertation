@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf2ac9bb500f9147be3b1a3b8a7dd77, type: 3}
+  m_Name: EmployeeComplaints
+  m_EditorClassIdentifier: 
+  emailTitle: 1.9.81 Weekly Complaints
+  emailContents: "Dear [EmployeeName],\n\nIncluded in this email are all office complaints
+    for section 1.9.81. Please bear these in mind in the future, and remember to bring
+    all your concerns to HR.\nA happy work environment is a productive work environment.\n\nRegards,\n\tP.A.
+    Sara Korhonen"
