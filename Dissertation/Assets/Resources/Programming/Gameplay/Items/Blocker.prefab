@@ -141,7 +141,7 @@ MonoBehaviour:
   offset: {x: 0, y: -5.6, z: 0}
   speed: 0.9
   audioSource: {fileID: 0}
-  moveSound: {fileID: 0}
+  moveSound: {fileID: 8300000, guid: 9ba6b582bc1ea464c903525f451db814, type: 3}
   finishSound: {fileID: 0}
 --- !u!212 &212641712133260938
 SpriteRenderer:
