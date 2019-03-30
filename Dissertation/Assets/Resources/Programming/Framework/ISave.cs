@@ -7,5 +7,7 @@ public interface ISave
 	void Save();
 
 	void Load();
+
+	string GetUniqueID();
 	
 }

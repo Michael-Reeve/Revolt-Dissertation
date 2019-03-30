@@ -13,10 +13,12 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 	public bool repeatEvents = false;
 	private bool pickedUp;
 	public UnityEvent pickupEvent;
+	private string uniqueID;
 
 	void Start()
 	{
 		ObjectPool.instance.usedObjects.Add(this);
+		uniqueID = GetUniqueID();
 	}
 
 	public void Interact(PlayerController controller)
@@ -56,7 +58,7 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 
 	public void Save()
 	{
-		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
+		GameManager.instance.AddLevelData(uniqueID, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
@@ -71,5 +73,10 @@ public class PickUp : MonoBehaviour, Interactible, ISave
 			Debug.Log("Loading Data for " + this.name);
 		}
 
+	}
+
+	public string GetUniqueID()
+	{
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
 	}
 }

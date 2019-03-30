@@ -14,12 +14,14 @@ public class Move : MonoBehaviour, ISave
 	public AudioClip finishSound;
 	private Vector3 startPosition;
 	private Vector3 desiredPosition;
+	private string uniqueID;
 
 	void Awake()
 	{
 		startPosition = transform.position;
 		desiredPosition = startPosition + offset;
 		speed /= 100;
+		uniqueID = GetUniqueID();
 	}
 
 	public void Toggle()
@@ -96,7 +98,7 @@ public class Move : MonoBehaviour, ISave
 
 	public void Save()
 	{
-		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(moved, transform.position, transform.rotation, transform.parent));
+		GameManager.instance.AddLevelData(uniqueID, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
@@ -110,6 +112,11 @@ public class Move : MonoBehaviour, ISave
 			Debug.Log("Loading Data for " + this.name);
 		}
 
+	}
+
+	public string GetUniqueID()
+	{
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
 	}
 
 }

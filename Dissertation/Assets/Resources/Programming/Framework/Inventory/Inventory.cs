@@ -184,4 +184,9 @@ public class Inventory : MonoBehaviour, ISave
 			items = JSON.Load<InventoryContainer>("playerinfo.txt", GameManager.saveProfile).items;
 		UpdateUI();
 	}
+
+	public string GetUniqueID()
+	{
+		return string.Format(this.gameObject.name);
+	}
 }

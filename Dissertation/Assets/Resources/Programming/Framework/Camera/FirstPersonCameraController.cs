@@ -8,6 +8,7 @@ public class FirstPersonCameraController : CameraController, ISave
 	Vector3 initialRotation, currentRot;
 	private UnityAction toggleInput;
 	private Headbob headbob;
+	private string uniqueID;
 
 	void OnEnable()
 	{
@@ -21,6 +22,7 @@ public class FirstPersonCameraController : CameraController, ISave
 	public override void Awake()
 	{
 		base.Awake();
+		uniqueID = GetUniqueID();
 		toggleInput = new UnityAction (ToggleControls);
 		initialRotation = transform.eulerAngles;
 		currentRot = initialRotation;
@@ -71,7 +73,7 @@ public class FirstPersonCameraController : CameraController, ISave
 
 	public void Save()
 	{
-		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(this.gameObject.activeInHierarchy, possessed.transform.position, transform.rotation, transform.parent));
+		GameManager.instance.AddLevelData(uniqueID, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
@@ -84,5 +86,10 @@ public class FirstPersonCameraController : CameraController, ISave
 			LoadData(loadData);
 			Debug.Log("Loading Data for " + this.name);
 		}
+	}
+
+	public string GetUniqueID()
+	{
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
 	}
 }

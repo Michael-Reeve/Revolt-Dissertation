@@ -10,6 +10,13 @@ public class Controller : MonoBehaviour, ISave
 	protected int layer = 9;
 	public Inventory inventory;
 	public Camera activeCamera;
+	private string uniqueID;
+
+	void Awake()
+	{
+		uniqueID = GetUniqueID();
+	}
+
 	public void Possess(Character newCharacter)
 	{
 		if(possessed != null)
@@ -32,7 +39,7 @@ public class Controller : MonoBehaviour, ISave
 
 	public void Save()
 	{
-		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(possessed.gameObject.activeInHierarchy, possessed.transform.position, possessed.transform.rotation, possessed.transform.parent));
+		GameManager.instance.AddLevelData(uniqueID, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
@@ -46,5 +53,10 @@ public class Controller : MonoBehaviour, ISave
 			Debug.Log("Loading Data for " + this.name);
 		}
 
+	}
+
+		public string GetUniqueID()
+	{
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
 	}
 }

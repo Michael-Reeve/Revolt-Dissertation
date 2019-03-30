@@ -7,6 +7,12 @@ public class DialogueTrigger : MonoBehaviour, ISave
 {
 	public Dialogue[] dialogues;
 	public UnityEvent events;
+	private string uniqueID;
+
+	void Awake()
+	{
+		uniqueID = GetUniqueID();
+	}
 	
 	void OnTriggerEnter(Collider collider)
 	{
@@ -33,7 +39,7 @@ public class DialogueTrigger : MonoBehaviour, ISave
 
 	public void Save()
 	{
-		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(this.gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
+		GameManager.instance.AddLevelData(uniqueID, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
@@ -46,6 +52,10 @@ public class DialogueTrigger : MonoBehaviour, ISave
 			LoadData(loadData);
 			Debug.Log("Loading Data for " + this.name);
 		}
+	}
 
+	public string GetUniqueID()
+	{
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
 	}
 }

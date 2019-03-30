@@ -76,4 +76,9 @@ public class Options : MonoBehaviour, ISave
 		PlayerPrefs.SetFloat("DialogueVolume", dialogueVolumeSlider.value);
 		PlayerPrefs.Save();
 	}
+
+	public string GetUniqueID()
+	{
+		return "options";
+	}
 }

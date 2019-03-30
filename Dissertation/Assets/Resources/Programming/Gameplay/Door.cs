@@ -18,10 +18,12 @@ public class Door : MonoBehaviour, Interactible, ISave
 	public List<AudioClip> openNoise;
 	public List<AudioClip> closeNoise;
 	public List<AudioClip> lockedNoise;
+	private string uniqueID;
 
 	void Start()
 	{
 		defaultState = transform;
+		uniqueID = GetUniqueID();
 	}
 
 
@@ -130,7 +132,7 @@ public class Door : MonoBehaviour, Interactible, ISave
 
 	public void Save()
 	{
-		GameManager.instance.AddLevelData(this.gameObject.name, new ObjectData(locked, transform.position, transform.rotation, transform.parent));
+		GameManager.instance.AddLevelData(uniqueID, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
 	}
 
 	public void Load()
@@ -144,5 +146,10 @@ public class Door : MonoBehaviour, Interactible, ISave
 			Debug.Log("Loading Data for " + this.name);
 		}
 
+	}
+
+	public string GetUniqueID()
+	{
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
 	}
 }

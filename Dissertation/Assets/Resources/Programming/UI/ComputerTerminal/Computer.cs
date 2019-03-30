@@ -38,7 +38,6 @@ namespace Computer
 				lockScreen.gameObject.SetActive(true);
 				lockScreen.GenerateKeys(keycode);
 			}
-			//graphicRaycaster = GetComponent<GraphicRaycaster>();
 		}
 
 		public void Interact(PlayerController controller)
