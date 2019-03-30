@@ -56,13 +56,11 @@ namespace Computer
 					{
 						if(result.gameObject.GetComponent<EmailUI>() == false)
 						{
-							resultButton.Select();
 							resultButton.OnPointerClick(pointerEventData);
 						}
 					}
 					else
 					{
-						resultButton.Select();
 						resultButton.OnPointerClick(pointerEventData);
 					}
 					//result.gameObject.GetComponent<Button>().interactable = false;
@@ -78,6 +76,23 @@ namespace Computer
 			}
 		}
 
+		public Button GetButton()
+		{
+			PointerEventData pointerEventData = new PointerEventData(eventSystem);
+			pointerEventData.position = Input.mousePosition;
+			List<RaycastResult> results = new List<RaycastResult>();
+			graphicRaycaster.Raycast(pointerEventData, results);
+			
+			foreach(RaycastResult result in results)
+			{
+				if(result.gameObject.GetComponent<Button>())
+				{
+					return result.gameObject.GetComponent<Button>();
+				}
+			}
+			return default(Button);
+		}
+
 		public bool IsActive()
 		{
 			return true;
@@ -86,8 +101,6 @@ namespace Computer
 		public void ToggleActive(GameObject gameObject)
 		{
 			gameObject.SetActive(!gameObject.activeInHierarchy);
-			//RaycastHit raycastHit = controller.Raycast();
-			//Debug.Log(raycastHit.collider);
 		}
 	}
 }

@@ -8,6 +8,8 @@ public class GUICursor : MonoBehaviour
 	public Image cursor;
 	public GUIDatabase data;
 	public PlayerController player;
+	Computer.Computer highlightedComputer;
+
 	void Start()
 	{
 		SetCursor("default");
@@ -22,6 +24,9 @@ public class GUICursor : MonoBehaviour
 		else if (player.targettedInteractible[0] is Computer.Computer && player.targettedInteractible[0].IsActive())
 		{
 			SetCursor("cursor");
+			highlightedComputer = (Computer.Computer)player.targettedInteractible[0];
+			if(highlightedComputer.GetButton() != null)
+				highlightedComputer.GetButton().Select();
 		}
 		else if (player.targettedInteractible[0] is Door && player.targettedInteractible[0].IsActive() && player.inventory.equippedItem)
 		{
