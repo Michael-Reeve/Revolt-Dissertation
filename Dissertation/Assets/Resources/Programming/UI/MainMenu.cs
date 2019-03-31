@@ -50,6 +50,11 @@ public class MainMenu : MonoBehaviour
 			Application.Quit();
 	}
 
+	public void ForceQuit()
+	{
+		Application.Quit();
+	}
+
 	public void PlaySound(AudioClip clip)
 	{
 		if(audioSource != null)

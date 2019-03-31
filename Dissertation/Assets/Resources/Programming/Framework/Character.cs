@@ -42,12 +42,13 @@ public class Character : Actor
 		{
 		 	rigidBody.AddForce(-Vector3.up * (rigidBody.mass * 100) * Time.deltaTime, ForceMode.Acceleration);
 		}
+		movementVelocity = (transform.position - lastPos);
+        lastPos = transform.position;
 	}
 
 	void FixedUpdate()
 	{
-		movementVelocity = (rigidBody.position - lastPos);
-        lastPos = rigidBody.position;
+		
 	}
 
 	void OnCollisionEnter(Collision other)

@@ -16,9 +16,10 @@ public class Headbob : MonoBehaviour
 	public float cameraOffset;
 
 
-	void FixedUpdate()
+	void Update()
 	{
-		velocity = cameraController.possessed.movementVelocity * 10;
+		velocity = cameraController.possessed.movementVelocity * 5;
+		Debug.Log(velocity.magnitude);
 		float realFrequency = frequency * Mathf.Round(velocity.magnitude);
 		//Debug.Log(Real Frequency: " + realFrequency);
 
@@ -29,10 +30,10 @@ public class Headbob : MonoBehaviour
 
 	public void SetCameraPosition()
 	{
-		transform.position = Vector3.MoveTowards(cameraController.possessed.transform.position + cameraController.offset, new Vector3(transform.position.x, transform.position.y + cameraOffset, transform.position.z), 1f * Time.deltaTime);
+		transform.position = Vector3.Lerp(cameraController.possessed.transform.position + cameraController.offset, new Vector3(transform.position.x, transform.position.y + cameraOffset, transform.position.z), 1f * Time.deltaTime);
 	}
 	public void SetCameraRotation()
 	{
-    	transform.eulerAngles = new Vector3(transform.eulerAngles.x + (cameraOffset * intensity), transform.eulerAngles.y, transform.eulerAngles.z);
+    	//transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(transform.eulerAngles.x + (cameraOffset * intensity), transform.eulerAngles.y, transform.eulerAngles.z), Time.time * Time.deltaTime);
 	}
 }
