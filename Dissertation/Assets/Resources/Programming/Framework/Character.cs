@@ -62,7 +62,6 @@ public class Character : Actor
 		{
 			direction = direction.normalized;
 			Vector3 newPosition = (((transform.forward) * direction.z) + ((transform.right) * direction.x)) * (characterAttributes.speed * speedModifier) * Time.deltaTime;
-			Debug.Log((characterAttributes.speed * speedModifier) * Time.deltaTime);
 			rigidBody.MovePosition(transform.position + newPosition);
 		}
 	}
