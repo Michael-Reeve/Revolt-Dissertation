@@ -20,7 +20,7 @@ public class Move : MonoBehaviour, ISave
 	{
 		startPosition = transform.position;
 		desiredPosition = startPosition + offset;
-		speed /= 100;
+		//speed /= 100;
 		uniqueID = GetUniqueID();
 	}
 
@@ -68,9 +68,9 @@ public class Move : MonoBehaviour, ISave
 		float alpha = 0f;
 		while(Vector3.Equals(transform.position, newPos) == false)
 		{
-			alpha += Time.deltaTime * speed;
+			alpha = speed * Time.deltaTime;
 			transform.position = Vector3.MoveTowards(transform.position, newPos, alpha);
-			yield return new WaitForEndOfFrame();
+			yield return 0;
 		}
 		Finished();
 	}
@@ -116,7 +116,7 @@ public class Move : MonoBehaviour, ISave
 
 	public string GetUniqueID()
 	{
-		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent);
 	}
 
 }

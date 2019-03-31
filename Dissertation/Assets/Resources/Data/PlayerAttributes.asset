@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62706b501badf794f80c60352dcf3f08, type: 3}
   m_Name: PlayerAttributes
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   jumpForce: 10
   interactRange: 4
   mouseSensitivity: 1

@@ -22,12 +22,16 @@ public class FirstPersonCameraController : CameraController, ISave
 	public override void Awake()
 	{
 		base.Awake();
-		uniqueID = GetUniqueID();
 		toggleInput = new UnityAction (ToggleControls);
 		initialRotation = transform.eulerAngles;
 		currentRot = initialRotation;
 		if(GetComponent<Headbob>())
 			headbob = GetComponent<Headbob>();
+	}
+
+	void Start()
+	{
+		uniqueID = GetUniqueID();
 	}
 
 	public override void RotatePossessed(Vector2 input, float sensitivity = 1)
@@ -90,6 +94,6 @@ public class FirstPersonCameraController : CameraController, ISave
 
 	public string GetUniqueID()
 	{
-		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent);
 	}
 }

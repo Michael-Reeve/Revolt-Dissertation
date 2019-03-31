@@ -150,6 +150,6 @@ public class Door : MonoBehaviour, Interactible, ISave
 
 	public string GetUniqueID()
 	{
-		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent.name);
+		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent);
 	}
 }
