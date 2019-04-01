@@ -4,36 +4,43 @@ using UnityEngine;
 
 public class Headbob : MonoBehaviour 
 {
+	public Animator animator;
 	public FirstPersonCameraController cameraController;
-	public Vector3 velocity;
 	[Space]
 	[Header("Settings")]
-	public float amplitude = 1f;
-	public float frequency = 1f;
-	public float intensity = 1.5f;
-	[Space]
-	public float offsetAlpha;
-	public float cameraOffset;
+	public float speed = 1f;
+	[Header("Feet")]
+	public FootstepNoise leftFoot;
+	public FootstepNoise rightFoot;
 
+	private int velocity;
+	private bool rightFootstep;
 
 	void Update()
 	{
-		velocity = cameraController.possessed.movementVelocity * 5;
-		Debug.Log(velocity.magnitude);
-		float realFrequency = frequency * Mathf.Round(velocity.magnitude);
-		//Debug.Log(Real Frequency: " + realFrequency);
-
-		cameraOffset = (Mathf.Sin(Time.time * realFrequency) * amplitude) * Mathf.Round(velocity.magnitude);
-		offsetAlpha = Mathf.Round(cameraOffset * (100/ (Mathf.Sin(3.1415f / 2) * amplitude)));
-		//Debug.Log("OffsetAlpha: " + offsetAlpha);
+		velocity = Mathf.RoundToInt(cameraController.possessed.movementVelocity.magnitude * 2);
+		if(velocity == 0)
+			animator.speed = 0.5f * speed;
+		else if(cameraController.possessed.speedModifier == 1)
+			animator.speed = 1f * speed;
+		else if(cameraController.possessed.speedModifier == 2)
+			animator.speed = 2f * speed;
 	}
 
-	public void SetCameraPosition()
+	public void FootstepEvent()
 	{
-		transform.position = Vector3.Lerp(cameraController.possessed.transform.position + cameraController.offset, new Vector3(transform.position.x, transform.position.y + cameraOffset, transform.position.z), 1f * Time.deltaTime);
-	}
-	public void SetCameraRotation()
-	{
-    	//transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(transform.eulerAngles.x + (cameraOffset * intensity), transform.eulerAngles.y, transform.eulerAngles.z), Time.time * Time.deltaTime);
+		if(velocity != 0)
+		{
+			if(rightFootstep)
+			{
+				rightFoot.FootstepSound();
+				rightFootstep = false;
+			}
+			else
+			{
+				leftFoot.FootstepSound();
+				rightFootstep = true;
+			}
+		}
 	}
 }

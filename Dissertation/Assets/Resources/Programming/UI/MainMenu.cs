@@ -52,6 +52,7 @@ public class MainMenu : MonoBehaviour
 
 	public void ForceQuit()
 	{
+		SaveGame.Save();
 		Application.Quit();
 	}
 

@@ -53,8 +53,6 @@ public class FirstPersonCameraController : CameraController, ISave
 			{
 				MoveToPossessed(smoothed, smoothing);
 				RotatePossessed(new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")));
-				if(headbob)
-					{ headbob.SetCameraPosition(); headbob.SetCameraRotation(); }
 			}	
 		}
 	}

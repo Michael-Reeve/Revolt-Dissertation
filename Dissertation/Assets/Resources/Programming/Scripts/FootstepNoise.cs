@@ -10,20 +10,11 @@ public class FootstepNoise : MonoBehaviour
 	[Range (-1, 1)]
 	public int offsetTrigger;
 	public List<AudioClip> footsteps;
-	private bool stepAvailable;
-	
-	void FixedUpdate () 
+
+	public void FootstepSound()
 	{
-		//Debug.Log(headbob.offsetAlpha);
-		if(headbob.offsetAlpha * offsetTrigger / 100 >= 1)
-		{
-			stepAvailable = false;
-			audioSource.clip = footsteps[(int)Random.Range(0, footsteps.Count)];
-			audioSource.Play();
-		}
-		if(headbob.offsetAlpha * offsetTrigger / -100 >= 1)
-		{
-			stepAvailable = true;
-		}
+		audioSource.clip = footsteps[Random.Range(0, footsteps.Count)];
+		audioSource.Play();
 	}
+
 }
