@@ -13,6 +13,7 @@ public class SaveProfile : MonoBehaviour
 	{
 		button = GetComponent<Button>();
 		menu.saveGames.Add(button);
+		button.GetComponentInChildren<Text>().text = "Game " + profileNumber;
 	}
 
 	public void OnClick()

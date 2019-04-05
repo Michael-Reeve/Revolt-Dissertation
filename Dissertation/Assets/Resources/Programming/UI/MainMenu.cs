@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
 	public GameObject[] tabs;
 	public List<Button> saveGames = new List<Button>();
+	public Button playGameButton;
 	public LoadScreen loadScreen;
 	public Options options;
 	public AudioSource audioSource;
@@ -86,6 +87,8 @@ public class MainMenu : MonoBehaviour
 	public void SetProfile(int profile)
 	{
 		GameManager.saveProfile = profile;
+		if(profile != 0)
+			playGameButton.interactable = true;
 	}
 
 	public void DeleteAllSaves()

@@ -44,15 +44,16 @@ public class Controller : MonoBehaviour, ISave
 
 	public void Load()
 	{
+		if(uniqueID == null)
+			uniqueID = GetUniqueID();
 		if(GameManager.instance.levelDictionary != null)
 		{
 			ObjectData loadData = new ObjectData();
-			Debug.Log(gameObject.name + " | " + GameManager.instance.levelDictionary.ContainsKey(gameObject.name));
-			GameManager.instance.levelDictionary.TryGetValue(this.gameObject.name, out loadData);
+			Debug.Log(gameObject.name + " | " + GameManager.instance.levelDictionary.ContainsKey(uniqueID));
+			GameManager.instance.levelDictionary.TryGetValue(uniqueID, out loadData);
 			LoadData(loadData);
 			Debug.Log("Loading Data for " + this.name);
 		}
-
 	}
 
 	public string GetUniqueID()
