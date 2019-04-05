@@ -81,4 +81,9 @@ public class Options : MonoBehaviour, ISave
 	{
 		return "options";
 	}
+
+	public void SetQuality()
+	{
+		//QualitySettings.SetQualityLevel();
+	}
 }

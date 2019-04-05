@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour 
 {
-
+	public GameObject[] tabs;
+	public List<Button> saveGames = new List<Button>();
 	public LoadScreen loadScreen;
 	public Options options;
 	public AudioSource audioSource;
@@ -62,6 +64,22 @@ public class MainMenu : MonoBehaviour
 		{
 			audioSource.clip = clip;
 			audioSource.Play();
+		}
+	}
+	
+	public void DisableTabs()
+	{
+		foreach(GameObject tab in tabs)
+		{
+			tab.SetActive(false);
+		}
+	}
+
+	public void ToggleSaveGames(bool interactible)
+	{
+		foreach(Button saveGame in saveGames)
+		{
+			saveGame.interactable = interactible;
 		}
 	}
 
