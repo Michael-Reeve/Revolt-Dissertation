@@ -59,6 +59,11 @@ public class MainMenu : MonoBehaviour
 		Application.Quit();
 	}
 
+	public void LoadWebsite(string url)
+	{
+		Application.OpenURL(url);
+	}
+
 	public void PlaySound(AudioClip clip)
 	{
 		if(audioSource != null)

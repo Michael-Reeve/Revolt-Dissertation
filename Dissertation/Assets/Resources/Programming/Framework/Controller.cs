@@ -39,6 +39,8 @@ public class Controller : MonoBehaviour, ISave
 
 	public void Save()
 	{
+		if(uniqueID == null)
+			uniqueID = GetUniqueID();
 		GameManager.instance.AddLevelData(uniqueID, new ObjectData(gameObject.activeInHierarchy, transform.position, transform.rotation, transform.parent));
 	}
 

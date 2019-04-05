@@ -11,6 +11,11 @@ public class Options : MonoBehaviour, ISave
 	public Slider musicVolumeSlider;
 	public Slider sfxVolumeSlider;
 	public Slider dialogueVolumeSlider;
+	[Header("QualitySettings")]
+	[Range(0, 3)]
+	public int textureQuality = 0;
+	[Range(0, 3)]
+	public int lightingQuality = 0;
 	protected float mainVolume, musicVolume, sfxVolume, dialogueVolume;
 
 	public float Convert(float conversion)
