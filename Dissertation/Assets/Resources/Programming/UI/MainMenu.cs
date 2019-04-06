@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 	public LoadScreen loadScreen;
 	public Options options;
 	public AudioSource audioSource;
+	private bool websiteOpened = false;
 
 	void Start()
 	{
@@ -62,6 +63,15 @@ public class MainMenu : MonoBehaviour
 	public void LoadWebsite(string url)
 	{
 		Application.OpenURL(url);
+	}
+
+	public void LoadWebsiteOnce(string url)
+	{
+		if(websiteOpened == false)
+		{
+			Application.OpenURL(url);
+			websiteOpened = true;
+		}
 	}
 
 	public void PlaySound(AudioClip clip)

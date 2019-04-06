@@ -7,6 +7,7 @@ public class LightSettings : MonoBehaviour
 	public List<Light> lights;
 	public List<MeshRenderer> lightObjects;
 	public AudioSource soundEffect;
+	public bool lightsActive;
 
 	void Start()
 	{
@@ -24,6 +25,7 @@ public class LightSettings : MonoBehaviour
 		{
 			lightObject.material.DisableKeyword("_EMISSION");
 		}
+		lightsActive = false;
 	}
 
 	public void ActivateLights()
@@ -37,6 +39,7 @@ public class LightSettings : MonoBehaviour
 			lightObject.material.EnableKeyword("_EMISSION");
 		}
 		if(soundEffect) soundEffect.Play();
+		lightsActive = true;
 	}
 
 }

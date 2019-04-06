@@ -14,6 +14,7 @@ public class Options : MonoBehaviour, ISave
 	[Header("QualitySettings")]
 	[Range(0, 3)]
 	public int textureQuality = 0;
+	public Dropdown textureDropdown;
 	[Range(0, 3)]
 	public int lightingQuality = 0;
 	protected float mainVolume, musicVolume, sfxVolume, dialogueVolume;
@@ -87,8 +88,10 @@ public class Options : MonoBehaviour, ISave
 		return "options";
 	}
 
-	public void SetQuality()
+	public void SetTextureQuality()
 	{
 		//QualitySettings.SetQualityLevel();
+		textureQuality = textureDropdown.value;
+		QualitySettings.masterTextureLimit = textureQuality;
 	}
 }
