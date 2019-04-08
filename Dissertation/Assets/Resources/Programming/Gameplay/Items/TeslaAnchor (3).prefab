@@ -380,6 +380,12 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: f3cb605bfc54b7e41ad86177f35ba694, type: 2}
   transformData: {fileID: 0}
   active: 1
+  repeatEvents: 0
+  pickupEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114788372494453816
 MonoBehaviour:
   m_ObjectHideFlags: 1
