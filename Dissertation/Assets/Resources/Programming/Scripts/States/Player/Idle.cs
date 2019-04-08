@@ -17,7 +17,8 @@ public class Idle : State
 
     protected override void StateUpdate()
     {
-		InputRecieved();
+			if(owner.controller.active)
+				InputRecieved();
     }
 
 	public void InputRecieved()

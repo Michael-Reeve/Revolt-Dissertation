@@ -13,6 +13,7 @@ public class FirstPersonCameraController : CameraController, ISave
 	void OnEnable()
 	{
 		EventManager.StartListening("DisableInput", toggleInput);
+		MoveToPossessed(false);
 	}
 	void OnDisable()
 	{
