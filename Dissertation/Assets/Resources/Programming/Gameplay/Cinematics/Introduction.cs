@@ -22,7 +22,6 @@ public class Introduction : MonoBehaviour, ISave
 
 	void Start()
 	{
-
 		if(hasPlayed == false)
 		{
 			EventManager.TriggerEvent("DisableInput");
@@ -30,6 +29,8 @@ public class Introduction : MonoBehaviour, ISave
 			ToggleGUIElements(false);
 			AddDialogue();
 			StartCoroutine(Wait());
+			if(backgroundSFX)
+				audioSource.PlayOneShot(backgroundSFX);
 		}
 	}
 
@@ -60,11 +61,11 @@ public class Introduction : MonoBehaviour, ISave
 
 	IEnumerator Wait()
 	{
-		yield return new WaitForSeconds(6.75f);
+		yield return new WaitForSeconds(12f);
 		StartCoroutine(Lerp(logo, Color.white));
-		yield return new WaitForSeconds(4f);
+		yield return new WaitForSeconds(6f);
 		StartCoroutine(Lerp(logo, Color.clear));
-		yield return new WaitForSeconds(introLength - 11.75f);
+		yield return new WaitForSeconds(introLength - 18f);
 		StartCoroutine(FadeIn());
 		yield return new WaitForSeconds(1);
 		EndIntroduction();

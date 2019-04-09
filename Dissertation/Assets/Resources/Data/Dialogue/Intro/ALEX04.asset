@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: ALEX04
   m_EditorClassIdentifier: 
   subtitle: "Well, everything. The world exploited Nikola, and used his talents to
-    exploit the world. The internet was a tool for humanity, until it was taken by
+    exploit the people. The internet was a tool for humanity, until it was taken by
     our \u2018superiors\u2019 to keep us in line."
   audio: {fileID: 0}
   dialoguePriority: 1
-  length: 6.5
+  length: 12

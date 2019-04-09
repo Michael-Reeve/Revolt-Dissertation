@@ -14,4 +14,4 @@ MonoBehaviour:
   subtitle: Do I sound how you expected?
   audio: {fileID: 0}
   dialoguePriority: 1
-  length: 1.5
+  length: 2.5

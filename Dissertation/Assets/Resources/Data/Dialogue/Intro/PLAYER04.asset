@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eeec0e2497781340adbe4319b777682, type: 3}
   m_Name: PLAYER04
   m_EditorClassIdentifier: 
-  subtitle: Not yet. You still found me, and the others.
+  subtitle: Not yet. You still found me.
   audio: {fileID: 0}
   dialoguePriority: 1
   length: 2.2
