@@ -5,12 +5,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: polySurface84
     100002: //RootNode
+    100004: T_Pipe:polySurface84
     400000: polySurface84
     400002: //RootNode
+    400004: T_Pipe:polySurface84
     2100000: initialShadingGroup
+    2100002: T_Pipe_initialShadingGroup
     2300000: polySurface84
+    2300002: T_Pipe:polySurface84
     3300000: polySurface84
+    3300002: T_Pipe:polySurface84
     4300000: polySurface84
+    4300002: T_Pipe:polySurface84
   externalObjects: {}
   materials:
     importMaterials: 1

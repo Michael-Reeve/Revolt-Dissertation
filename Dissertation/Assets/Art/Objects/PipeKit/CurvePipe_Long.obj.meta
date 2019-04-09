@@ -5,13 +5,24 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: polySurface96
+    100004: CurvePipe_Long:polySurface96
     400000: //RootNode
     400002: polySurface96
+    400004: CurvePipe_Long:polySurface96
     2100000: initialShadingGroup
+    2100002: CurvePipe_Long_initialShadingGroup
     2300000: polySurface96
+    2300002: CurvePipe_Long:polySurface96
     3300000: polySurface96
+    3300002: CurvePipe_Long:polySurface96
     4300000: polySurface96
-  externalObjects: {}
+    4300002: CurvePipe_Long:polySurface96
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CurvePipe_Long_initialShadingGroup
+    second: {fileID: 2100000, guid: 3ca9425ebab34c541ae21e1d69c2229d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

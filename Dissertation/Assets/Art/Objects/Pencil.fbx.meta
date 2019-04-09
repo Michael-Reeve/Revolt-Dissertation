@@ -6,10 +6,17 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: Pencil_PencilSG1
     2300000: //RootNode
     3300000: //RootNode
     4300000: Pencil
-  externalObjects: {}
+    4300002: Pencil:Pencil
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pencil_PencilSG1
+    second: {fileID: 2100000, guid: 9270393fc8de4154d9c0ae4a85a4ac65, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -6,10 +6,17 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: Pen_PenSG1
     2300000: //RootNode
     3300000: //RootNode
     4300000: Pen
-  externalObjects: {}
+    4300002: Pen:Pen
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pen_PenSG1
+    second: {fileID: 2100000, guid: 8337df437dad8c94c9c3d1ab44108c2b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

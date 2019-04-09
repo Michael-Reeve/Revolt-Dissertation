@@ -6,10 +6,17 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: Desk_initialShadingGroup1
     2300000: //RootNode
     3300000: //RootNode
     4300000: Desk
-  externalObjects: {}
+    4300002: Desk:Desk
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Desk_initialShadingGroup1
+    second: {fileID: 2100000, guid: c7fc7e096581ab5439676ca72c072099, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

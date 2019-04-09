@@ -5,12 +5,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: pCube17
     100002: //RootNode
+    100004: Wheel:pCube17
     400000: pCube17
     400002: //RootNode
+    400004: Wheel:pCube17
     2100000: initialShadingGroup
+    2100002: Wheel_initialShadingGroup
     2300000: pCube17
+    2300002: Wheel:pCube17
     3300000: pCube17
+    3300002: Wheel:pCube17
     4300000: pCube17
+    4300002: Wheel:pCube17
   externalObjects: {}
   materials:
     importMaterials: 1

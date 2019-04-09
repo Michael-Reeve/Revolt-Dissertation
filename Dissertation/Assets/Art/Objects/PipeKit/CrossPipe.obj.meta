@@ -5,13 +5,24 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: polySurface83
+    100004: CrossPipe:polySurface83
     400000: //RootNode
     400002: polySurface83
+    400004: CrossPipe:polySurface83
     2100000: initialShadingGroup
+    2100002: CrossPipe_initialShadingGroup
     2300000: polySurface83
+    2300002: CrossPipe:polySurface83
     3300000: polySurface83
+    3300002: CrossPipe:polySurface83
     4300000: polySurface83
-  externalObjects: {}
+    4300002: CrossPipe:polySurface83
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CrossPipe_initialShadingGroup
+    second: {fileID: 2100000, guid: f28d00f9b1b859f4ea0c20ab11213b55, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

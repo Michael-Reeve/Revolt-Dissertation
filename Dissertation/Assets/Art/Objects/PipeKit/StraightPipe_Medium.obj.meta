@@ -5,13 +5,24 @@ ModelImporter:
   fileIDToRecycleName:
     100000: polySurface39
     100002: //RootNode
+    100004: StraightPipe_Medium:polySurface39
     400000: polySurface39
     400002: //RootNode
+    400004: StraightPipe_Medium:polySurface39
     2100000: initialShadingGroup
+    2100002: StraightPipe_Medium_initialShadingGroup
     2300000: polySurface39
+    2300002: StraightPipe_Medium:polySurface39
     3300000: polySurface39
+    3300002: StraightPipe_Medium:polySurface39
     4300000: polySurface39
-  externalObjects: {}
+    4300002: StraightPipe_Medium:polySurface39
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: StraightPipe_Medium_initialShadingGroup
+    second: {fileID: 2100000, guid: c57f1044ca7d99143a5098a8a691d9f5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -6,10 +6,17 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: CornerDesk_CornerDeskSG1
     2300000: //RootNode
     3300000: //RootNode
     4300000: CornerDesk
-  externalObjects: {}
+    4300002: CornerDesk:CornerDesk
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CornerDesk_CornerDeskSG1
+    second: {fileID: 2100000, guid: e713bdd267a85f64b8fc01583103ac88, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
