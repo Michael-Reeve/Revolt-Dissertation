@@ -9,7 +9,13 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: NewMonitor
-  externalObjects: {}
+    4300002: NewMonitor:NewMonitor
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 04f3a5d1e151e09418f91366d89d5d12, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
