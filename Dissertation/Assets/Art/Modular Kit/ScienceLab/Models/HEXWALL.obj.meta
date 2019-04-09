@@ -11,7 +11,12 @@ ModelImporter:
     2300000: pCube190
     3300000: pCube190
     4300000: pCube190
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pCube190Mat
+    second: {fileID: 2100000, guid: 2d1e24cd069698a46b95df6f0b35ed9f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

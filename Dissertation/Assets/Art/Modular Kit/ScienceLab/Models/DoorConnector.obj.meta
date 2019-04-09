@@ -5,13 +5,24 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: pCube195
+    100004: DoorConnector:pCube195
     400000: //RootNode
     400002: pCube195
+    400004: DoorConnector:pCube195
     2100000: pCube195Mat
+    2100002: DoorConnector_pCube195Mat
     2300000: pCube195
+    2300002: DoorConnector:pCube195
     3300000: pCube195
+    3300002: DoorConnector:pCube195
     4300000: pCube195
-  externalObjects: {}
+    4300002: DoorConnector:pCube195
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DoorConnector_pCube195Mat
+    second: {fileID: 2100000, guid: 8d671f2b16136a140ba46b4fa45f99c4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

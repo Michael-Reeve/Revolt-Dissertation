@@ -5,12 +5,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: polySurface65
+    100004: IndentWallSmall:polySurface65
     400000: //RootNode
     400002: polySurface65
+    400004: IndentWallSmall:polySurface65
     2100000: polySurface65Mat
+    2100002: IndentWallSmall_polySurface65Mat
     2300000: polySurface65
+    2300002: IndentWallSmall:polySurface65
     3300000: polySurface65
+    3300002: IndentWallSmall:polySurface65
     4300000: polySurface65
+    4300002: IndentWallSmall:polySurface65
   externalObjects: {}
   materials:
     importMaterials: 1

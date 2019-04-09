@@ -5,12 +5,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: pCylinder84
+    100004: HEXFLOOR:pCylinder57
     400000: //RootNode
     400002: pCylinder84
+    400004: HEXFLOOR:pCylinder57
     2100000: pCylinder84Mat
+    2100002: HEXFLOOR_pCylinder57Mat
     2300000: pCylinder84
+    2300002: HEXFLOOR:pCylinder57
     3300000: pCylinder84
+    3300002: HEXFLOOR:pCylinder57
     4300000: pCylinder84
+    4300002: HEXFLOOR:pCylinder57
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -5,12 +5,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: pCube204
     100002: //RootNode
+    100004: WallFillerVent:pCube204
     400000: pCube204
     400002: //RootNode
+    400004: WallFillerVent:pCube204
     2100000: pCube204Mat
+    2100002: WallFillerVent_pCube204Mat
     2300000: pCube204
+    2300002: WallFillerVent:pCube204
     3300000: pCube204
+    3300002: WallFillerVent:pCube204
     4300000: pCube204
+    4300002: WallFillerVent:pCube204
   externalObjects: {}
   materials:
     importMaterials: 1
