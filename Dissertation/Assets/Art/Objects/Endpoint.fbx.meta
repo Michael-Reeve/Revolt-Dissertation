@@ -6,9 +6,11 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: Console_initialShadingGroup2
     2300000: //RootNode
     3300000: //RootNode
     4300000: pCube87
+    4300002: Console:pCube86
   externalObjects: {}
   materials:
     importMaterials: 1
