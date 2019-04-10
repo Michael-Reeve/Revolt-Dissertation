@@ -20,20 +20,6 @@ public class Introduction : MonoBehaviour, ISave
 
 	private string uniqueID;
 
-	void Start()
-	{
-		if(hasPlayed == false)
-		{
-			EventManager.TriggerEvent("DisableInput");
-			blackScreen.SetActive(true);
-			ToggleGUIElements(false);
-			AddDialogue();
-			StartCoroutine(Wait());
-			if(backgroundSFX)
-				audioSource.PlayOneShot(backgroundSFX);
-		}
-	}
-
 	public void AddDialogue()
 	{
 		foreach(Dialogue dialogue in dialogues)
@@ -96,12 +82,7 @@ public class Introduction : MonoBehaviour, ISave
 	#region SaveData
 	public void LoadData(ObjectData objectData)
 	{
-		if(objectData.position == Vector3.zero)
-			return;
 		hasPlayed = objectData.active;
-		transform.position = objectData.position;
-		transform.rotation = objectData.rotation;
-		transform.parent = objectData.parent;
 	}
 
 	public void Save()
@@ -121,11 +102,21 @@ public class Introduction : MonoBehaviour, ISave
 			LoadData(loadData);
 			Debug.Log("Loading Data for " + this.name);
 		}
+		if(hasPlayed == false)
+		{
+			EventManager.TriggerEvent("DisableInput");
+			blackScreen.SetActive(true);
+			ToggleGUIElements(false);
+			AddDialogue();
+			StartCoroutine(Wait());
+			if(backgroundSFX)
+				audioSource.PlayOneShot(backgroundSFX);
+		}
 	}
 
 	public string GetUniqueID()
 	{
-		return string.Format(this.gameObject.name + "{0}" + "{1}" + "{2}", this.transform.position, this.transform.rotation, this.transform.parent);
+		return this.gameObject.name;
 	}
 	#endregion
 }
