@@ -5,13 +5,24 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: pCube86
+    100004: Console:pCube86
     400000: //RootNode
     400002: pCube86
+    400004: Console:pCube86
     2100000: pCube86Mat
+    2100002: Console_pCube86Mat
     2300000: pCube86
+    2300002: Console:pCube86
     3300000: pCube86
+    3300002: Console:pCube86
     4300000: pCube86
-  externalObjects: {}
+    4300002: Console:pCube86
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Console_pCube86Mat
+    second: {fileID: 2100000, guid: bafeef436bc8d26458f8a42e9b23ed1a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
