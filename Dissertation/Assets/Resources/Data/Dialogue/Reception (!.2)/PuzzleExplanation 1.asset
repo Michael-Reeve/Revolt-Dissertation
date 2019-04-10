@@ -14,5 +14,5 @@ MonoBehaviour:
   subtitle: Watch out for those, they'll decrease your power. Too many, and you won't
     have enough.
   audio: {fileID: 8300000, guid: e3072e99b805de94784184e23b3b25e2, type: 3}
-  dialoguePriority: 0
+  dialoguePriority: 1
   length: 0

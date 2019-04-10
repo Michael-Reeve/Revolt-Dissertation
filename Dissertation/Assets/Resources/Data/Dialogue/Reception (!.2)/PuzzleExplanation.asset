@@ -14,5 +14,5 @@ MonoBehaviour:
   subtitle: Use these Tesla Anchors to make a path, carrying the power through the
     grid.
   audio: {fileID: 8300000, guid: 781ee3865108b2b4eaed2e10981d4229, type: 3}
-  dialoguePriority: 0
+  dialoguePriority: 1
   length: 0
