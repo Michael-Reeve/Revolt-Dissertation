@@ -6,10 +6,16 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: lambert3
     2300000: //RootNode
     3300000: //RootNode
     4300000: BenchSofa
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100000, guid: 5b6436fa4da3f61419508c2f756596a0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

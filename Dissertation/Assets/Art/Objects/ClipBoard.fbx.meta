@@ -6,10 +6,16 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: lambert2
     2300000: //RootNode
     3300000: //RootNode
     4300000: ClipBoard
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: bacf5a900e7c0a04ea95eb52b04a917a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
