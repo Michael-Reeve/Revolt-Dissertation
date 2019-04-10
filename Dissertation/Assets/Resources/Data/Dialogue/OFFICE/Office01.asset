@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eeec0e2497781340adbe4319b777682, type: 3}
+  m_Name: Office01
+  m_EditorClassIdentifier: 
+  subtitle: 'You know, I always thought bureaucracy creates more problems than it
+    solves.
+
+    Red tape, NDAs... It served us once I''m sure. I personally believe that humans
+    are no longer capable of running the systems we require.'
+  audio: {fileID: 8300000, guid: 581fc1b4470807240bcb9967b1e65df7, type: 3}
+  dialoguePriority: 1
+  length: 0

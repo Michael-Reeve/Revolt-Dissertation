@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eeec0e2497781340adbe4319b777682, type: 3}
   m_Name: ALEX_4
   m_EditorClassIdentifier: 
-  subtitle: '[sigh] We repurposed the original exhibits to work as circuits. Somebody
-    must have gotten in somehow and messed around with it.'
-  audio: {fileID: 0}
+  subtitle: We repurposed the original exhibits to work as circuits. Somebody must
+    have gotten in somehow and messed around with it.
+  audio: {fileID: 8300000, guid: b026df903c307e444b8f5c76cad33444, type: 3}
   dialoguePriority: 1
-  length: 2.5
+  length: 0

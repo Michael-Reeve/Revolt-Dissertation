@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: ALEX_2
   m_EditorClassIdentifier: 
   subtitle: Exactly.
-  audio: {fileID: 0}
+  audio: {fileID: 8300000, guid: 16e3ccc212d2d1f4aa56e21e908444fa, type: 3}
   dialoguePriority: 1
-  length: 0.75
+  length: 0

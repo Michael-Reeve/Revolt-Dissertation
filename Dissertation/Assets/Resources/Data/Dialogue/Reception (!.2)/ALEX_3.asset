@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eeec0e2497781340adbe4319b777682, type: 3}
   m_Name: ALEX_3
   m_EditorClassIdentifier: 
-  subtitle: Yup.. you should see it in the light, hang on...
-  audio: {fileID: 0}
+  subtitle: Yeah... you should see it in the light, hang on...
+  audio: {fileID: 8300000, guid: d190ba837dca36648bf3ed1cceef9ea2, type: 3}
   dialoguePriority: 1
-  length: 1.4
+  length: 0

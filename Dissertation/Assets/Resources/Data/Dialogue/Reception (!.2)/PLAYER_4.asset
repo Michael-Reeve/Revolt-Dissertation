@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitle: So they were smart enough to get here, but not smart enough for a children's
     puzzle?
-  audio: {fileID: 0}
+  audio: {fileID: 8300000, guid: fce1f6180a9be6a4295ae1c0702821ee, type: 3}
   dialoguePriority: 1
-  length: 2.3
+  length: 0

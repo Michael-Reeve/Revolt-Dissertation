@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: PLAYER_1
   m_EditorClassIdentifier: 
   subtitle: So you decided to steal it back?
-  audio: {fileID: 0}
+  audio: {fileID: 8300000, guid: 3af2b29fef9d8da4995d7b0be76af299, type: 3}
   dialoguePriority: 1
-  length: 1.4
+  length: 0

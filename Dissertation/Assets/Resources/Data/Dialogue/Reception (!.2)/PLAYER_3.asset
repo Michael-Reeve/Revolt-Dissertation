@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: PLAYER_3
   m_EditorClassIdentifier: 
   subtitle: Let me guess, that wasn't supposed to happen?
-  audio: {fileID: 0}
+  audio: {fileID: 8300000, guid: a3b45d619735f1b40a13bc688f1bb131, type: 3}
   dialoguePriority: 1
-  length: 1.7
+  length: 0

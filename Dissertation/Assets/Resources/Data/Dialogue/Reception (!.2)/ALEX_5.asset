@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: ALEX_5
   m_EditorClassIdentifier: 
   subtitle: Well, you're the one who needs to do it now, so I wouldn't speak too soon...
-  audio: {fileID: 0}
+  audio: {fileID: 8300000, guid: d31e8b0a7b7037742b119fa161cd389f, type: 3}
   dialoguePriority: 1
   length: 1.7

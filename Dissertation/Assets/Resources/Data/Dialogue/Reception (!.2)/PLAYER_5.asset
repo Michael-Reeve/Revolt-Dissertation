@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eeec0e2497781340adbe4319b777682, type: 3}
   m_Name: PLAYER_5
   m_EditorClassIdentifier: 
-  subtitle: Got it.
-  audio: {fileID: 0}
+  subtitle: Alright, got it.
+  audio: {fileID: 8300000, guid: 0873341d5ab64b9479932ce3ffd71814, type: 3}
   dialoguePriority: 1
-  length: 0.7
+  length: 0
