@@ -96,6 +96,7 @@ public class DialogueManager : MonoBehaviour
 		else
 		{
 			currentDialogue = null;
+			audioSource.clip = null;
 		}
 		SubtitleChange();
 	}

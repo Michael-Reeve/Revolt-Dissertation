@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eeec0e2497781340adbe4319b777682, type: 3}
+  m_Name: FINAL4
+  m_EditorClassIdentifier: 
+  subtitle: I'm here for the mission, Alex. And for you. Not your dashing good looks.
+  audio: {fileID: 8300000, guid: bd374748d26553e42907021b009fee1f, type: 3}
+  dialoguePriority: 1
+  length: 0

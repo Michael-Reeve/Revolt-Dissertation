@@ -15,4 +15,4 @@ MonoBehaviour:
     to change the world?"
   audio: {fileID: 0}
   dialoguePriority: 1
-  length: 5
+  length: 6.5

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eeec0e2497781340adbe4319b777682, type: 3}
+  m_Name: OPUZZLE2
+  m_EditorClassIdentifier: 
+  subtitle: Well, if it's anything like the last I'll be alright!
+  audio: {fileID: 8300000, guid: d8e780f14830f034e978a2c17923f150, type: 3}
+  dialoguePriority: 1
+  length: 0

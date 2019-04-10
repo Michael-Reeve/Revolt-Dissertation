@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eeec0e2497781340adbe4319b777682, type: 3}
+  m_Name: SECUREROOM1
+  m_EditorClassIdentifier: 
+  subtitle: You should have really seen this place before I officially showed up.
+    Full of 'advanced robotics' - if you could call it advanced.
+  audio: {fileID: 8300000, guid: 00a6c4e497c0d7649a4b7aba502e2d2e, type: 3}
+  dialoguePriority: 1
+  length: 0

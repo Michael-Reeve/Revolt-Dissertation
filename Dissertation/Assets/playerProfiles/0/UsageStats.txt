@@ -111,3 +111,9 @@ Second Puzzle completed at:  366.7419
 Third Puzzle completed at:  525.6526
 First Puzzle Completed at:  111.7157
 Second Puzzle completed at:  175.8681
+First Puzzle Completed at:  94.38101
+Second Puzzle completed at:  152.5689
+Third Puzzle completed at:  227.9665
+First Puzzle Completed at:  85.30361
+Third Puzzle completed at:  138.946
+Second Puzzle completed at:  190.4524
